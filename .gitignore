@@ -1,0 +1,13 @@
+.idea/*
+*.swp
+*.swo
+tags
+tags-php
+tags-js
+tags-*
+.DS_Store
+package-lock.json
+.local.phpstan.neon
+.phpstan-bootstrap.php
+ignore.me.*
+telepresence.log
