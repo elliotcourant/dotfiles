@@ -19,6 +19,10 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
 RUN apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
 RUN apt-get install -y kubectl
 
+RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+RUN apt-get update && apt-get install vault
+
 ARG USERNAME=elliotcourant
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
