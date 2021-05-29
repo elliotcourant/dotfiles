@@ -1,0 +1,21 @@
+name: Publish Docker image
+on:
+  push:
+    branches:
+      - main
+jobs:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Build and push ghcr.io
+        uses: docker/build-push-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          dockerfile: Dockerfile
+          tags: latest,20.04
+          repository: elliotcourant/dotfiles/ubuntu
