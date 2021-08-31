@@ -17,12 +17,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ekalinin/Dockerfile.vim'
 
 " AUTOCOMPLETE
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master'}
 
 " Javascript/Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'yuezk/vim-js'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mattn/emmet-vim'
 
 " THEMES
@@ -32,8 +32,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jaxbot/semantic-highlight.vim'
 
+
 " EDITOR
 Plug 'tpope/vim-fugitive'
+Plug 'markwoodhall/vim-codelens'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " MISC
 Plug '/usr/local/opt/fzf'
@@ -49,7 +54,32 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
 
+" Time tracking
+Plug 'wakatime/vim-wakatime'
+
+
 call plug#end()
+
+
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    custom_captures = {
+      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
+      ["foo.bar"] = "Identifier",
+    },
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+
 
 " All Key Bindings "
 let mapleader = "'"
@@ -58,6 +88,10 @@ nnoremap <Leader><Down>  :resize -10<CR>
 nnoremap <Leader><Left>  :vertical resize +10<CR>
 nnoremap <Leader><Right> :vertical resize -10<CR>
 nmap     <Leader>d  :bd<CR>     " Close buffer without closing split
+nmap     <Tab>      <C-w>
+nmap     <Tab><Tab> <C-w><C-w> " Cycle focus of splits on double-tab
+xmap <Tab> <C-w>
+xmap <Tab><Tab> <C-w><C-w>
 nmap     <Tab>      <C-w>
 nmap     <Tab><Tab> <C-w><C-w> " Cycle focus of splits on double-tab
 
@@ -108,17 +142,32 @@ nmap <Leader>Q <Plug>(easymotion-overwin-line)
 map  <Leader>l <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
+nmap <Leader>t :CocList symbols<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 
 "" Nerd Tree Keybindings "
 nmap <Leader>n :NERDTreeToggle<CR>
 
 " FZF Keybindings "
 " nmap <Leader>t :Tags<CR>
-nmap <Leader>f :Files<CR>
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" nmap <Leader>f :Files<CR>
 noremap <c-\> :call fzf#vim#tags(expand('<cword>'), {'options': '--exact --select-1 --exit-0'})<CR>
 
 nmap <Leader>T :GoDecls<CR>
@@ -133,7 +182,8 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap ; :Buffers<CR>
 
 cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <leader>a <cmd>Telescope live_grep<cr>
+nnoremap <Leader>A :Ack!<Space>
 if executable('ag')
     let g:ackprg = 'ag --vimgrep'
 endif
@@ -165,6 +215,7 @@ command! Commit FloatermNew --autoclose=2 git add -A && git commit -a
 command! Push FloatermNew --name=push --autoclose=1 git push
 command! Status FloatermNew --name=status --autoclose=0 git status
 command! Term FloatermNew --name=terminal --autoclose=2
+command! History :lua require'telescope.builtin'.git_bcommits{}
 
 " SETTINGS
 set number
@@ -185,6 +236,17 @@ set mouse=a
 set rtp+=/.fzf
 set completeopt=preview,menu,noinsert,menuone
 set colorcolumn=120
+
+
+
+
+
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" a list of groups can be found at `:help nvim_tree_highlight`
+
+
+
 
 " Stray javascript setting? "
 let g:used_javascript_libs = 'underscore,backbone,mustache,jquery'
@@ -248,6 +310,9 @@ let g:fzf_colors =
 autocmd FileType go   call SetGoOptions()
 autocmd FileType json call SetJsonOptions()
 autocmd FileType vim  call SetVimOptions()
+
+" source ~/.config/nvim/crlogictest.vim
+" autocmd BufEnter */sql/logictest/testdata/* set filetype=crlogictest tw=0
 
 highlight Normal guibg=none
 highlight NonText guibg=none
