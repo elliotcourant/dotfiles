@@ -12,7 +12,8 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     neovim \
     iputils-ping \
     dnsutils \
-    traceroute
+    traceroute \
+    redis-server # Has redis-cli
 
 # Install kubectl
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
@@ -21,7 +22,7 @@ RUN apt-get install -y kubectl
 
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-RUN apt-get update && apt-get install vault
+RUN apt-get update && apt-get install -y vault
 
 ARG USERNAME=elliotcourant
 ARG USER_UID=1000
