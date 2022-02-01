@@ -1,0 +1,65 @@
+let mapleader = "'"
+
+" noremap <Up> <Nop>
+" noremap <Down> <Nop>
+" noremap <Left> <Nop>
+" noremap <Right> <Nop>
+
+inoremap <Esc> <Esc><Esc>
+nmap <Tab> <C-w>
+nmap <Tab><Tab> <C-w><C-w>
+
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+" Easy Motion Keybindings "
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>W <Plug>(easymotion-overwin-w)
+map  <Leader>q <Plug>(easymotion-bd-jk)
+nmap <Leader>Q <Plug>(easymotion-overwin-line)
+map  <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+nmap <Leader>a :action FindInPath <cr>
+nmap <Leader>f :action GotoFile<cr>
+nmap <Leader>t :action GotoSymbol<cr>
+nmap <Leader>T :action FileStructurePopup<cr>
+nmap <Leader>r :action RecentFiles<cr>
+nmap <Leader>e :action EmmetEverywhere<cr>
+
+nmap [\ :action GotoNextError<cr>
+nmap ]\ :action GotoPreviousError<cr>
+
+nmap     <C-z> :Term<cr>
+nmap     ; :action Switcher<cr>
+nmap     <Leader>ev :e ~/.ideavimrc<cr>
+nmap     <Leader>sv :source ~/.ideavimrc<cr>
+nmap     gc :action CommentByLineComment<cr>
+nmap     <Leader>gt :GoTestFunc<cr>
+nmap     <Leader>gb :GoDebugFunc<cr>
+nmap     gr :action ShowUsages<cr>
+vnoremap gc :action CommentByLineComment<cr>
+nmap     <F10> :action ToggleLineBreakpoint<cr>
+vnoremap <Leader>ga :action StringManipulation.AlignToColumns<cr>
+command! Term action ActivateTerminalToolWindow
+command! Wq wq
+command! WQ wq
+command! W w
+command! BD q
+command! Bd q
+command! Qa qa
+command! QA qa
+command! Q q
+command! Vs vs
+command! VS vs
+command! GoTestFunc action RunClass
+command! GoDebugFunc action DebugClass
+set go+=b.
+set bs=2
+set clipboard+=unnamedplus
+set showcmd
+set ignorecase
+set smartcase
+set mouse=a
+set visualbell
+set multiple-cursors
+set noerrorbells
+set easymotion
