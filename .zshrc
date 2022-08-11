@@ -1,14 +1,36 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set my default editor.
-export EDITOR="nvim";
+export EDITOR=nvim
 
-# Path to your oh-my-zsh installation.
-export ZSH="/Users/elliotcourant/.oh-my-zsh";
-export GOPATH="/Users/elliotcourant/go"
-export PATH="$GOPATH/bin:/usr/local/opt/make/libexec/gnubin:$PATH";
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export ZSH="$HOME/.oh-my-zsh";
+
+# If go is setup in the home directory then add stuff to the path and setup other variables.
+if [[ -d $HOME/go ]]
+then
+  export GOPATH="$HOME/go";
+  export PATH="$GOPATH/bin:$PATH";
+fi
+
+# Make sure brew's make is ahead of other stuff in the path.
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+# Put libpq ahead of stuff for path variable.
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
+
+# For work computer, make sure libsodium makes its way into the path.
+if [[ $(hostname | grep "\-TP\-") ]]
+then
+  export PATH="$PATH:/opt/homebrew/Cellar/libsodium/1.0.18_1/lib"
+  # Add libsodium to LD library.
+  export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
+fi
+
+# If krew is installed then include that in the PATH as well.
+if [[ -d ${KREW_ROOT:-$HOME/.krew}/bin ]]
+then
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+fi
+
 
 
 # For doing android development. Define our SDK root.
@@ -102,7 +124,14 @@ export FZF_DEFAULT_COMMAND='rg --files'
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git wakatime)
+
+# If its not the work computer enable wakatime. If it is the work computer though then only use git.
+if [[ ! $(hostname | grep "\-TP\-") ]]
+then
+  plugins=(git wakatime)
+else
+  plugins=(git)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
@@ -133,6 +162,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
@@ -184,3 +214,8 @@ source <(plz --completion_script)
 # export VOLTA_HOME="$HOME/.volta"
 # export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
