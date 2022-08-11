@@ -171,32 +171,14 @@ alias gitsearch='git branch --all | fzf'
 alias gc='git checkout $(gitsearch)'
 alias view='nvim -R'
 alias gl='git log | nvim -R -c ":set ft=git"'
-alias pipe='glab pipeline status --live'
 alias docker-credential-gcloud='docker-credential-gcr'
 
 alias gitpod-admin='kubectl kots admin-console --namespace gitpod'
-
 
 # unset DOCKER_TLS_VERIFY
 # unset DOCKER_CERT_PATH
 # unset DOCKER_MACHINE_NAME
 # unset DOCKER_HOST
-export PGO_APISERVER_URL='https://127.0.0.1:8443'
-export PATH=/Users/elliotcourant/.pgo/monetr-staging:$PATH
-export PGOUSER=/Users/elliotcourant/.pgo/monetr-staging/pgouser
-export PGO_CA_CERT=/Users/elliotcourant/.pgo/monetr-staging/client.crt
-export PGO_CLIENT_CERT=/Users/elliotcourant/.pgo/monetr-staging/client.crt
-export PGO_CLIENT_KEY=/Users/elliotcourant/.pgo/monetr-staging/client.key
-export PGO_NAMESPACE=monetr-staging
-#
-#
-#
-# export PATH=/Users/elliotcourant/.pgo/monetr-acceptance:$PATH
-# export PGOUSER=/Users/elliotcourant/.pgo/monetr-acceptance/pgouser
-# export PGO_CA_CERT=/Users/elliotcourant/.pgo/monetr-acceptance/client.crt
-# export PGO_CLIENT_CERT=/Users/elliotcourant/.pgo/monetr-acceptance/client.crt
-# export PGO_CLIENT_KEY=/Users/elliotcourant/.pgo/monetr-acceptance/client.key
-# export PGO_NAMESPACE=monetr-acceptance
 
 export GITHUB_UPSTREAM=origin
 
