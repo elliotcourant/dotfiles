@@ -49,3 +49,5 @@ IDEAVIM=~/.ideavimrc
 install-ideavim:
 	-[ -f $(IDEAVIM) ] && [ ! -L $(IDEAVIM) ] && mv $(IDEAVIM) $(IDEAVIM).backup
 	-[ ! -L $(IDEAVIM) ] && ln -s $(PWD)/.ideavimrc $(IDEAVIM)
+
+install: install-tmux install-neovim install-neovim
