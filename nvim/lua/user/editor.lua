@@ -1,3 +1,10 @@
+vim.o.nocompatible = true
+vim.o.number = true
+vim.g.bs = 2 -- Make backspace work in a sane way.
+vim.o.laststatus = 2
+vim.o.autoread = true -- Update buffers when the file is modified externally.
+vim.o.showcmd = true  -- I want to the command keys.
+
 --vim.wo.colorcolumn = '120'
 --vim.wo.number = true
 --
@@ -33,16 +40,10 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
 vim.cmd [[
-  set nocompatible
   filetype off
   filetype plugin indent on
 
-  set number
-  set bs=2
-  set laststatus=2
   set clipboard+=unnamedplus
-  set autoread    " Update buffer when file is modified externally.
-  set showcmd     " I want to see the command keys
   set ignorecase  " searches are case insensitive...
   set smartcase   " ... unless they contain at least one capital letter
   set hidden
