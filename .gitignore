@@ -11,3 +11,4 @@ package-lock.json
 .phpstan-bootstrap.php
 ignore.me.*
 telepresence.log
+*/.idea

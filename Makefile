@@ -25,5 +25,8 @@ docker-push: docker
 	docker push $(VERSIONED)
 	docker push $(LATEST)
 
-
-
+read:
+	cp ~/.zshrc $(PWD)/.zshrc
+	cp ~/.tmux.conf $(PWD)/.tmux.conf
+	cp ~/.tmux.conf $(PWD)/.tmux.conf
+	cp -r ~/.config/nvim $(PWD)/nvim
