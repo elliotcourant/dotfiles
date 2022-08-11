@@ -43,3 +43,9 @@ TMUX=~/.tmux.conf
 install-tmux:
 	-[ -f $(TMUX) ] && [ ! -L $(TMUX) ] && mv $(TMUX) $(TMUX).backup
 	-[ ! -L $(TMUX) ] && ln -s $(PWD)/.tmux.conf $(TMUX)
+
+
+IDEAVIM=~/.ideavimrc
+install-ideavim:
+	-[ -f $(IDEAVIM) ] && [ ! -L $(IDEAVIM) ] && mv $(IDEAVIM) $(IDEAVIM).backup
+	-[ ! -L $(IDEAVIM) ] && ln -s $(PWD)/.ideavimrc $(IDEAVIM)

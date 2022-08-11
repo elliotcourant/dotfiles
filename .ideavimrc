@@ -9,12 +9,6 @@ inoremap <Esc> <Esc><Esc>
 nmap <Tab> <C-w>
 nmap <Tab><Tab> <C-w><C-w>
 
-" map  <Leader>w <Plug>(easymotion-bd-w)
-" nmap <Leader>W <Plug>(easymotion-overwin-w)
-" map  <Leader>q <Plug>(easymotion-bd-jk)
-" nmap <Leader>Q <Plug>(easymotion-overwin-line)
-" map  <Leader>l <Plug>(easymotion-bd-jk)
-" nmap <Leader>L <Plug>(easymotion-overwin-line)
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
 " Easy Motion Keybindings "
@@ -24,29 +18,37 @@ map  <Leader>q <Plug>(easymotion-bd-jk)
 nmap <Leader>Q <Plug>(easymotion-overwin-line)
 map  <Leader>l <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
-" nmap <Leader>w :action KJumpAction.Word0<cr>
-" nmap <Leader>q :action KJumpAction.Line<cr>
-" nmap <Leader>l :action KJumpAction.Line<cr>
-nmap <Leader>a :action FindModal<cr>
+nmap <Leader>a :action FindInPath <cr>
 nmap <Leader>f :action GotoFile<cr>
 nmap <Leader>t :action GotoSymbol<cr>
 nmap <Leader>T :action FileStructurePopup<cr>
 nmap <Leader>r :action RecentFiles<cr>
 nmap <Leader>e :action EmmetEverywhere<cr>
 
+
+" nmap <S-W> :action :cursive.actions.paredit/move-form-up<cr>
+" nmap <S-S> :action :cursive.actions.paredit/move-form-down<cr>
+" vmap i :action SmartSelect<cr>
+
+
+nmap     ,,        :action ToggleBookmark<cr>
+vnoremap ,,        :action ToggleBookmark<cr>
+nmap     <Leader>b :action ShowBookmarks<cr>
+
 nmap [\ :action GotoNextError<cr>
 nmap ]\ :action GotoPreviousError<cr>
 
-nmap <C-z> :Term<cr>
-nmap ; :action Switcher<cr>
-nmap <Leader>ev :e ~/.ideavimrc<cr>
-nmap <Leader>sv :source ~/.ideavimrc<cr>
-nmap gc :action CommentByLineComment<cr>
-nmap <Leader>gt :GoTestFunc<cr>
-nmap <Leader>gb :GoDebugFunc<cr>
-nmap gr :action ShowUsages<cr>
+nmap     <C-z> :Term<cr>
+nmap     ; :action Switcher<cr>
+nmap     <Leader>ev :e ~/.ideavimrc<cr>
+nmap     <Leader>sv :source ~/.ideavimrc<cr>
+nmap     gc :action CommentByLineComment<cr>
+nmap     <Leader>gt :GoTestFunc<cr>
+nmap     <Leader>gb :GoDebugFunc<cr>
+nmap     gr :action ShowUsages<cr>
 vnoremap gc :action CommentByLineComment<cr>
-nmap <F10> :action ToggleLineBreakpoint<cr>
+nmap     <F10> :action ToggleLineBreakpoint<cr>
+vnoremap <Leader>ga :action StringManipulation.AlignToColumns<cr>
 command! Term action ActivateTerminalToolWindow
 command! Wq wq
 command! WQ wq
