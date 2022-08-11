@@ -9,6 +9,15 @@ filetype plugin indent on
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+
+" Debugger stuff.
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'yriveiro/dap-go.nvim'
+
+Plug 'towolf/vim-helm'
+
 " LANGUAGES
 " -Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -17,13 +26,14 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'ekalinin/Dockerfile.vim'
 
 " AUTOCOMPLETE
-Plug 'neoclide/coc.nvim', {'branch': 'master'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-tsserver'
 
 " Javascript/Typescript
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'yuezk/vim-js'
 " Plug 'maxmellon/vim-jsx-pretty'
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 " THEMES
 " -Editor Theme
@@ -66,34 +76,86 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
-    custom_captures = {
-      -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-      ["foo.bar"] = "Identifier",
-    },
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
+};
 EOF
+
+" lua <<EOF
+" require('dapui').setup(
+"   icons = { expanded = "▾", collapsed = "▸" },
+"   layouts = {
+"     {
+"       elements = {
+"         'scopes',
+"         'breakpoints',
+"         'stacks',
+"         'watches',
+"       },
+"       size = 40,
+"       position = 'left',
+"     },
+"     {
+"       elements = {
+"         'repl',
+"         'console',
+"       },
+"       size = 10,
+"       position = 'bottom',
+"     },
+"   },
+"   mappings = {
+"     -- Use a table to apply multiple mappings
+"     expand = { "<CR>", "<2-LeftMouse>" },
+"     open = "o",
+"     remove = "d",
+"     edit = "e",
+"     repl = "r",
+"     toggle = "t",
+"   },
+"   -- Expand lines larger than the window
+"   -- Requires >= 0.7
+"   expand_lines = vim.fn.has("nvim-0.7"),
+"   tray = {
+"     elements = { "repl" },
+"     size = 10,
+"     position = "bottom", -- Can be "left", "right", "top", "bottom"
+"   },
+"   floating = {
+"     max_height = nil, -- These can be integers or a float between 0 and 1.
+"     max_width = nil, -- Floats will be treated as percentage of your screen.
+"     border = "single", -- Border style. Can be "single", "double" or "rounded"
+"     mappings = {
+"       close = { "q", "<Esc>" },
+"     },
+"   },
+"   windows = { indent = 1 },
+"   render = {
+"     max_type_length = nil, -- Can be integer or nil.
+"   },
+" )
+" EOF
 
 
 
 " All Key Bindings "
 let mapleader = "'"
-nnoremap <Leader><Up>    :resize +10<CR>
-nnoremap <Leader><Down>  :resize -10<CR>
-nnoremap <Leader><Left>  :vertical resize +10<CR>
-nnoremap <Leader><Right> :vertical resize -10<CR>
-nmap     <Leader>d  :bd<CR>     " Close buffer without closing split
-nmap     <Tab>      <C-w>
-nmap     <Tab><Tab> <C-w><C-w> " Cycle focus of splits on double-tab
-xmap <Tab> <C-w>
-xmap <Tab><Tab> <C-w><C-w>
-nmap     <Tab>      <C-w>
-nmap     <Tab><Tab> <C-w><C-w> " Cycle focus of splits on double-tab
+nmap <Leader><Up>    :resize +10<CR>
+nmap <Leader><Down>  :resize -10<CR>
+nmap <Leader><Left>  :vertical resize +10<CR>
+nmap <Leader><Right> :vertical resize -10<CR>
+nmap <Leader>d       :bd<CR>     " Close buffer without closing split
+nmap <Leader>dd      :lua require("dapui").toggle()<CR>
+nmap <Tab>           <C-w>
+nmap <Tab><Tab>      <C-w><C-w> " Cycle focus of splits on double-tab
+xmap <Tab>           <C-w>
+xmap <Tab><Tab>      <C-w><C-w>
+nmap <Tab>           <C-w>
+nmap <Tab><Tab>      <C-w><C-w> " Cycle focus of splits on double-tab
 
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -118,6 +180,10 @@ function! SetGoOptions()
     map <F10>       :GoDebugStep<CR>
     map <F11>       :GoDebugStepOut<CR>
     nmap <Leader>gt :GoTestFunc!<CR>
+endfunction
+
+function! SetCOptions()
+  nnoremap <silent> gi :CocCommand clangd.switchSourceHeader<cr>
 endfunction
 
 function! SetJsonOptions()
@@ -308,6 +374,8 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 autocmd FileType go   call SetGoOptions()
+autocmd FileType c    call SetCOptions()
+autocmd FileType cpp  call SetCOptions()
 autocmd FileType json call SetJsonOptions()
 autocmd FileType vim  call SetVimOptions()
 
@@ -316,3 +384,5 @@ autocmd FileType vim  call SetVimOptions()
 
 highlight Normal guibg=none
 highlight NonText guibg=none
+
+" let g:go_debug=['shell-commands']

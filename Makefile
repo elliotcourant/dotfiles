@@ -29,4 +29,12 @@ read:
 	cp ~/.zshrc $(PWD)/.zshrc
 	cp ~/.tmux.conf $(PWD)/.tmux.conf
 	cp ~/.tmux.conf $(PWD)/.tmux.conf
-	cp -r ~/.config/nvim $(PWD)/nvim
+	cp -r ~/.config/nvim/. $(PWD)/nvim
+
+NEOVIM=~/.config/nvim
+PACKER=~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+install-neovim:
+	-[ -d $(NEOVIM) ] && mv $(NEOVIM) $(NEOVIM).backup
+	-[ ! -f $(PACKER) ] && git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER)
+	ln -s $(PWD)/nvim $(NEOVIM)

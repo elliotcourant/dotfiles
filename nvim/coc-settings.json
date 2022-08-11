@@ -1,16 +1,23 @@
 {
-    "suggest.noselect": false,
-    "suggest.keepCompleteopt": true,
-    "suggest.floatEnable": true,
-    "suggest.enablePreview": false,
-    "languageserver": {
-      "golang": {
-        "command": "gopls",
-        "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-        "filetypes": ["go"],
-        "initializationOptions": {
-          "usePlaceholders": true
-        }
-      }
-    }
+  "suggest.detailField": "menu",
+  "suggest.noselect": false,
+  "codeLens.enable": true,
+  "hover.target": "float",
+  "coc.preferences.colorSupport": true,
+  "go.enable": true,
+  "go.goplsOptions": {
+    "codelenses": {
+      "generate": true,
+      "tidy": true
+    },
+    "semanticTokens": true,
+    "usePlaceholders": true,
+    "matcher": "Fuzzy",
+    "hoverKind": "FullDocumentation",
+    "linksInHover": true,
+    "completionBudget": "500ms"
+  },
+  "tsserver.maxTsServerMemory": 0,
+  "tsserver.log": "verbose",
+  "coc.preferences.semanticTokensHighlights": true
 }
