@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
-let g:netrw_dirhist_5='/Users/elliotcourant/mayview'
-let g:netrw_dirhist_4='/Users/elliotcourant/monetr/rest-api/pkg/internal/stripe_helper'
-let g:netrw_dirhist_3='/Users/elliotcourant/.vaas'
-let g:netrw_dirhist_2='/private/etc/resolver'
-let g:netrw_dirhist_1='/Users/elliotcourant/mayview'
