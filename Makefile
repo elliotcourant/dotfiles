@@ -38,3 +38,8 @@ install-neovim:
 	-[ -d $(NEOVIM) ] && mv $(NEOVIM) $(NEOVIM).backup
 	-[ ! -f $(PACKER) ] && git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER)
 	ln -s $(PWD)/nvim $(NEOVIM)
+
+TMUX=~/.tmux.conf
+install-tmux:
+	-[ -f $(TMUX) ] && [ ! -L $(TMUX) ] && mv $(TMUX) $(TMUX).backup
+	-[ ! -L $(TMUX) ] && ln -s $(PWD)/.tmux.conf $(TMUX)
