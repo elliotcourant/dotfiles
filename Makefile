@@ -50,4 +50,9 @@ install-ideavim:
 	-[ -f $(IDEAVIM) ] && [ ! -L $(IDEAVIM) ] && mv $(IDEAVIM) $(IDEAVIM).backup
 	-[ ! -L $(IDEAVIM) ] && ln -s $(PWD)/.ideavimrc $(IDEAVIM)
 
-install: install-tmux install-neovim install-neovim
+MATERIAL=~/.oh-my-zsh/themes/material.zsh-theme
+install-material:
+	-[ -f $(MATERIAL) ] && [ ! -L $(MATERIAL) ] && mv $(MATERIAL) $(MATERIAL).backup
+	-[ ! -L $(MATERIAL) ] && ln -s $(PWD)/material.zsh-theme $(MATERIAL)
+
+install: install-tmux install-neovim install-ideavim install-material
