@@ -32,6 +32,16 @@ keymap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 keymap("n", "tt", "<cmd>ToggleTerm<cr>", opts)
 keymap("i", "<C-Tab>", "<C-\\>", opts)
 
+-- Easy Motion Keybindings
+keymap("n", "<Leader>w", "<Plug>(easymotion-bd-w)")
+keymap("n", "<Leader>W", "<Plug>(easymotion-overwin-w)")
+keymap("n", "<Leader>l", "<Plug>(easymotion-bd-jk)")
+keymap("n", "<Leader>L", "<Plug>(easymotion-overwin-line)")
+
+-- Easy Align Keybindings
+keymap("x", "ga", "<Plug>(EasyAlign)")
+keymap("n", "ga", "<Plug>(EasyAlign)")
+
 
 
 -- ################################################################################################################## --

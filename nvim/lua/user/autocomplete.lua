@@ -169,3 +169,9 @@ require('lspconfig')['clojure_lsp'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
+
+require('lspconfig')['marksman'].setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+    flags = lsp_flags,
+}

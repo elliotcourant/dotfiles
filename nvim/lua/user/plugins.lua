@@ -84,6 +84,8 @@ return packer.startup(function(use)
     }
     use { "markstory/vim-zoomwin" }
     use { "terryma/vim-multiple-cursors" }
+    use { "junegunn/vim-easy-align" }
+    use { "easymotion/vim-easymotion" }
 
 
     -- Telescope
@@ -102,7 +104,6 @@ return packer.startup(function(use)
             jsx = { 'eslint' },
         }
     end }
-
 
 
     -- Language Server stuff
