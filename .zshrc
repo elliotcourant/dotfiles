@@ -16,6 +16,7 @@ fi
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
 # Put libpq ahead of stuff for path variable.
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
+export PATH="/usr/local/sbin:$PATH"
 
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
@@ -31,37 +32,27 @@ then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
 
-
-
-# For doing android development. Define our SDK root.
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-# Dumb hack, Fuck i hate android.
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
-# Within our SDK root we need to add 2 folders to our path. The emulator (used for react native) and tools
-export PATH="$PATH:$ANDROID_SDK_ROOT/emulator";
-export PATH="$PATH:$ANDROID_SDK_ROOT/tools";
-export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools";
-# We need this for java stuff within android development
-export PATH="$JAVA_HOME/bin:$PATH";
-
-
-# Stuff for PHP development.
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-
-
-# These are dependencies for working on php-src
-export PATH="/usr/local/opt/bison/bin:$PATH"
-export PATH="/usr/local/opt/libiconv/bin:$PATH"
+# If the android SDK is present then setup our environment variables.
+if [[ -d $HOME/Library/Android/sdk ]]
+then
+  # For doing android development. Define our SDK root.
+  export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+  # Dumb hack, Fuck i hate android.
+  export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
+  # Within our SDK root we need to add 2 folders to our path. The emulator (used for react native) and tools
+  export PATH="$PATH:$ANDROID_SDK_ROOT/emulator";
+  export PATH="$PATH:$ANDROID_SDK_ROOT/tools";
+  export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools";
+  # We need this for java stuff within android development
+  export PATH="$JAVA_HOME/bin:$PATH";
+end
 
 # This is stuff for cocoapods, and react-native
 export GEM_HOME="$HOME/.gem"
 export PATH="$GEM_HOME/bin:$PATH"
 
-
 # Gcloud stuff
 export PATH="$PATH:$HOME/.gcloud/google-cloud-sdk/bin"
-
 
 # This is needed for compilers that need access to the bison lib.
 unset LDFLAGS;
@@ -75,17 +66,12 @@ export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include";
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include";
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl@3/include"
 
-
-
-
-
 #######################################################################################################################
 
 export TEST_GOOGLE_KMS_CREDENTIALS="$HOME/.monetr/experimental-315918-5fabde83f903.json"
 export TEST_GOOGLE_KMS_NAME="projects/experimental-315918/locations/us-central1/keyRings/local-development/cryptoKeys/monetr-development"
 
 #######################################################################################################################
-
 
 # export PATH="$HOME/.gcloud/google-cloud-sdk/bin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
@@ -195,8 +181,6 @@ source <(plz --completion_script)
 # eval $(minikube docker-env)
 # export VOLTA_HOME="$HOME/.volta"
 # export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-
 
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm

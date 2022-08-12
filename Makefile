@@ -55,4 +55,10 @@ install-material:
 	-[ -f $(MATERIAL) ] && [ ! -L $(MATERIAL) ] && mv $(MATERIAL) $(MATERIAL).backup
 	-[ ! -L $(MATERIAL) ] && ln -s $(PWD)/material.zsh-theme $(MATERIAL)
 
-install: install-tmux install-neovim install-ideavim install-material
+ZSHRC=$(HOME)/.zshrc
+install-zshrc:
+	-[ -f $(ZSHRC) ] && [ ! -L $(ZSHRC) ] && mv $(ZSHRC) $(ZSHRC).backup
+	-[ ! -L $(ZSHRC) ] && ln -s $(PWD)/.zshrc $(ZSHRC)
+
+
+install: install-tmux install-neovim install-ideavim install-material install-zshrc
