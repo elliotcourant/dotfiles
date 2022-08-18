@@ -13,15 +13,15 @@ then
 fi
 
 # Make sure brew's make is ahead of other stuff in the path.
-export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH"
+export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH";
 # Put libpq ahead of stuff for path variable.
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:$PATH";
 
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
 then
-  export PATH="$PATH:/opt/homebrew/Cellar/libsodium/1.0.18_1/lib"
+  export PATH="$PATH:/opt/homebrew/Cellar/libsodium/1.0.18_1/lib";
   # Add libsodium to LD library.
   export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
 fi
@@ -29,23 +29,8 @@ fi
 # If krew is installed then include that in the PATH as well.
 if [[ -d ${KREW_ROOT:-$HOME/.krew}/bin ]]
 then
-  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH";
 fi
-
-# If the android SDK is present then setup our environment variables.
-if [[ -d $HOME/Library/Android/sdk ]]
-then
-  # For doing android development. Define our SDK root.
-  export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-  # Dumb hack, Fuck i hate android.
-  export JAVA_HOME="/Applications/Android Studio.app/Contents/jre/Contents/Home"
-  # Within our SDK root we need to add 2 folders to our path. The emulator (used for react native) and tools
-  export PATH="$PATH:$ANDROID_SDK_ROOT/emulator";
-  export PATH="$PATH:$ANDROID_SDK_ROOT/tools";
-  export PATH="$PATH:$ANDROID_SDK_ROOT/platform-tools";
-  # We need this for java stuff within android development
-  export PATH="$JAVA_HOME/bin:$PATH";
-end
 
 # This is stuff for cocoapods, and react-native
 export GEM_HOME="$HOME/.gem"
@@ -148,7 +133,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 #
-eval "$(/opt/homebrew/bin/brew shellenv)"
+
+
+# Try to find brew, or use the static path.
+# TODO Check if the command exists, and if it does not then skip this entirely.
+eval "$(`which brew || echo '/opt/homebrew/bin/brew'` shellenv)"
 
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
@@ -177,11 +166,3 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 source <(plz --completion_script)
-
-# eval $(minikube docker-env)
-# export VOLTA_HOME="$HOME/.volta"
-# export PATH="$VOLTA_HOME/bin:$PATH"
-
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
