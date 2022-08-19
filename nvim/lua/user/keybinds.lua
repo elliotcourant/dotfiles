@@ -39,8 +39,11 @@ keymap("n", "<Leader>l", "<Plug>(easymotion-bd-jk)")
 keymap("n", "<Leader>L", "<Plug>(easymotion-overwin-line)")
 
 -- Easy Align Keybindings
-keymap("x", "ga", "<Plug>(EasyAlign)")
-keymap("n", "ga", "<Plug>(EasyAlign)")
+keymap("x", "ga", "<Plug>(EasyAlign)", opts)
+keymap("n", "ga", "<Plug>(EasyAlign)", opts)
+
+-- Focus Keybindings
+keymap("n", "<Leader>z", "<cmd>ZoomToggle<cr>", opts)
 
 
 -- ################################################################################################################## --

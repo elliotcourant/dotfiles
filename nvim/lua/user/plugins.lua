@@ -83,6 +83,7 @@ return packer.startup(function(use)
         end
     }
     use { "markstory/vim-zoomwin" }
+    use { "junegunn/goyo.vim" }
     use { "terryma/vim-multiple-cursors" }
     use { "junegunn/vim-easy-align" }
     use { "easymotion/vim-easymotion" }
