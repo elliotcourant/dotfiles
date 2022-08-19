@@ -4,36 +4,6 @@ vim.g.bs = 2 -- Make backspace work in a sane way.
 vim.o.laststatus = 2
 vim.o.autoread = true -- Update buffers when the file is modified externally.
 vim.o.showcmd = true  -- I want to the command keys.
-
---vim.wo.colorcolumn = '120'
---vim.wo.number = true
---
----- Indentation
---vim.g.expandtab = true
---vim.g.tabstop = 2
---vim.g.shiftwidth = 2
---vim.g.autoindent = true
---vim.g.smartindent = true
---
---vim.g.bs = 2
---
---vim.g.clipboard = 'unnamedplus'
---
----- Update the buffer if the file is modified externally.
---vim.g.autoread = true
----- Show the keys being entered.
---vim.g.showcmd = true
----- Searches should be case insensitive.
---vim.g.ignorecase = true
----- Unless those searches contain a capital letter.
---vim.g.smartcase = true
---
---vim.g.hidden = true
---vim.g.ttyfast = true
---vim.g.noshowmode = true
---vim.g.nowrap = true
---vim.g.mouse = 'a'
-
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.tabstop = 2

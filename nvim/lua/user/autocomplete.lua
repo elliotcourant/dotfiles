@@ -12,30 +12,30 @@ local check_backspace = function()
 end
 
 local kind_icons = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "",
-    Variable = "",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
+    Text          = "",
+    Method        = "",
+    Function      = "",
+    Constructor   = "",
+    Field         = "",
+    Variable      = "",
+    Class         = "",
+    Interface     = "",
+    Module        = "",
+    Property      = "",
+    Unit          = "",
+    Value         = "",
+    Enum          = "",
+    Keyword       = "",
+    Snippet       = "",
+    Color         = "",
+    File          = "",
+    Reference     = "",
+    Folder        = "",
+    EnumMember    = "",
+    Constant      = "",
+    Struct        = "",
+    Event         = "",
+    Operator      = "",
     TypeParameter = "",
 }
 
@@ -52,12 +52,12 @@ cmp.setup({
         documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
-        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>']   = cmp.mapping.scroll_docs(-4),
+        ['<C-f>']   = cmp.mapping.scroll_docs(4),
         ['<C-Tab>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<C-e>']   = cmp.mapping.abort(),
+        ['<CR>']    = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<Tab>']   = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -66,10 +66,10 @@ cmp.setup({
             vim_item.menu = ({
                 nvim_lsp = "",
                 nvim_lua = "",
-                luasnip = "",
-                buffer = "",
-                path = "",
-                emoji = "",
+                luasnip  = "",
+                buffer   = "",
+                path     = "",
+                emoji    = "",
             })[entry.source.name]
             return vim_item
         end,
@@ -85,39 +85,8 @@ cmp.setup({
     })
 })
 
----- Set configuration for specific filetype.
---cmp.setup.filetype('gitcommit', {
---    sources = cmp.config.sources({
---        { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
---    }, {
---        { name = 'buffer' },
---    })
---})
---
----- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline('/', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = {
---        { name = 'buffer' }
---    }
---})
---
----- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
---cmp.setup.cmdline(':', {
---    mapping = cmp.mapping.preset.cmdline(),
---    sources = cmp.config.sources({
---        { name = 'path' }
---    }, {
---        { name = 'cmdline' }
---    })
---})
---
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
---require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---    capabilities = capabilities
---}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -154,24 +123,24 @@ local lsp_flags = {
 
 require('lspconfig')['gopls'].setup{
     capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
 }
 
 require('lspconfig')['tsserver'].setup{
     capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
 }
 
 require('lspconfig')['clojure_lsp'].setup{
     capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
 }
 
 require('lspconfig')['marksman'].setup{
     capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
 }
