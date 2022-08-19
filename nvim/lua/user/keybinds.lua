@@ -43,7 +43,6 @@ keymap("x", "ga", "<Plug>(EasyAlign)")
 keymap("n", "ga", "<Plug>(EasyAlign)")
 
 
-
 -- ################################################################################################################## --
 local commandOpts = { force = true }
 command('Split', 'split', commandOpts)

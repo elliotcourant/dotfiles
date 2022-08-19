@@ -13,6 +13,7 @@ then
 fi
 
 # Make sure brew's make is ahead of other stuff in the path.
+export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH";
 # Put libpq ahead of stuff for path variable.
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
