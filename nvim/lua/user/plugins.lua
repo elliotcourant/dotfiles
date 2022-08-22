@@ -142,6 +142,12 @@ return packer.startup(function(use)
     use { "fatih/vim-go", run = ':GoUpdateBinaries' }
 
 
+    -- Markdown stuff
+    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end, ft = { "markdown" }, })
+
+
     -- Git Stuff
     use { "tpope/vim-fugitive" }
     use { 'lewis6991/gitsigns.nvim', config = function()
