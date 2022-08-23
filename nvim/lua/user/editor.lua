@@ -28,6 +28,8 @@ vim.cmd [[
 
   set indentexpr=nvim_treesitter#indent()
   set signcolumn=auto:2
+
+  let g:mkdp_theme = 'light'
 ]]
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
