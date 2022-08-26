@@ -144,3 +144,21 @@ require('lspconfig')['marksman'].setup{
     on_attach    = on_attach,
     flags        = lsp_flags,
 }
+
+require('lspconfig')['sumneko_lua'].setup({
+  on_attach       = on_attach,
+  capabilities    = capabilities,
+  flags           = lsp_flags,
+  settings        = {
+    Lua           = {
+      diagnostics = {
+        enable    = true,
+        globals   = { 'vim', 'packer_plugins' },
+      },
+      runtime     = { version = 'LuaJIT' },
+      workspace   = {
+        library   = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+      },
+    },
+  },
+})
