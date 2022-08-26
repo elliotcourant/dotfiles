@@ -80,10 +80,10 @@ return packer.startup(function(use)
 
     -- Editor nice to haves
     use {
-        "windwp/nvim-autopairs",
-        config = function()
-            require("nvim-autopairs").setup {}
-        end
+      "windwp/nvim-autopairs",
+      config = function()
+          require("nvim-autopairs").setup {}
+      end
     }
     use { "markstory/vim-zoomwin" }
     use { "junegunn/goyo.vim" }
@@ -140,19 +140,22 @@ return packer.startup(function(use)
           --     you can safely ignore them.
 
           zindex         = 20, -- The Z-index of the context window
-          mode           = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+          mode           = 'topline',  -- Line used to calculate context. Choices: 'cursor', 'topline'
           separator      = nil, -- Separator between context and content. Should be a single character string, like '-'.
       }
       end
     }
-    use { "mfussenegger/nvim-lint", config = function()
+    use {
+      "mfussenegger/nvim-lint",
+      config = function()
         require('lint').linters_by_ft = {
             typescript = { 'eslint' },
             tsx        = { 'eslint' },
             javascript = { 'eslint' },
             jsx        = { 'eslint' },
         }
-    end }
+      end
+    }
 
 
     -- Language Server stuff
@@ -163,12 +166,16 @@ return packer.startup(function(use)
     use { "RRethy/vim-illuminate" }
 
     -- Terminal things
-    use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+    use {
+      "akinsho/toggleterm.nvim",
+      tag = 'v2.*',
+      config = function()
         require("toggleterm").setup {
             shade_terminals = true,
             shading_factor = 0,
         }
-    end }
+      end
+    }
 
 
     -- Autocomplete things
@@ -183,18 +190,28 @@ return packer.startup(function(use)
 
 
     -- Golang Stuff
-    use { "fatih/vim-go", run = ':GoUpdateBinaries' }
+    use {
+      "fatih/vim-go",
+      run = ':GoUpdateBinaries'
+    }
 
 
     -- Markdown stuff
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end, ft = { "markdown" }, })
+    use {
+      "iamcco/markdown-preview.nvim",
+      run = "cd app && npm install",
+      ft = { "markdown" },
+      setup = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+      end,
+    }
 
 
     -- Git Stuff
     use { "tpope/vim-fugitive" }
-    use { 'lewis6991/gitsigns.nvim', config = function()
+    use {
+      'lewis6991/gitsigns.nvim',
+      config = function()
         require('gitsigns').setup {
             signs = {
                 add = { hl = 'GitSignsAdd', text = '│', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
@@ -236,7 +253,8 @@ return packer.startup(function(use)
                 enable = false
             },
         }
-    end }
+      end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
