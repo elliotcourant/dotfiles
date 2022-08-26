@@ -1,13 +1,13 @@
 vim.o.nocompatible = true
-vim.o.number = true
-vim.g.bs = 2 -- Make backspace work in a sane way.
-vim.o.laststatus = 2
-vim.o.autoread = true -- Update buffers when the file is modified externally.
-vim.o.showcmd = true  -- I want to the command keys.
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
+vim.o.number       = true
+vim.g.bs           = 2 -- Make backspace work in a sane way.
+vim.o.laststatus   = 2
+vim.o.autoread     = true -- Update buffers when the file is modified externally.
+vim.o.showcmd      = true  -- I want to the command keys.
+vim.o.expandtab    = true
+vim.o.smartindent  = true
+vim.o.tabstop      = 2
+vim.o.shiftwidth   = 2
 
 vim.cmd [[
   filetype off
@@ -28,6 +28,7 @@ vim.cmd [[
 
   set indentexpr=nvim_treesitter#indent()
   set signcolumn=auto:2
+  set foldcolumn=2
 
   let g:mkdp_theme = 'light'
 ]]

@@ -33,6 +33,11 @@ then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH";
 fi
 
+if [[ -d $HOME/Documents/depot_tools ]]
+then
+  export PATH="$PATH:$HOME/Documents/depot_tools"
+fi
+
 # This is stuff for cocoapods, and react-native
 export GEM_HOME="$HOME/.gem"
 export PATH="$GEM_HOME/bin:$PATH"
