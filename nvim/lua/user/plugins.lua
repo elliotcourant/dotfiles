@@ -91,6 +91,12 @@ return packer.startup(function(use)
     use { "junegunn/vim-easy-align" }
     use { "easymotion/vim-easymotion" }
     use { "tpope/vim-surround" }
+    use {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup()
+      end
+    }
 
 
     -- Telescope
