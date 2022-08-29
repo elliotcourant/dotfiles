@@ -12,6 +12,7 @@ then
   export PATH="$GOPATH/bin:$PATH";
 fi
 
+export PATH="/opt/homebrew/bin:$PATH";
 # Make sure brew's make is ahead of other stuff in the path.
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH";
@@ -25,6 +26,11 @@ then
   export PATH="$PATH:/opt/homebrew/Cellar/libsodium/1.0.18_1/lib";
   # Add libsodium to LD library.
   export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
+fi
+
+if [[ $(hostname | grep "\-TP\-") ]]
+then
+  unset KUBECONFIG
 fi
 
 # If krew is installed then include that in the PATH as well.
@@ -148,7 +154,7 @@ eval "$(`which brew || echo '/opt/homebrew/bin/brew'` shellenv)"
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
 alias sv='source ~/.zshrc'
-alias gitsearch='git branch --all | fzf'
+alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" | grep -v "HEAD \->" | sort | uniq | fzf'
 alias gc='git checkout $(gitsearch)'
 alias view='nvim -R'
 alias gl='git log | nvim -R -c ":set ft=git"'
@@ -171,4 +177,3 @@ export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
-source <(plz --completion_script)

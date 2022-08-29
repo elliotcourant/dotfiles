@@ -62,3 +62,4 @@ install-zshrc:
 
 
 install: install-tmux install-neovim install-ideavim install-material install-zshrc
+	@echo "Dotfiles installed!"
