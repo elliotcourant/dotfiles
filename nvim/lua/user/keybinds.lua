@@ -30,6 +30,9 @@ keymap("n", "gd",         "<cmd>Telescope lsp_definitions<cr>",               op
 keymap("n", "tt",         "<cmd>ToggleTerm<cr>",                              opts)
 keymap("i", "<C-Tab>",    "<C-\\>",                                           opts)
 
+-- Go Test
+keymap("n", "<Leader>gt", "<cmd>GoTest -n<cr>",                               opts)
+
 -- Easy Motion Keybindings
 keymap("n", "<Leader>w",  "<Plug>(easymotion-bd-w)")
 keymap("n", "<Leader>W",  "<Plug>(easymotion-overwin-w)")

@@ -35,7 +35,10 @@ vim.cmd [[
   highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
   highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
   highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
+
+  highlight! Normal guibg=NONE
+  highlight! NonText guibg=NONE
 ]]
 
-vim.api.nvim_set_hl(0, 'Normal', {guibg=none})
-vim.api.nvim_set_hl(0, 'NonText', {guibg=none})
+-- vim.api.nvim_set_hl(0, 'Normal', {guibg=none})
+-- vim.api.nvim_set_hl(0, 'NonText', {guibg=none})

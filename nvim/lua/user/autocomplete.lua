@@ -42,6 +42,9 @@ local kind_icons = {
 local luasnip = require('luasnip')
 
 cmp.setup({
+    confirmation = {
+      completeopt = 'menu,menuone,noinsert',
+    },
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
