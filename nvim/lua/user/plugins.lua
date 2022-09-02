@@ -101,6 +101,13 @@ return packer.startup(function(use)
 
     -- Telescope
     use { "nvim-telescope/telescope.nvim" }
+    use {
+      "tom-anders/telescope-vim-bookmarks.nvim",
+      requires = {
+        { "nvim-telescope/telescope.nvim" },
+        { "MattesGroeger/vim-bookmarks" },
+      }
+    }
     use { "nvim-lua/plenary.nvim" }
     -- Add icons for plugins that support it.
     use { "kyazdani42/nvim-web-devicons" }

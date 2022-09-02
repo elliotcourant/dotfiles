@@ -23,6 +23,11 @@ keymap("n", "<Leader>f",  "<cmd>Telescope find_files<cr>",                    op
 keymap("n", "<Leader>a",  "<cmd>Telescope live_grep<cr>",                     opts)
 keymap("n", ";",          "<cmd>Telescope buffers<cr>",                       opts)
 
+-- Bookmark things
+keymap("n", ",,",         "(Plug)BookmarkTogggle<cr>")
+keymap("n", "<Leader>b",  "<cmd>Telescope vim_bookmarks all<cr>",             opts)
+keymap("n", "<Leader>b",  "<cmd>Telescope vim_bookmarks current_file<cr>",    opts)
+
 keymap("n", "<Leader>t",  "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 keymap("n", "<Leader>T",  "<cmd>Telescope lsp_document_symbols<cr>",          opts)
 keymap("n", "gr",         "<cmd>Telescope lsp_references<cr>",                opts)
@@ -66,3 +71,4 @@ command('Bd',      'bd',                   commandOpts)
 command('Eslint',  '!yarn eslint --fix %', commandOpts)
 command('Focus',   'Goyo 120x100%',        commandOpts)
 command('Unfocus', 'Goyo',                 commandOpts)
+command('HackBookmarkToggle', 'BookmarkTogggle', commandOpts)

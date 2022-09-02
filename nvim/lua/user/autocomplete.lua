@@ -120,32 +120,32 @@ local on_attach = function(client, bufnr)
 end
 
 local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
 }
 
 require('lspconfig')['gopls'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 }
 
 require('lspconfig')['tsserver'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 }
 
 require('lspconfig')['clojure_lsp'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 }
 
 require('lspconfig')['marksman'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 }
 
 require('lspconfig')['tailwindcss'].setup{

@@ -31,6 +31,7 @@ vim.cmd [[
   set foldcolumn=2
 
   let g:mkdp_theme = 'light'
+  let g:bookmark_no_default_key_mappings = 1
 ]]
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -38,3 +39,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         require("lint").try_lint()
     end,
 })
+
+vim.cmd [[
+  au BufNewFile,BufFilePre,BufRead *.clj setlocal textwidth=80
+  au BufNewFile,BufFilePre,BufRead *.clj setlocal colorcolumn=120
+]]
