@@ -39,8 +39,3 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         require("lint").try_lint()
     end,
 })
-
-vim.cmd [[
-  au BufNewFile,BufFilePre,BufRead *.clj setlocal textwidth=80
-  au BufNewFile,BufFilePre,BufRead *.clj setlocal colorcolumn=120
-]]

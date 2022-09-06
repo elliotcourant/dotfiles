@@ -72,3 +72,6 @@ command('Eslint',  '!yarn eslint --fix %', commandOpts)
 command('Focus',   'Goyo 120x100%',        commandOpts)
 command('Unfocus', 'Goyo',                 commandOpts)
 command('HackBookmarkToggle', 'BookmarkTogggle', commandOpts)
+
+
+command('ClearQuickfixList', 'cexpr []', commandOpts)
