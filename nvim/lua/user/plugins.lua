@@ -221,6 +221,11 @@ return packer.startup(function(use)
       end,
     }
 
+    -- Clojure stuff
+    use {
+      'Olical/conjure'
+    }
+
 
     -- Git Stuff
     use { "tpope/vim-fugitive" }

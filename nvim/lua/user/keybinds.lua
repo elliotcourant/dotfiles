@@ -35,8 +35,10 @@ keymap("n", "gd",         "<cmd>Telescope lsp_definitions<cr>",               op
 keymap("n", "tt",         "<cmd>ToggleTerm<cr>",                              opts)
 keymap("i", "<C-Tab>",    "<C-\\>",                                           opts)
 
--- Clojure Test
-keymap("n", "<Leader>gt", "<cmd>lua RunNearestTest()<cr>",                    opts)
+-- Clojure
+keymap("n", "<Leader>gt", "<cmd>ConjureCljRunCurrentTest<cr>", opts)
+keymap("n", '"', "<cmd>ConjureEvalCurrentForm<cr>",            opts)
+keymap("v", '"', "<cmd>'<,'>%ConjureEval<cr>",                 opts)
 
 -- Easy Motion Keybindings
 keymap("n", "<Leader>w",  "<Plug>(easymotion-bd-w)")

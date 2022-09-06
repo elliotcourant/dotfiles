@@ -119,6 +119,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<F2>', vim.lsp.buf.formatting, bufopts)
 end
 
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
@@ -138,7 +139,9 @@ require('lspconfig')['tsserver'].setup{
 
 require('lspconfig')['clojure_lsp'].setup{
   capabilities = capabilities,
-  on_attach    = on_attach,
+  on_attach    = function(client, bufnr)
+    return on_attach(client, bufnr)
+  end,
   flags        = lsp_flags,
 }
 
@@ -149,6 +152,12 @@ require('lspconfig')['marksman'].setup{
 }
 
 require('lspconfig')['tailwindcss'].setup{
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+}
+
+require('lspconfig')['yamlls'].setup{
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
