@@ -164,7 +164,7 @@ require('lspconfig')['yamlls'].setup{
   settings     = {
     schemas    = {
       ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
-      ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "*",
+      ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
     },
   },
 }
