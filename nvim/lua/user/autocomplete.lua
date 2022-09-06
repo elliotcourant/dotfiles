@@ -152,15 +152,21 @@ require('lspconfig')['marksman'].setup{
 }
 
 require('lspconfig')['tailwindcss'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 }
 
 require('lspconfig')['yamlls'].setup{
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  settings     = {
+    schemas    = {
+      ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
+      ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "*",
+    },
+  },
 }
 
 require('lspconfig')['sumneko_lua'].setup({
