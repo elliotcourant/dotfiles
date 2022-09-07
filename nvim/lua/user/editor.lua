@@ -42,7 +42,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 -- Overwrite the default notify method with the new one
-vim.notify = require("notify")
+local notify = require("notify")
+notify.setup({
+  background_colour = "#000000",
+})
+vim.notify = notify
 
 require('dressing').setup({
   input = {

@@ -49,6 +49,7 @@ function RunNearestTest()
   local command  = NearestTestCommand()
   if command == 0 then
     -- Do nothing
+    vim.notify('No tests to be run from here...')
     return 0
   end
 
