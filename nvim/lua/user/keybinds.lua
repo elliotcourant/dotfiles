@@ -36,9 +36,9 @@ keymap("n", "tt",         "<cmd>ToggleTerm<cr>",                              op
 keymap("i", "<C-Tab>",    "<C-\\>",                                           opts)
 
 -- Clojure
-keymap("n", "<Leader>gt", "<cmd>ConjureCljRunCurrentTest<cr>", opts)
-keymap("n", '"', "<cmd>ConjureEvalCurrentForm<cr>",            opts)
-keymap("v", '"', "<cmd>'<,'>%ConjureEval<cr>",                 opts)
+keymap("n", "<Leader>gt", "<cmd>ConjureCljRunCurrentTest<cr>",                opts)
+keymap("n", '"',          "<cmd>ConjureEvalCurrentForm<cr>",                  opts)
+keymap("v", '"',          "<cmd>'<,'>%ConjureEval<cr>",                       opts)
 
 -- Easy Motion Keybindings
 keymap("n", "<Leader>w",  "<Plug>(easymotion-bd-w)")
@@ -73,7 +73,6 @@ command('Bd',      'bd',                   commandOpts)
 command('Eslint',  '!yarn eslint --fix %', commandOpts)
 command('Focus',   'Goyo 120x100%',        commandOpts)
 command('Unfocus', 'Goyo',                 commandOpts)
-command('HackBookmarkToggle', 'BookmarkTogggle', commandOpts)
 
 
 command('ClearQuickfixList', 'cexpr []', commandOpts)

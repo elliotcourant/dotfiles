@@ -7,7 +7,7 @@ vim.g["airline#extensions#tagbar#enabled"]  = 0
 vim.g["airline_theme"]                      = "material"
 vim.g["material_theme_style"]               = "dark"
 
-set.background=dark
+set.background='dark'
 vim.cmd [[
   colorscheme material
 

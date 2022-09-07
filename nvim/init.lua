@@ -1,5 +1,5 @@
-require "user.editor"
 require "user.plugins"
+require "user.editor"
 require "user.telescope"
 require "user.theme"
 require "user.treesitter"

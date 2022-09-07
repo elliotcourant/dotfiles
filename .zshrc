@@ -157,7 +157,6 @@ alias sv='source ~/.zshrc'
 alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" | grep -v "HEAD \->" | sort | uniq | fzf'
 alias gc='git checkout $(gitsearch)'
 alias gl='git log | nvim -R -c ":set ft=git"'
-alias gd='git difftool'
 alias view='nvim -R'
 alias docker-credential-gcloud='docker-credential-gcr'
 

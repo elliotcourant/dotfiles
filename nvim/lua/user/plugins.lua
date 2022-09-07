@@ -103,7 +103,8 @@ return packer.startup(function(use)
         require("colorizer").setup()
       end
     }
-    use {'stevearc/dressing.nvim'}
+    use { "stevearc/dressing.nvim" }
+    use { "rcarriga/nvim-notify" }
 
 
     -- Telescope
