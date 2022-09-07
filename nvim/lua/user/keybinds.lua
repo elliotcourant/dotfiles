@@ -77,3 +77,35 @@ command('HackBookmarkToggle', 'BookmarkTogggle', commandOpts)
 
 
 command('ClearQuickfixList', 'cexpr []', commandOpts)
+
+vim.api.nvim_create_user_command('Make', function(input)
+  local terminal  = require('toggleterm.terminal').Terminal
+  local makeCommand = string.format('make %s', input.args)
+  -- Get the width of the actual screen, not just the current split/window.
+  local screenWidth = tonumber(vim.api.nvim_eval('&columns'))
+  local screenHeight = tonumber(vim.api.nvim_eval('&lines'))
+  local desiredWidth = 80
+  local desiredHeight = 30
+
+  local run = terminal:new({
+    hidden        = false,
+    cmd           = makeCommand,
+    direction     = "float",
+    float_opts    = {
+      border      = "double",
+      relative    = 'editor',
+      row         = 0,
+      col         = math.max(0, screenWidth - desiredWidth), -- Right align the floating window.
+      width       = math.min(screenWidth, desiredWidth),
+      height      = math.min(screenHeight, desiredHeight)
+    },
+    auto_scroll   = true,
+    close_on_exit = false,
+  })
+  run:spawn()
+  vim.cmd("ToggleTerm")
+  run:send(string.format("Running: %s\n------", makeCommand))
+end, {
+  force = true,
+  nargs = 1,
+})
