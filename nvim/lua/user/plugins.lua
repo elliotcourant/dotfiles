@@ -77,6 +77,12 @@ return packer.startup(function(use)
           { 'kyazdani42/nvim-web-devicons', opt = true }
         }
     }
+    use {
+      'goolord/alpha-nvim',
+      config = function ()
+        require'alpha'.setup(require'user.dashboard'.config)
+      end
+    }
 
     -- Editor nice to haves
     use {
@@ -200,6 +206,9 @@ return packer.startup(function(use)
     use { "hrsh7th/cmp-nvim-lsp" }
     use { "hrsh7th/cmp-nvim-lua" }
     use { "L3MON4D3/LuaSnip" }
+
+    -- Debugger things
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 
 
     -- Golang Stuff

@@ -6,6 +6,8 @@ require "user.treesitter"
 require "user.autocomplete"
 require "user.keybinds"
 
+require "user.debugging"
+
 require "user.golang"
 require "user.markdown"
 require "user.clojure"
