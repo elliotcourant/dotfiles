@@ -41,6 +41,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
 })
 
+-- Overwrite the default notify method with the new one
+vim.notify = require("notify")
+
 require('dressing').setup({
   input = {
     -- Set to false to disable the vim.ui.input implementation
