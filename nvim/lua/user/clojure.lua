@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
 })
 
 -- currentNamespace will return the clojure namespace of the currently open file.
-function CurrentNamespace ()
+function CurrentNamespace()
   local nsLineNumber = vim.fn.search('(ns *', 'bcnW')
   if nsLineNumber == 0 then
     -- If we cannot find the namespace line then do nothing.
@@ -20,7 +20,7 @@ function CurrentNamespace ()
   return namespace
 end
 
-function NearestTest ()
+function NearestTest()
   local nearestDeftestLine = vim.fn.search('(deftest *', 'bcnW')
   if nearestDeftestLine == 0 then
     -- If we cannot find the nearest deftest then do nothing.
@@ -33,7 +33,7 @@ function NearestTest ()
   return testName
 end
 
-function NearestTestCommand ()
+function NearestTestCommand()
   local namespace = CurrentNamespace()
   local test = NearestTest()
   if namespace == 0 or test == 0 then
@@ -44,9 +44,9 @@ function NearestTestCommand ()
   return string.format("lein test :only %s/%s", namespace, test)
 end
 
-function RunNearestTest ()
-  local terminal  = require('toggleterm.terminal').Terminal
-  local command = NearestTestCommand()
+function RunNearestTest()
+  local terminal = require('toggleterm.terminal').Terminal
+  local command  = NearestTestCommand()
   if command == 0 then
     -- Do nothing
     return 0
@@ -61,10 +61,10 @@ function RunNearestTest ()
     cmd           = command,
     direction     = "float",
     float_opts    = {
-      border      = "double",
-      relative    = 'editor',
-      col         = math.max(0, screenWidth - desiredWidth), -- Right align the floating window.
-      width       = math.min(screenWidth, desiredWidth),
+      border   = "double",
+      relative = 'editor',
+      col      = math.max(0, screenWidth - desiredWidth), -- Right align the floating window.
+      width    = math.min(screenWidth, desiredWidth),
     },
     auto_scroll   = true,
     close_on_exit = false,

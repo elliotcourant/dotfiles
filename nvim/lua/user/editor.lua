@@ -3,7 +3,7 @@ vim.o.number       = true
 vim.g.bs           = 2 -- Make backspace work in a sane way.
 vim.o.laststatus   = 2
 vim.o.autoread     = true -- Update buffers when the file is modified externally.
-vim.o.showcmd      = true  -- I want to the command keys.
+vim.o.showcmd      = true -- I want to the command keys.
 vim.o.expandtab    = true
 vim.o.smartindent  = true
 vim.o.tabstop      = 2
@@ -36,9 +36,9 @@ vim.cmd [[
 ]]
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-    callback = function()
-        require("lint").try_lint()
-    end,
+  callback = function()
+    require("lint").try_lint()
+  end,
 })
 
 require('dressing').setup({
