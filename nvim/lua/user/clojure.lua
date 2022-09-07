@@ -2,14 +2,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
   pattern = { "*.clj" },
   callback = function()
     vim.bo.textwidth = 80
-    vim.bo.colorcolumn = 80
+    -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
+    vim.api.nvim_command('set colorcolumn=80')
   end
 })
-
---vim.cmd [[
---  au BufNewFile,BufFilePre,BufRead *.clj setlocal textwidth=80
---  au BufNewFile,BufFilePre,BufRead *.clj setlocal colorcolumn=80
---]]
 
 -- currentNamespace will return the clojure namespace of the currently open file.
 function CurrentNamespace ()
