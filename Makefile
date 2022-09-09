@@ -63,3 +63,8 @@ install-zshrc:
 
 install: install-tmux install-neovim install-ideavim install-material install-zshrc
 	@echo "Dotfiles installed!"
+
+MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos
+
+language-servers:
+	sudo curl -SsL $(MARKSMAN_URL) --output /usr/local/bin/marksman && sudo chmod +x /usr/local/bin/marksman
