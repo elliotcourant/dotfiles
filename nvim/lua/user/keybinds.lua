@@ -37,7 +37,7 @@ keymap("i", "<C-Tab>", "<C-\\>", opts)
 
 -- Clojure
 keymap("n", "<Leader>GT", "<cmd>ConjureCljRunCurrentTest<cr>", opts)
-keymap("n", "<Leader>gt", RunNearestTest, opts)
+-- keymap("n", "<Leader>gt", RunNearestClojureTest, opts)
 keymap("n", '"', "<cmd>ConjureEvalCurrentForm<cr>", opts)
 keymap("v", '"', "<cmd>'<,'>%ConjureEval<cr>", opts)
 

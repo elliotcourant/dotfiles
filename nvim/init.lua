@@ -10,6 +10,7 @@ require "user.debugging"
 require "user.golang"
 require "user.markdown"
 require "user.clojure"
+require "user.typescript"
 
 
 require "user.keybinds"

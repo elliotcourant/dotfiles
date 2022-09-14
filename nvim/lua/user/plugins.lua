@@ -214,12 +214,10 @@ return packer.startup(function(use)
 
 
   -- Golang Stuff
-  -- use {
-  --   "fatih/vim-go",
-  --   run = ':GoUpdateBinaries'
-  -- }
-  use { 'ray-x/go.nvim' }
-  use { 'ray-x/guihua.lua' }
+  use {
+    "fatih/vim-go",
+    run = ':GoUpdateBinaries'
+  }
 
 
   -- Markdown stuff

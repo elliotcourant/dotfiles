@@ -143,8 +143,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-#
+
+
+
+export USE_GKE_GCLOUD_AUTH_PLUGIN=False
 
 
 # Try to find brew, or use the static path.
@@ -158,7 +160,6 @@ alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" 
 alias gc='git checkout $(gitsearch)'
 alias gl='git log | nvim -R -c ":set ft=git"'
 alias view='nvim -R'
-alias docker-credential-gcloud='docker-credential-gcr'
 
 alias gitpod-admin='kubectl kots admin-console --namespace gitpod'
 

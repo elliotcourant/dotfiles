@@ -4,11 +4,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
     vim.bo.textwidth = 80
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=80')
+    vim.keymap.set("n", "<Leader>gt", RunNearestClojureTest, { silent = true })
   end
 })
 
 -- currentNamespace will return the clojure namespace of the currently open file.
-function CurrentNamespace()
+function CurrentClojureNamespace()
   local nsLineNumber = vim.fn.search('(ns *', 'bcnW')
   if nsLineNumber == 0 then
     -- If we cannot find the namespace line then do nothing.
@@ -20,7 +21,7 @@ function CurrentNamespace()
   return namespace
 end
 
-function NearestTest()
+function NearestClojureTest()
   local nearestDeftestLine = vim.fn.search('(deftest *', 'bcnW')
   if nearestDeftestLine == 0 then
     -- If we cannot find the nearest deftest then do nothing.
@@ -33,9 +34,9 @@ function NearestTest()
   return testName
 end
 
-function NearestTestCommand()
-  local namespace = CurrentNamespace()
-  local test = NearestTest()
+function NearestClojureTestCommand()
+  local namespace = CurrentClojureNamespace()
+  local test = NearestClojureTest()
   if namespace == 0 or test == 0 then
     -- Do nothing
     return 0
@@ -44,9 +45,9 @@ function NearestTestCommand()
   return string.format("lein test :only %s/%s", namespace, test)
 end
 
-function RunNearestTest()
+function RunNearestClojureTest()
   local terminal = require('toggleterm.terminal').Terminal
-  local command  = NearestTestCommand()
+  local command  = NearestClojureTestCommand()
   if command == 0 then
     -- Do nothing
     vim.notify('No tests to be run from here...')
