@@ -7,7 +7,7 @@ function RunNearestGolangTest()
   if nearestTestLine == 0 then
     return 0
   end
-  local primaryTestName = string.match(vim.fn.getline(nearestTestLine), '^func (Test%a+)%b()')
+  local primaryTestName = string.match(vim.fn.getline(nearestTestLine), '^func (Test%a+)')
   local nearestTestRunLine = vim.fn.search('t.Run("*', 'bcnW')
   local currentDir = vim.fn.expand('%:p:h')
 
