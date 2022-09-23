@@ -51,6 +51,11 @@ export PATH="$GEM_HOME/bin:$PATH"
 # Gcloud stuff
 export PATH="$PATH:$HOME/.gcloud/google-cloud-sdk/bin"
 
+if command -v kubectl &> /dev/null
+then
+  kubectl config unset current-context 2>&1 > /dev/null
+fi
+
 # This is needed for compilers that need access to the bison lib.
 unset LDFLAGS;
 export LDFLAGS="$LDFLAGS -L/usr/local/opt/bison/lib";
@@ -160,6 +165,9 @@ alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" 
 alias gc='git checkout $(gitsearch)'
 alias gl='git log | nvim -R -c ":set ft=git"'
 alias view='nvim -R'
+
+alias kc='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
+alias ku='kubectl config unset current-context'
 
 alias gitpod-admin='kubectl kots admin-console --namespace gitpod'
 
