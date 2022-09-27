@@ -151,7 +151,7 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-export USE_GKE_GCLOUD_AUTH_PLUGIN=False
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 
 # Try to find brew, or use the static path.
