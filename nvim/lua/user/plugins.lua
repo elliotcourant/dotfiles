@@ -211,6 +211,8 @@ return packer.startup(function(use)
 
   -- Debugger things
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+	use { "theHamsta/nvim-dap-virtual-text" }
+  use { "nvim-telescope/telescope-dap.nvim" }
 
 
   -- Golang Stuff
@@ -218,6 +220,7 @@ return packer.startup(function(use)
     "fatih/vim-go",
     run = ':GoUpdateBinaries'
   }
+  use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
 
   -- Markdown stuff
