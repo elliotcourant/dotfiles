@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead" }, {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" }, {
   pattern = { "*.clj" },
   callback = function()
     vim.bo.textwidth = 80
