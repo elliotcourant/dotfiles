@@ -2,6 +2,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   pattern = { "*.clj" },
   callback = function()
     vim.bo.textwidth = 80
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.textwidth = 120
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=80')
     vim.keymap.set("n", "<Leader>gt", RunNearestClojureTest, { silent = true })

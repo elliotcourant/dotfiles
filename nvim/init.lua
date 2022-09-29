@@ -11,6 +11,7 @@ require "user.golang"
 require "user.markdown"
 require "user.clojure"
 require "user.typescript"
+require "user.lua"
 
 
 require "user.keybinds"

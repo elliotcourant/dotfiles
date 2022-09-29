@@ -1,6 +1,6 @@
-vim.cmd [[
-  au BufNewFile,BufFilePre,BufRead *.go set autoindent noexpandtab tabstop=2 shiftwidth=2
-]]
+--vim.cmd [[
+--  au BufNewFile,BufFilePre,BufRead *.go set autoindent noexpandtab tabstop=2 shiftwidth=2
+--]]
 
 function RunNearestGolangTest()
   local nearestTestLine = vim.fn.search('func Test*', 'bcnW')
@@ -52,6 +52,8 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   pattern = { "*.go" },
   callback = function()
     vim.bo.expandtab = false
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
     vim.bo.textwidth = 120
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=120')
@@ -59,6 +61,5 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.keymap.set("n", "<Leader>dt", ":lua require('dap-go').debug_test()<cr>", { silent = true })
   end
 })
-
 
 require('dap-go').setup{}

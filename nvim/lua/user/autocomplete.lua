@@ -201,3 +201,17 @@ require('lspconfig')['sumneko_lua'].setup({
     },
   },
 })
+
+-- npm i -g bash-language-server
+require('lspconfig')['bashls'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}
+
+-- yarn global add diagnostic-languageserver
+require('lspconfig')['diagnosticls'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}

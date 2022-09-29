@@ -211,7 +211,7 @@ return packer.startup(function(use)
 
   -- Debugger things
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
-	use { "theHamsta/nvim-dap-virtual-text" }
+  use { "theHamsta/nvim-dap-virtual-text" }
   use { "nvim-telescope/telescope-dap.nvim" }
 
 
@@ -234,9 +234,9 @@ return packer.startup(function(use)
   }
 
   -- Clojure stuff
-  use {
-    'Olical/conjure'
-  }
+  use { 'Olical/conjure' }
+  use { 'guns/vim-sexp' }
+  use { 'tpope/vim-sexp-mappings-for-regular-people' }
 
 
   -- Git Stuff
