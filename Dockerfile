@@ -14,6 +14,7 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     dnsutils \
     traceroute \
     telnet \
+    vim \
     redis-server # Has redis-cli
 
 # Install kubectl
