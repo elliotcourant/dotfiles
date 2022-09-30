@@ -39,6 +39,7 @@ keymap("n", "<Leader>\\", ":lua require'dap'.terminate()<cr>:lua require'dap'.re
 
 keymap("n", "<Leader>t", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", opts)
 keymap("n", "<Leader>T", "<cmd>Telescope lsp_document_symbols<cr>", opts)
+keymap("n", "<Leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 keymap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 keymap("n", "tt", "<cmd>ToggleTerm<cr>", opts)

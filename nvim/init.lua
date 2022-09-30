@@ -29,6 +29,8 @@ vim.api.nvim_create_user_command('Dotfiles', function()
     '~/dotfiles/nvim/lua/user/markdown.lua',
     '~/dotfiles/nvim/lua/user/clojure.lua',
     '~/dotfiles/nvim/lua/user/typescript.lua',
+    '~/dotfiles/nvim/lua/user/lua.lua',
+    '~/dotfiles/nvim/lua/user/keybinds.lua',
   }
   for _, item in ipairs(files) do
     vim.api.nvim_command(string.format("source %s", item))

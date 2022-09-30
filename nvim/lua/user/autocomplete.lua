@@ -35,10 +35,10 @@ local kind_icons = {
 }
 
 local luasnip = require('luasnip')
-
+local cmp_buffer = require('cmp_buffer')
 cmp.setup({
-  confirmation = {
-    completeopt = 'menu,menuone,noinsert',
+  completion = {
+    completeopt = 'menu,menuone,noinsert,longest',
   },
   snippet = {
     expand = function(args)
@@ -80,8 +80,30 @@ cmp.setup({
     -- { name = 'snippy' }, -- For snippy users.
   }, {
     { name = 'buffer' },
-  })
+  }),
+  sorting = {
+    comparators = {
+      function(...) return cmp_buffer:compare_locality(...) end,
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    }
+  }
 })
+
+-- Custom language server hack ins.
+local null_ls = require("null-ls")
+local sources = {
+  null_ls.builtins.code_actions.gitsigns,
+  null_ls.builtins.formatting.prettier,
+  null_ls.builtins.formatting.mix,
+  null_ls.builtins.diagnostics.shellcheck,
+}
+null_ls.setup({ sources = sources, debug = true })
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -112,7 +134,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('v', '<Leader>r', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<A-CR>', vim.lsp.buf.code_action, loudBufopts)
-  --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.format, bufopts)
 end
 
