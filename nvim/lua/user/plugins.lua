@@ -185,10 +185,6 @@ return packer.startup(function(use)
     "neovim/nvim-lspconfig",
   }
   use { "RRethy/vim-illuminate" }
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    requires = { { 'neovim/nvim-lspconfig' }, { 'nvim-lua/plenary.nvim' } },
-  }
 
   -- Terminal things
   use {

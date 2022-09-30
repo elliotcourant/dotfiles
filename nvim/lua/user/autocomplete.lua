@@ -95,16 +95,6 @@ cmp.setup({
   }
 })
 
--- Custom language server hack ins.
-local null_ls = require("null-ls")
-local sources = {
-  null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.formatting.prettier,
-  null_ls.builtins.formatting.mix,
-  null_ls.builtins.diagnostics.shellcheck,
-}
-null_ls.setup({ sources = sources, debug = true })
-
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -155,6 +145,8 @@ require('lspconfig')['tsserver'].setup {
   flags        = lsp_flags,
 }
 
+local clangd_capabilities = capabilities;
+clangd_capabilities.offsetEncoding = "utf-8"
 require('lspconfig')['clojure_lsp'].setup {
   capabilities = capabilities,
   on_attach    = function(client, bufnr)
