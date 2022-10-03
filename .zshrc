@@ -19,6 +19,7 @@ export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH";
 # Put libpq ahead of stuff for path variable.
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
+export PATH="$HOME/.local/bin:$PATH";
 
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
