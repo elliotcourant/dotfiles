@@ -15,7 +15,7 @@ function RunNearestGolangTest()
   end
 
   local terminal = require('toggleterm.terminal').Terminal
-  local command  = string.format('gotestsum --format testname -- -v -run=%s %s', testString, currentDir)
+  local command  = string.format('gotestsum --format testname -- --race -v -run=%s %s', testString, currentDir)
   if command == 0 then
     -- Do nothing
     vim.notify('No tests to be run from here...')

@@ -21,6 +21,8 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 
+# Make sure GNU sed is first
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
 then
@@ -199,3 +201,8 @@ else
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
+
+# BEGIN SNIPPET: Platform.sh CLI configuration
+HOME=${HOME:-'/Users/elliotcourant'}
+export PATH="$HOME/"'.platformsh/bin':"$PATH"
+if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET

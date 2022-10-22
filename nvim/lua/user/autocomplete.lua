@@ -124,7 +124,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('v', '<Leader>r', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<A-CR>', vim.lsp.buf.code_action, loudBufopts)
+  -- vim.keymap.set('n', '<A-CR>', vim.lsp.buf.code_action, loudBufopts)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.format, bufopts)
 end
 
@@ -187,6 +187,12 @@ require('lspconfig')['clangd'].setup {
 }
 
 require('lspconfig')['rust_analyzer'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}
+
+require('lspconfig')['sourcekit'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
