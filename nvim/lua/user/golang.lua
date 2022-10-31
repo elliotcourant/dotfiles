@@ -51,7 +51,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.bo.shiftwidth = 2
     vim.bo.tabstop    = 2
     vim.bo.textwidth  = 120
-    vim.o.spell       = true
+    vim.o.spell       = false
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=120')
     vim.keymap.set("n", "<Leader>gt", RunNearestGolangTest, { silent = true })
