@@ -13,6 +13,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   end
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.clj" },
+  callback = function()
+    vim.api.nvim_command('ConjureEvalBuf')
+  end
+})
+
 -- currentNamespace will return the clojure namespace of the currently open file.
 function CurrentClojureNamespace()
   local nsLineNumber = vim.fn.search('(ns *', 'bcnW')
