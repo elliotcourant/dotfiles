@@ -5,6 +5,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.bo.shiftwidth = 2
     vim.bo.tabstop    = 2
     vim.bo.textwidth  = 120
-    vim.o.spell       = true
+    vim.o.spell       = false
   end
 })
