@@ -31,6 +31,8 @@ then
   export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
 fi
 
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
 if [[ $(hostname | grep "\-TP\-") ]]
 then
   unset KUBECONFIG
@@ -70,6 +72,10 @@ unset CPPFLAGS;
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include";
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include";
 export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl@3/include"
+
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 #######################################################################################################################
 
@@ -206,3 +212,8 @@ fi
 HOME=${HOME:-'/Users/elliotcourant'}
 export PATH="$HOME/"'.platformsh/bin':"$PATH"
 if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+
+if command -v rbenv &> /dev/null
+then
+  eval "$(rbenv init - zsh)"
+fi
