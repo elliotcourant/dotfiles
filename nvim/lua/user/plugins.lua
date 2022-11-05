@@ -216,10 +216,6 @@ return packer.startup(function(use)
 
 
   -- Golang Stuff
-  use {
-    "fatih/vim-go",
-    run = ':GoUpdateBinaries'
-  }
   use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
 
