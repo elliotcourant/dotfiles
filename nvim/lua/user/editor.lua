@@ -25,7 +25,6 @@ vim.cmd [[
   set ignorecase  " searches are case insensitive...
   set smartcase   " ... unless they contain at least one capital letter
   set ttyfast
-  set lazyredraw
   set go+=b.
   set mouse=a
   set rtp+=/.fzf
