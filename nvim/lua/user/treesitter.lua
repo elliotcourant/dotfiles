@@ -38,3 +38,15 @@ require 'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 };
+
+vim.api.nvim_set_hl(0, "@variable",      { fg = "#EEFFFF" })
+vim.api.nvim_set_hl(0, "@parameter",     { fg = "#F78C6C" })
+vim.api.nvim_set_hl(0, "@tag",           { fg = "#F07178" })
+vim.api.nvim_set_hl(0, "@tag.attribute", { fg = "#FFCB6B" })
+vim.api.nvim_set_hl(0, "@namespace",     { fg = "#FFCB6B" })
+vim.api.nvim_set_hl(0, "@type",          { fg = "#C3E88D" })
+
+function InspectHighlight()
+  local result = vim.treesitter.get_captures_at_cursor(0)
+  print(vim.inspect(result))
+end

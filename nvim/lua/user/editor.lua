@@ -13,7 +13,7 @@ vim.o.wrap         = false
 vim.o.showmode     = 0
 vim.o.colorcolumn  = 120
 vim.o.hidden       = true
-vim.opt.spell      = true
+vim.opt.spell      = false
 vim.opt.spelllang  = { 'en_us' }
 
 
