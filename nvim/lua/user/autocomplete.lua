@@ -110,7 +110,6 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
-  local loudBufopts = { noremap = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -146,8 +145,6 @@ require('lspconfig')['tsserver'].setup {
   flags        = lsp_flags,
 }
 
-local clangd_capabilities = capabilities;
-clangd_capabilities.offsetEncoding = "utf-8"
 require('lspconfig')['clojure_lsp'].setup {
   capabilities = capabilities,
   on_attach    = function(client, bufnr)
@@ -180,8 +177,10 @@ require('lspconfig')['yamlls'].setup {
   },
 }
 
+local clangd_capabilities = capabilities;
+clangd_capabilities.offsetEncoding = "utf-8"
 require('lspconfig')['clangd'].setup {
-  capabilities = capabilities,
+  capabilities = clangd_capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
 }
