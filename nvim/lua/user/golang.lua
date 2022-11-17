@@ -59,4 +59,12 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   end
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.go" },
+  callback = function ()
+    vim.api.nvim_command('silent !go fmt %')
+    vim.api.nvim_command('silent e')
+  end
+})
+
 require('dap-go').setup{}
