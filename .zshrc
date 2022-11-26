@@ -33,11 +33,6 @@ fi
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-if [[ $(hostname | grep "\-TP\-") ]]
-then
-  unset KUBECONFIG
-fi
-
 # If krew is installed then include that in the PATH as well.
 if [[ -d ${KREW_ROOT:-$HOME/.krew}/bin ]]
 then
@@ -56,10 +51,10 @@ export PATH="$GEM_HOME/bin:$PATH"
 # Gcloud stuff
 export PATH="$PATH:$HOME/.gcloud/google-cloud-sdk/bin"
 
-if command -v kubectl &> /dev/null
-then
-  kubectl config unset current-context 2>&1 > /dev/null
-fi
+# if command -v kubectl &> /dev/null
+# then
+#   kubectl config unset current-context 2>&1 > /dev/null
+# fi
 
 # This is needed for compilers that need access to the bison lib.
 unset LDFLAGS;
