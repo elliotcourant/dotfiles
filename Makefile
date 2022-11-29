@@ -60,8 +60,13 @@ install-zshrc:
 	-[ -f $(ZSHRC) ] && [ ! -L $(ZSHRC) ] && mv $(ZSHRC) $(ZSHRC).backup
 	-[ ! -L $(ZSHRC) ] && ln -s $(PWD)/.zshrc $(ZSHRC)
 
+LEIN_PROFILE=$(HOME)/.lein/profiles.clj
+install-lein-profile:
+	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
+	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(PWD)/lein/profiles.clj $(LEIN_PROFILE)
 
-install: install-tmux install-neovim install-ideavim install-material install-zshrc
+
+install: install-tmux install-neovim install-ideavim install-material install-zshrc install-lein-profile
 	@echo "Dotfiles installed!"
 
 MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos

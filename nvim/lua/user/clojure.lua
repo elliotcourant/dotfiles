@@ -10,6 +10,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=80')
     vim.keymap.set("n", "<Leader>gt", RunNearestClojureTest, { silent = true })
+    vim.keymap.set("n", "<Leader>ct", ":ConjureCljRunCurrentTest<CR>", { silent = true })
   end
 })
 
