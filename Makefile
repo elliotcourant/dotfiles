@@ -62,6 +62,7 @@ install-zshrc:
 
 LEIN_PROFILE=$(HOME)/.lein/profiles.clj
 install-lein-profile:
+	-[ ! -d $(dir $(LEIN_PROFILE)) ] && mkdir -p $(dir $(LEIN_PROFILE))
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(PWD)/lein/profiles.clj $(LEIN_PROFILE)
 
