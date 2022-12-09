@@ -44,6 +44,8 @@ keymap("n", "<Leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 keymap("n", "<A-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
 keymap("n", "<^]-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
 
+keymap("n", "<Leader>v", require('lsp_lines').toggle)
+
 keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 keymap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 keymap("n", "tt", "<cmd>ToggleTerm<cr>", opts)

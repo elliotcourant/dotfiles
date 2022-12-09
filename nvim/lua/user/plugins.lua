@@ -111,6 +111,14 @@ return packer.startup(function(use)
       require('nvim_comment').setup()
     end
   }
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+      -- Disable by default
+      vim.diagnostic.config({ virtual_lines = false })
+    end,
+  })
 
 
   -- Telescope
