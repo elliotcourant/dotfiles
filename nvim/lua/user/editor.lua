@@ -34,6 +34,9 @@ vim.cmd [[
   set foldcolumn=2
 
   let g:bookmark_no_default_key_mappings = 1
+nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 ]]
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

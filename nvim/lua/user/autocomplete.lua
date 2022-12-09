@@ -137,6 +137,19 @@ require('lspconfig')['gopls'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  settings     = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      codelenses = {
+        generate = true,
+        tidy     = true,
+      },
+      semanticTokens = true,
+    }
+  },
 }
 
 require('lspconfig')['pylsp'].setup {
