@@ -183,19 +183,13 @@ require('lspconfig')['yamlls'].setup {
   },
 }
 
-local clangd_capabilities = capabilities;
-clangd_capabilities.offsetEncoding = "utf-8"
-require('lspconfig')['clangd'].setup {
-  capabilities = clangd_capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
-
-require('lspconfig')['rust_analyzer'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
+if (os.execute('command -v rust-analyzer') == 0) then
+  require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+  }
+end
 
 require('lspconfig')['sourcekit'].setup {
   capabilities = capabilities,
@@ -237,6 +231,14 @@ require('lspconfig')['bashls'].setup {
 -- yarn global add diagnostic-languageserver
 require('lspconfig')['diagnosticls'].setup {
   capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}
+
+local clangd_capabilities = capabilities;
+clangd_capabilities.offsetEncoding = "utf-8"
+require('lspconfig')['clangd'].setup {
+  capabilities = clangd_capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
 }
