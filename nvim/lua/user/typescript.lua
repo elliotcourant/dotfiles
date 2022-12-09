@@ -1,6 +1,6 @@
-vim.cmd [[
-  au BufNewFile,BufFilePre,BufRead *.ts set autoindent expandtab tabstop=2 shiftwidth=2
-]]
+-- vim.cmd [[
+--   au BufNewFile,BufFilePre,BufRead *.ts set autoindent expandtab tabstop=2 shiftwidth=2
+-- ]]
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" }, {
   pattern = { "*.ts", "*.tsx" },

@@ -59,12 +59,15 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   end
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.go" },
-  callback = function ()
-    vim.api.nvim_command('silent !go fmt %')
-    vim.api.nvim_command('silent e')
-  end
-})
+local hasGolangInstalled = os.execute('command -v go') == 0
+if hasGolangInstalled then
+  vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*.go" },
+    callback = function ()
+      vim.api.nvim_command('silent !go fmt %')
+      vim.api.nvim_command('silent e')
+    end
+  })
+end
 
 require('dap-go').setup{}
