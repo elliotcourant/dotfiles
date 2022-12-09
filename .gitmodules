@@ -4,3 +4,6 @@
 [submodule "tools/golang-tools"]
 	path = tools/golang-tools
 	url = https://github.com/golang/tools.git
+[submodule "tools/k9s"]
+	path = tools/k9s
+	url = https://github.com/derailed/k9s.git
