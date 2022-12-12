@@ -196,13 +196,11 @@ require('lspconfig')['yamlls'].setup {
   },
 }
 
-if (os.execute('command -v rust-analyzer') == 0) then
-  require('lspconfig')['rust_analyzer'].setup {
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
-  }
-end
+require('lspconfig')['rust_analyzer'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}
 
 require('lspconfig')['sourcekit'].setup {
   capabilities = capabilities,
