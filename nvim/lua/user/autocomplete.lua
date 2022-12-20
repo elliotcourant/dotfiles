@@ -150,18 +150,37 @@ require('lspconfig')['gopls'].setup {
       semanticTokens = true,
     }
   },
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
+  }
 }
 
 require('lspconfig')['pylsp'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
+  }
 }
 
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      -- Disable virtual_text
+      virtual_text = false,
+      virtual_lines = true,
+    }),
+  }
 }
 
 require('lspconfig')['clojure_lsp'].setup {
@@ -170,19 +189,39 @@ require('lspconfig')['clojure_lsp'].setup {
     return on_attach(client, bufnr)
   end,
   flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
+  }
 }
 
 require('lspconfig')['marksman'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
+  }
 }
 
-require('lspconfig')['tailwindcss'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
+if (os.execute('which tailwindcss') == 0) then
+  require('lspconfig')['tailwindcss'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    handlers = {
+      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        virtual_lines = false,
+      }),
+    }
+  }
+end
 
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,
@@ -196,11 +235,19 @@ require('lspconfig')['yamlls'].setup {
   },
 }
 
-require('lspconfig')['rust_analyzer'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
+if (os.execute('which rust-analyzer') == 0) then
+  require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    handlers = {
+      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        virtual_lines = true,
+      }),
+    }
+  }
+end
 
 require('lspconfig')['sourcekit'].setup {
   capabilities = capabilities,
@@ -244,6 +291,12 @@ require('lspconfig')['diagnosticls'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      virtual_lines = true,
+    }),
+  }
 }
 
 local clangd_capabilities = capabilities;
