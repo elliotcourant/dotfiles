@@ -1,3 +1,5 @@
+PWD=$(shell git rev-parse --show-toplevel)
+
 default-docker:
 	$(error Please run a specific target)
 
@@ -9,12 +11,19 @@ wait-for-docker:
 	@eval $$(minikube docker-env) && for i in 1 2 3 4 5; do (docker info > /dev/null 2>&1) && break || echo "Waiting for docker to start..." && sleep 15; done
 endif
 
+clean:
+	git submodule deinit -f tools/neovim
+
+NEOVIM=$(PWD)/tools/neovim/README.md
+$(NEOVIM):
+	git submodule update --init tools/neovim
+
 USERNAME=$(shell whoami)
 HOME=$(shell echo ~$(USERNAME))
-DOCKER_IMAGE_NAME=ghcr.io/elliotcourant/dotfiles/ubuntu
-VERSIONED=$(DOCKER_IMAGE_NAME):20.04
+DOCKER_IMAGE_NAME=ghcr.io/elliotcourant/dotfiles/debian
+VERSIONED=$(DOCKER_IMAGE_NAME):11.6
 LATEST=$(DOCKER_IMAGE_NAME):latest
-docker: wait-for-docker
+docker: wait-for-docker $(NEOVIM)
 	docker build \
 		--cache-from=$(LATEST) \
 		--build-arg USERNAME=$(USERNAME) \

@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM debian:11.6 AS base
 RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     gnupg2 \
@@ -6,10 +6,23 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     software-properties-common \
     build-essential \
     wget \
-    postgresql-client \
     git \
+    cmake \
+    pkg-config \
+    unzip \
+    libtool-bin \
+    gettext
+
+
+FROM base AS neovim
+COPY ./tools/neovim /build
+WORKDIR /build
+RUN make CMAKE_BUILD_TYPE=RelWithDebInfo
+
+FROM base
+RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    postgresql-client \
     rsync \
-    neovim \
     iputils-ping \
     dnsutils \
     traceroute \
@@ -18,13 +31,16 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     redis-server # Has redis-cli
 
 # Install kubectl
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
-RUN apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
-RUN apt-get install -y kubectl
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add && \
+    apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" && \
+    apt-get update -y && \
+    apt-get install -y kubectl
 
 RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
 RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 RUN apt-get update && apt-get install -y vault
+
+COPY --from=neovim /build/build/bin/nvim /usr/bin/nvim
 
 ARG USERNAME=elliotcourant
 ARG USER_UID=1000
