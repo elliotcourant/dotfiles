@@ -31,8 +31,6 @@ then
   export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
 fi
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-
 # If krew is installed then include that in the PATH as well.
 if [[ -d ${KREW_ROOT:-$HOME/.krew}/bin ]]
 then
@@ -160,7 +158,12 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Try to find brew, or use the static path.
 # TODO Check if the command exists, and if it does not then skip this entirely.
-eval "$(`which brew || echo '/opt/homebrew/bin/brew'` shellenv)"
+if command -v brew &> /dev/null
+then
+  eval "$(`which brew || echo '/opt/homebrew/bin/brew'` shellenv)"
+  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
+
 
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
@@ -188,6 +191,7 @@ function pr_for_sha {
 
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
+autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 

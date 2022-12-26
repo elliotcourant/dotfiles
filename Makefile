@@ -69,6 +69,11 @@ install-zshrc:
 	-[ -f $(ZSHRC) ] && [ ! -L $(ZSHRC) ] && mv $(ZSHRC) $(ZSHRC).backup
 	-[ ! -L $(ZSHRC) ] && ln -s $(PWD)/.zshrc $(ZSHRC)
 
+ALACRITTY=$(HOME)/.alacritty.yml
+install-alacritty:
+	-[ -f $(ALACRITTY) ] && [ ! -L $(ALACRITTY) ] && mv $(ALACRITTY) $(ALACRITTY).backup
+	-[ ! -L $(ALACRITTY) ] && ln -s $(PWD)/alacritty.yaml $(ALACRITTY)
+
 LEIN_PROFILE=$(HOME)/.lein/profiles.clj
 install-lein-profile:
 	-[ ! -d $(dir $(LEIN_PROFILE)) ] && mkdir -p $(dir $(LEIN_PROFILE))
@@ -76,7 +81,7 @@ install-lein-profile:
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(PWD)/lein/profiles.clj $(LEIN_PROFILE)
 
 
-install: install-tmux install-neovim install-ideavim install-material install-zshrc install-lein-profile
+install: install-tmux install-neovim install-ideavim install-material install-zshrc install-alacritty install-lein-profile
 	@echo "Dotfiles installed!"
 
 MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos

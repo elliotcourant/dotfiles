@@ -223,17 +223,19 @@ if (os.execute('which tailwindcss') == 0) then
   }
 end
 
-require('lspconfig')['yamlls'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  settings     = {
-    schemas = {
-      ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
-      ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
+if (os.execute('which yaml-language-server') == 0) then
+  require('lspconfig')['yamlls'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    settings     = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
+        ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
+      },
     },
-  },
-}
+  }
+end
 
 if (os.execute('which rust-analyzer') == 0) then
   require('lspconfig')['rust_analyzer'].setup {
@@ -261,23 +263,26 @@ require('lspconfig')['terraformls'].setup {
   flags        = lsp_flags,
 }
 
-require('lspconfig')['sumneko_lua'].setup({
-  on_attach    = on_attach,
-  capabilities = capabilities,
-  flags        = lsp_flags,
-  settings     = {
-    Lua = {
-      diagnostics = {
-        enable  = true,
-        globals = { 'vim', 'packer_plugins' },
-      },
-      runtime     = { version = 'LuaJIT' },
-      workspace   = {
-        library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+
+if (os.execute('which lua-language-server') == 0) then
+  require('lspconfig')['sumneko_lua'].setup({
+    on_attach    = on_attach,
+    capabilities = capabilities,
+    flags        = lsp_flags,
+    settings     = {
+      Lua = {
+        diagnostics = {
+          enable  = true,
+          globals = { 'vim', 'packer_plugins' },
+        },
+        runtime     = { version = 'LuaJIT' },
+        workspace   = {
+          library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+        },
       },
     },
-  },
-})
+  })
+end
 
 -- npm i -g bash-language-server
 require('lspconfig')['bashls'].setup {
@@ -287,17 +292,19 @@ require('lspconfig')['bashls'].setup {
 }
 
 -- yarn global add diagnostic-languageserver
-require('lspconfig')['diagnosticls'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-      virtual_lines = true,
-    }),
+if (os.execute('which diagnostic-languageserver') == 0) then
+  require('lspconfig')['diagnosticls'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    handlers = {
+      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        virtual_lines = true,
+      }),
+    }
   }
-}
+end
 
 local clangd_capabilities = capabilities;
 clangd_capabilities.offsetEncoding = "utf-8"
