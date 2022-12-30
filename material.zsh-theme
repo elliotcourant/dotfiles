@@ -29,6 +29,29 @@
 # jobs are running in this shell will all be displayed automatically when
 # appropriate.
 
+
+# foreground: b7bcc0
+# background: 212120
+# selection: 607c8b
+#
+# black   - normal: 212120
+# black   - bright: 676767
+# red     - normal: ff526f
+# red     - bright: ff6d67
+# green   - normal: c2e88c
+# green   - bright: 5ff967
+# yellow  - normal: ffca6a
+# yellow  - bright: fefb67
+# blue    - normal: 82aafe
+# blue    - bright: 6871ff
+# magenta - normal: bb80b2
+# magenta - bright: f592f5
+# cyan    - normal: 89ddfe
+# cyan    - bright: 5ffdff
+# white   - normal: 595857
+# white   - bright: fffefe
+
+
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
