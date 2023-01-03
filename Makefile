@@ -37,12 +37,6 @@ docker-push: docker
 	docker push $(VERSIONED)
 	docker push $(LATEST)
 
-read:
-	cp ~/.zshrc $(PWD)/.zshrc
-	cp ~/.tmux.conf $(PWD)/.tmux.conf
-	cp ~/.tmux.conf $(PWD)/.tmux.conf
-	cp -r ~/.config/nvim/. $(PWD)/nvim
-
 NEOVIM=$(HOME)/.config/nvim
 PACKER=$(HOME)/.local/share/nvim/site/pack/packer/start/packer.nvim
 install-neovim:
@@ -54,7 +48,6 @@ TMUX=$(HOME)/.tmux.conf
 install-tmux:
 	-[ -f $(TMUX) ] && [ ! -L $(TMUX) ] && mv $(TMUX) $(TMUX).backup
 	-[ ! -L $(TMUX) ] && ln -s $(PWD)/.tmux.conf $(TMUX)
-
 
 IDEAVIM=$(HOME)/.ideavimrc
 install-ideavim:
@@ -84,13 +77,13 @@ install-kitty:
 	-[ ! -L $(KITTY) ] && ln -s $(PWD)/kitty.conf $(KITTY)
 
 LEIN_PROFILE=$(HOME)/.lein/profiles.clj
-install-lein-profile:
+LEIN_PROFILE_SOURCE=$(PWD)/lein/profiles.clj
+$(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
 	-[ ! -d $(dir $(LEIN_PROFILE)) ] && mkdir -p $(dir $(LEIN_PROFILE))
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
-	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(PWD)/lein/profiles.clj $(LEIN_PROFILE)
+	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(LEIN_PROFILE_SOURCE) $(LEIN_PROFILE)
 
-
-install: install-tmux install-neovim install-ideavim install-material install-zshrc install-alacritty install-kitty install-lein-profile
+install: install-tmux install-neovim install-ideavim install-material install-zshrc install-alacritty install-kitty $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 
 MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos
