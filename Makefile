@@ -37,12 +37,17 @@ docker-push: docker
 	docker push $(VERSIONED)
 	docker push $(LATEST)
 
-NEOVIM=$(HOME)/.config/nvim
 PACKER=$(HOME)/.local/share/nvim/site/pack/packer/start/packer.nvim
-install-neovim:
-	-[ -d $(NEOVIM) ] && mv $(NEOVIM) $(NEOVIM).backup
+$(PACKER):
+	-[ ! -d $(dir $(PACKER)) ] && mkdir -p $(dir $(PACKER))
 	-[ ! -d $(PACKER) ] && git clone --depth 1 https://github.com/wbthomason/packer.nvim $(PACKER)
-	-[ ! -L $(NEOVIM) ] && ln -s $(PWD)/nvim $(NEOVIM)
+
+NEOVIM_CONFIG=$(HOME)/.config/nvim
+NEOVIM_CONFIG_SOURCE=$(PWD)/nvim
+$(NEOVIM_CONFIG): $(NEOVIM_CONFIG_SOURCE) $(PACKER)
+	-[ ! -d $(dir $(NEOVIM_CONFIG)) ] && mkdir -p $(dir $(NEOVIM_CONFIG))
+	-[ -d $(NEOVIM_CONFIG) ] && mv $(NEOVIM_CONFIG) $(NEOVIM_CONFIG).backup
+	-[ ! -L $(NEOVIM_CONFIG) ] && ln -s $(NEOVIM_CONFIG_SOURCE) $(NEOVIM_CONFIG)
 
 TMUX=$(HOME)/.tmux.conf
 install-tmux:
@@ -60,21 +65,17 @@ install-material:
 	-[ ! -L $(MATERIAL) ] && ln -s $(PWD)/material.zsh-theme $(MATERIAL)
 
 ZSHRC=$(HOME)/.zshrc
-install-zshrc:
+ZSHRC_SOURCE=$(PWD)/.zshrc
+$(ZSHRC): $(ZSHRC_SOURCE)
 	-[ -f $(ZSHRC) ] && [ ! -L $(ZSHRC) ] && mv $(ZSHRC) $(ZSHRC).backup
-	-[ ! -L $(ZSHRC) ] && ln -s $(PWD)/.zshrc $(ZSHRC)
-
-ALACRITTY=$(HOME)/.alacritty.yml
-install-alacritty:
-	-[ -f $(ALACRITTY) ] && [ ! -L $(ALACRITTY) ] && mv $(ALACRITTY) $(ALACRITTY).backup
-	-[ ! -L $(ALACRITTY) ] && ln -s $(PWD)/alacritty.yaml $(ALACRITTY)
-
+	-[ ! -L $(ZSHRC) ] && ln -s $(ZSHRC_SOURCE) $(ZSHRC)
 
 KITTY=$(HOME)/.config/kitty/kitty.conf
-install-kitty:
+KITTY_SOURCE=$(PWD)/kitty.conf
+$(KITTY): $(KITTY_SOURCE)
 	-[ ! -d $(dir $(KITTY)) ] && mkdir -p $(dir $(KITTY))
 	-[ -f $(KITTY) ] && [ ! -L $(KITTY) ] && mv $(KITTY) $(KITTY).backup
-	-[ ! -L $(KITTY) ] && ln -s $(PWD)/kitty.conf $(KITTY)
+	-[ ! -L $(KITTY) ] && ln -s $(KITTY_SOURCE) $(KITTY)
 
 LEIN_PROFILE=$(HOME)/.lein/profiles.clj
 LEIN_PROFILE_SOURCE=$(PWD)/lein/profiles.clj
@@ -83,7 +84,11 @@ $(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(LEIN_PROFILE_SOURCE) $(LEIN_PROFILE)
 
-install: install-tmux install-neovim install-ideavim install-material install-zshrc install-alacritty install-kitty $(LEIN_PROFILE)
+install: $(ZSHRC)
+install: $(NEOVIM_CONFIG)
+install: install-tmux install-ideavim install-material
+install: $(KITTY)
+install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 
 MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos
