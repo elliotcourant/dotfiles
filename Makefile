@@ -13,6 +13,8 @@ endif
 
 clean:
 	git submodule deinit -f tools/neovim
+	git submodule deinit -f tools/k9s
+	git submodule deinit -f tools/golang-tools
 
 NEOVIM=$(PWD)/tools/neovim/README.md
 $(NEOVIM):
