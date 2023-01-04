@@ -18,5 +18,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           dockerfile: Dockerfile
-          tags: latest,20.04
-          repository: elliotcourant/dotfiles/ubuntu
+          tags: latest,11.6
+          repository: elliotcourant/dotfiles/debian

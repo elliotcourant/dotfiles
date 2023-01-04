@@ -292,19 +292,19 @@ require('lspconfig')['bashls'].setup {
 }
 
 -- yarn global add diagnostic-languageserver
-if (os.execute('which diagnostic-languageserver') == 0) then
-  require('lspconfig')['diagnosticls'].setup {
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
-    handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        virtual_lines = true,
-      }),
-    }
-  }
-end
+-- if (os.execute('which diagnostic-languageserver') == 0) then
+--   require('lspconfig')['diagnosticls'].setup {
+--     capabilities = capabilities,
+--     on_attach    = on_attach,
+--     flags        = lsp_flags,
+--     handlers = {
+--       ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--         virtual_text = false,
+--         virtual_lines = true,
+--       }),
+--     }
+--   }
+-- end
 
 local clangd_capabilities = capabilities;
 clangd_capabilities.offsetEncoding = "utf-8"

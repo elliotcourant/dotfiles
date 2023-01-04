@@ -44,7 +44,14 @@ keymap("n", "<Leader>/", "<cmd>Telescope current_buffer_fuzzy_find<cr>", opts)
 keymap("n", "<A-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
 keymap("n", "<^]-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
 
-keymap("n", "<Leader>v", require('lsp_lines').toggle)
+keymap("n", "<Leader>v", function ()
+  local virtual_lines = not vim.diagnostic.config().virtual_lines;
+  -- require('lsp_lines').toggle
+  vim.diagnostic.config({
+    virtual_lines = virtual_lines,
+    virtual_text = not virtual_lines,
+  })
+end)
 
 keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
 keymap("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)

@@ -20,6 +20,8 @@ NEOVIM=$(PWD)/tools/neovim/README.md
 $(NEOVIM):
 	git submodule update --init tools/neovim
 
+neovim: $(NEOVIM)
+
 USERNAME=$(shell whoami)
 HOME=$(shell echo ~$(USERNAME))
 DOCKER_IMAGE_NAME=ghcr.io/elliotcourant/dotfiles/debian
