@@ -20,7 +20,7 @@ WORKDIR /build
 RUN make CMAKE_BUILD_TYPE=RelWithDebInfo
 
 FROM base
-RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     postgresql-client \
     rsync \
     iputils-ping \
@@ -28,6 +28,7 @@ RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     traceroute \
     telnet \
     vim \
+    zsh \
     redis-server # Has redis-cli
 
 # Install kubectl
@@ -35,10 +36,6 @@ RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add 
     apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main" && \
     apt-get update -y && \
     apt-get install -y kubectl
-
-RUN curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
-RUN apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-RUN apt-get update && apt-get install -y vault
 
 COPY --from=neovim /build/build/bin/nvim /usr/bin/nvim
 
@@ -60,20 +57,10 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 USER $USERNAME
 
-# RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)" -- \
-COPY zsh-in-docker.sh /tmp
-RUN /tmp/zsh-in-docker.sh \
-    -t https://github.com/denysdovhan/spaceship-prompt \
-    -a 'SPACESHIP_PROMPT_ADD_NEWLINE="false"' \
-    -a 'SPACESHIP_PROMPT_SEPARATE_LINE="false"' \
-    -p git \
-    -p https://github.com/zsh-users/zsh-autosuggestions \
-    -p https://github.com/zsh-users/zsh-completions \
-    -p https://github.com/zsh-users/zsh-history-substring-search \
-    -p https://github.com/zsh-users/zsh-syntax-highlighting \
-    -p 'history-substring-search' \
-    -a 'bindkey "\$terminfo[kcuu1]" history-substring-search-up' \
-    -a 'bindkey "\$terminfo[kcud1]" history-substring-search-down'
+COPY ./ /home/elliotcourant/dotfiles
+RUN cd /home/elliotcourant/dotfiles && make install && cd -
+
+WORKDIR /home/elliotcourant
 
 ENTRYPOINT [ "/bin/zsh" ]
 CMD ["-l"]

@@ -1,4 +1,4 @@
-PWD=$(shell git rev-parse --show-toplevel)
+PWD=$(shell git rev-parse --show-toplevel || pwd)
 
 default-docker:
 	$(error Please run a specific target)
