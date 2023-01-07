@@ -158,17 +158,19 @@ require('lspconfig')['gopls'].setup {
   }
 }
 
-require('lspconfig')['pylsp'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      virtual_lines = false,
-    }),
+if (os.execute('which pylsp') == 0) then
+  require('lspconfig')['pylsp'].setup {
+    capabilities = capabilities,
+    on_attach    = on_attach,
+    flags        = lsp_flags,
+    handlers = {
+      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        virtual_lines = false,
+      }),
+    }
   }
-}
+end
 
 require('lspconfig')['tsserver'].setup {
   capabilities = capabilities,

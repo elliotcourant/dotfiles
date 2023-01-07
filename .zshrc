@@ -37,6 +37,11 @@ then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH";
 fi
 
+if [[ -d /usr/local/go/bin ]]
+then
+  export PATH="$PATH:/usr/local/go/bin"
+fi
+
 if [[ -d $HOME/Documents/depot_tools ]]
 then
   export PATH="$PATH:$HOME/Documents/depot_tools"
