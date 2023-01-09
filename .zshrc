@@ -12,6 +12,7 @@ then
   export PATH="$GOPATH/bin:$PATH";
 fi
 
+
 export PATH="/opt/homebrew/bin:$PATH";
 # Make sure brew's make is ahead of other stuff in the path.
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
@@ -21,8 +22,6 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 
-# Make sure GNU sed is first
-export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
 then
@@ -53,6 +52,9 @@ export PATH="$GEM_HOME/bin:$PATH"
 
 # Gcloud stuff
 export PATH="$PATH:$HOME/.gcloud/google-cloud-sdk/bin"
+
+# Make sure GNU sed is first
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # if command -v kubectl &> /dev/null
 # then
