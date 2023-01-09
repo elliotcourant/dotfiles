@@ -23,7 +23,7 @@ keymap("n", "<Leader>a", "<cmd>Telescope live_grep<cr>",  opts)
 keymap("n", ";",         "<cmd>Telescope buffers<cr>",    opts)
 
 -- Bookmark things
-keymap("n", ",           ,                                                ", "(Plug)BookmarkTogggle<cr>")
+keymap("n", ",,",        "(Plug)BookmarkTogggle<cr>")
 keymap("n", "<Leader>b", "<cmd>Telescope vim_bookmarks all<cr>",          opts)
 keymap("n", "<Leader>b", "<cmd>Telescope vim_bookmarks current_file<cr>", opts)
 
