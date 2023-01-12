@@ -191,12 +191,12 @@ require('lspconfig')['clojure_lsp'].setup {
     return on_attach(client, bufnr)
   end,
   flags        = lsp_flags,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      virtual_lines = false,
-    }),
-  }
+  -- handlers = {
+  --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --     virtual_text = true,
+  --     virtual_lines = false,
+  --   }),
+  -- }
 }
 
 require('lspconfig')['marksman'].setup {
