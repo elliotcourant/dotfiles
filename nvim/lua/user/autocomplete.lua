@@ -125,6 +125,20 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('v', '<Leader>r', vim.lsp.buf.rename, bufopts)
   -- vim.keymap.set('n', '<A-CR>', vim.lsp.buf.code_action, loudBufopts)
   vim.keymap.set('n', '<F2>', vim.lsp.buf.format, bufopts)
+  vim.api.nvim_create_autocmd("CursorHold", {
+    buffer = bufnr,
+    callback = function()
+      local opts = {
+        focusable = false,
+        close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+        border = 'rounded',
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+      vim.diagnostic.open_float(nil, opts)
+    end
+  })
 end
 
 

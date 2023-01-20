@@ -120,7 +120,6 @@ return packer.startup(function(use)
     end,
   })
 
-
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
   use {
