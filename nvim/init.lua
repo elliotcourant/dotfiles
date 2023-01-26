@@ -40,3 +40,6 @@ end, {
   force = true,
   nargs = 0,
 })
+
+
+require('dap').repl.close() -- Dumb bug
