@@ -1,5 +1,9 @@
-require("nvim-lsp-installer").setup {}
-
+require("mason").setup {}
+require("mason-lspconfig").setup {
+  ensure_installed = { 
+    "sumneko_lua", 
+  },
+}
 -- Setup nvim-cmp.
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
