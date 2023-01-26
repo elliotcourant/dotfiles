@@ -145,6 +145,10 @@ local on_attach = function(client, bufnr)
   })
 end
 
+local is_installed = function(name)
+  return os.execute(string.format('which %s > /dev/null 2>&1', name)) == 0
+end
+
 
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
@@ -176,7 +180,7 @@ require('lspconfig')['gopls'].setup {
   }
 }
 
-if (os.execute('which pylsp') == 0) then
+if (is_installed('pylsp')) then
   require('lspconfig')['pylsp'].setup {
     capabilities = capabilities,
     on_attach    = on_attach,
@@ -229,7 +233,7 @@ require('lspconfig')['marksman'].setup {
   }
 }
 
-if (os.execute('which tailwindcss') == 0) then
+if (is_installed('tailwindcss')) then
   require('lspconfig')['tailwindcss'].setup {
     capabilities = capabilities,
     on_attach    = on_attach,
@@ -243,7 +247,7 @@ if (os.execute('which tailwindcss') == 0) then
   }
 end
 
-if (os.execute('which yaml-language-server') == 0) then
+if (is_installed('yaml-language-server')) then
   require('lspconfig')['yamlls'].setup {
     capabilities = capabilities,
     on_attach    = on_attach,
@@ -257,7 +261,7 @@ if (os.execute('which yaml-language-server') == 0) then
   }
 end
 
-if (os.execute('which rust-analyzer') == 0) then
+if (is_installed('rust-analyzer')) then
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities,
     on_attach    = on_attach,
@@ -284,7 +288,7 @@ require('lspconfig')['terraformls'].setup {
 }
 
 
-if (os.execute('which lua-language-server') == 0) then
+if (is_installed('lua-language-server')) then
   require('lspconfig')['sumneko_lua'].setup({
     on_attach    = on_attach,
     capabilities = capabilities,
