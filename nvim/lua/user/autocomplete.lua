@@ -325,6 +325,32 @@ require('lspconfig')['bashls'].setup {
   flags        = lsp_flags,
 }
 
+require('lspconfig')['ansiblels'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  settings     = {
+    ansible = {
+      ansible = {
+        path = "ansible"
+      },
+      executionEnvironment = {
+        enabled = false
+      },
+      python = {
+        interpreterPath = "python3"
+      },
+      validation = {
+        enabled = true,
+        lint = {
+          enabled = true,
+          path = "ansible-lint"
+        }
+      }
+    }
+  }
+}
+
 -- yarn global add diagnostic-languageserver
 -- if (os.execute('which diagnostic-languageserver') == 0) then
 --   require('lspconfig')['diagnosticls'].setup {
