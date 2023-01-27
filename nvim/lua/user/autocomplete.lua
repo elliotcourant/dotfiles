@@ -1,8 +1,17 @@
 require("mason").setup {}
 require("mason-lspconfig").setup {
   ensure_installed = {
-    "sumneko_lua",
+    "bashls",
+    "clojure_lsp",
+    "gopls",
     "marksman",
+    "pylsp",
+    "rust_analyzer",
+    "sumneko_lua",
+    "tailwindcss",
+    "terraformls",
+    "tsserver",
+    "yamlls",
   },
 }
 -- Setup nvim-cmp.
