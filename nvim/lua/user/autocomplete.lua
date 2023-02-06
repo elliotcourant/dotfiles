@@ -4,6 +4,7 @@ require("mason-lspconfig").setup {
     "bashls",
     "clojure_lsp",
     "gopls",
+    "grammarly",
     "marksman",
     "pylsp",
     "rust_analyzer",
@@ -232,6 +233,18 @@ require('lspconfig')['clojure_lsp'].setup {
 }
 
 require('lspconfig')['marksman'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
+  }
+}
+
+require('lspconfig')['grammarly'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
