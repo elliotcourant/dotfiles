@@ -8,7 +8,7 @@ require("mason-lspconfig").setup {
     "marksman",
     "pylsp",
     "rust_analyzer",
-    "sumneko_lua",
+    "lua-language-server",
     "tailwindcss",
     "terraformls",
     "tsserver",
