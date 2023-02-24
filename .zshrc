@@ -122,12 +122,11 @@ export FZF_DEFAULT_COMMAND='rg --files'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# If its not the work computer enable wakatime. If it is the work computer though then only use git.
-if [[ ! $(hostname | grep "\-TP\-") ]]
+plugins=(git)
+
+if command -v 1password &> /dev/null
 then
-  plugins=(git wakatime)
-else
-  plugins=(git)
+  eval "$(ssh-agent -s | grep -v echo)" # 1Password ssh agent
 fi
 
 source $ZSH/oh-my-zsh.sh
