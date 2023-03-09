@@ -9,10 +9,17 @@ vim.diagnostic.config({
     end,
   },
 }, neotest_ns)
+
+local neotest_go = require('neotest-go');
+neotest_go.filter_dir = function(name, rel_path, root)
+  -- node_modules tends to be a massive directory
+  return name ~= "node_modules"
+end
+
 require("neotest").setup({
   -- your neotest config here
   adapters = {
-    require("neotest-go"),
+    neotest_go,
   },
   benchmark = {
     enabled = true
