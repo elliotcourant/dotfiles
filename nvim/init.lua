@@ -4,6 +4,7 @@ require "user.editor"
 require "user.telescope"
 require "user.treesitter"
 require "user.autocomplete"
+require "user.testing"
 
 require "user.debugging"
 

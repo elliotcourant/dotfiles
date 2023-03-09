@@ -212,6 +212,17 @@ return packer.startup(function(use)
     end
   }
 
+  -- Testing Stuff
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-neotest/neotest-go",
+      -- "antoinemadec/FixCursorHold.nvim" -- I dont think this is needed because I build neovim from scratch.
+    },
+  }
+
 
   -- Autocomplete things
   -- cmp plugins
