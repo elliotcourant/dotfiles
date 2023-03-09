@@ -170,7 +170,6 @@ then
   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
-
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
 alias sv='source ~/.zshrc'
@@ -222,3 +221,11 @@ if command -v rbenv &> /dev/null
 then
   eval "$(rbenv init - zsh)"
 fi
+
+# If please build is installed then add completion.
+if command -v plz &> /dev/null
+then
+  source <(plz --completion_script)
+fi
+
+

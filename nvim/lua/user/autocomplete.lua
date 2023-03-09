@@ -5,7 +5,6 @@ require("mason-lspconfig").setup {
     "bashls",
     "clojure_lsp",
     "gopls",
-    "grammarly",
     "marksman",
     "pylsp",
     "rust_analyzer",
@@ -245,17 +244,17 @@ require('lspconfig')['marksman'].setup {
   }
 }
 
-require('lspconfig')['grammarly'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      virtual_lines = false,
-    }),
-  }
-}
+-- require('lspconfig')['grammarly'].setup {
+--   capabilities = capabilities,
+--   on_attach    = on_attach,
+--   flags        = lsp_flags,
+--   handlers = {
+--     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--       virtual_text = true,
+--       virtual_lines = false,
+--     }),
+--   }
+-- }
 
 if (is_installed('tailwindcss')) then
   require('lspconfig')['tailwindcss'].setup {
