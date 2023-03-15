@@ -3,6 +3,7 @@ require("mason-lspconfig").setup {
   ensure_installed = {
     "ansiblels",
     "bashls",
+    "cmake",
     "clojure_lsp",
     "gopls",
     "marksman",
@@ -219,6 +220,20 @@ require('lspconfig')['tsserver'].setup {
 }
 
 require('lspconfig')['clojure_lsp'].setup {
+  capabilities = capabilities,
+  on_attach    = function(client, bufnr)
+    return on_attach(client, bufnr)
+  end,
+  flags        = lsp_flags,
+  -- handlers = {
+  --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  --     virtual_text = true,
+  --     virtual_lines = false,
+  --   }),
+  -- }
+}
+
+require('lspconfig')['cmake'].setup {
   capabilities = capabilities,
   on_attach    = function(client, bufnr)
     return on_attach(client, bufnr)
