@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 
 -- currentNamespace will return the clojure namespace of the currently open file.
 function CurrentClojureNamespace()
-  local nsLineNumber = vim.fn.search('(ns *', 'bcnW')
+  local nsLineNumber = vim.fn.search('(ns\\s\\S\\+', 'bcnW')
   if nsLineNumber == 0 then
     -- If we cannot find the namespace line then do nothing.
     return 0
