@@ -228,4 +228,7 @@ then
   source <(plz --completion_script)
 fi
 
-
+# If there is an additiaonl zsh file then load it in.
+if [[ -f "$HOME/.additional.zsh" ]]; then
+  source "$HOME/.additional.zsh";
+fi
