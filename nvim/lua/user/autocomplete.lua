@@ -271,19 +271,17 @@ require('lspconfig')['marksman'].setup {
 --   }
 -- }
 
-if (is_installed('tailwindcss')) then
-  require('lspconfig')['tailwindcss'].setup {
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
-    handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        virtual_lines = false,
-      }),
-    }
+require('lspconfig')['tailwindcss'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      virtual_lines = false,
+    }),
   }
-end
+}
 
 if (is_installed('yaml-language-server')) then
   require('lspconfig')['yamlls'].setup {
