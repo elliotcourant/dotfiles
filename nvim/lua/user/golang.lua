@@ -83,15 +83,16 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.go" },
   callback = function ()
     go_org_imports()
+    vim.lsp.buf.format()
   end
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.go" },
-  callback = function ()
-    vim.api.nvim_command('silent !go fmt %')
-    vim.api.nvim_command('silent e')
-  end
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   pattern = { "*.go" },
+--   callback = function ()
+--     vim.api.nvim_command('silent !go fmt %')
+--     vim.api.nvim_command('silent e')
+--   end
+-- })
 
 require('dap-go').setup{}

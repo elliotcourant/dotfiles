@@ -120,6 +120,7 @@ require("neotest").setup({
       debug = "d",
       debug_marked = "D",
       expand = { "<CR>", "<2-LeftMouse>" },
+      collapse = "c",
       expand_all = "e",
       jumpto = "i",
       mark = "m",
