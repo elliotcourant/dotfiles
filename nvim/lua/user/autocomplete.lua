@@ -3,19 +3,21 @@ require("mason-lspconfig").setup {
   ensure_installed = {
     "ansiblels",
     "bashls",
-    "cmake",
     "clojure_lsp",
+    "cmake",
     "gopls",
+    "helm_ls",
+    "lua_ls",
     "marksman",
     "pylsp",
     "rust_analyzer",
-    "lua_ls",
     "tailwindcss",
     "terraformls",
     "tsserver",
-    "yamlls",
   },
 }
+local util = require('lspconfig.util')
+
 -- Setup nvim-cmp.
 local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
@@ -219,6 +221,22 @@ require('lspconfig')['tsserver'].setup {
   }
 }
 
+require('lspconfig')['helm_ls'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  root_dir     = function(fname)
+    return util.root_pattern('Chart.yaml')(fname)
+  end,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      -- Disable virtual_text
+      virtual_text = false,
+      virtual_lines = true,
+    }),
+  }
+}
+
 require('lspconfig')['clojure_lsp'].setup {
   capabilities = capabilities,
   on_attach    = function(client, bufnr)
@@ -283,19 +301,19 @@ require('lspconfig')['tailwindcss'].setup {
   }
 }
 
-if (is_installed('yaml-language-server')) then
-  require('lspconfig')['yamlls'].setup {
-    capabilities = capabilities,
-    on_attach    = on_attach,
-    flags        = lsp_flags,
-    settings     = {
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
-        ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
-      },
-    },
-  }
-end
+-- if (is_installed('yaml-language-server')) then
+--   require('lspconfig')['yamlls'].setup {
+--     capabilities = capabilities,
+--     on_attach    = on_attach,
+--     flags        = lsp_flags,
+--     settings     = {
+--       schemas = {
+--         ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
+--         ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
+--       },
+--     },
+--   }
+-- end
 
 if (is_installed('rust-analyzer')) then
   require('lspconfig')['rust_analyzer'].setup {
