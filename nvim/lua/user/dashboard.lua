@@ -3,16 +3,16 @@ vim.api.nvim_create_autocmd({ "FileType", "FocusGained", "FocusLost", "BufEnter"
   callback = function()
     if vim.bo.filetype == "alpha" then
       vim.o.showtabline = 0
-      vim.o.showmode    = 0
+      vim.o.showmode    = false
       vim.o.laststatus  = 0
-      vim.o.ruler       = 0
-      vim.o.showcmd     = 0
+      vim.o.ruler       = false
+      vim.o.showcmd     = false
     else
       vim.o.showtabline = 2
-      vim.o.showmode    = 1
+      vim.o.showmode    = true
       vim.o.laststatus  = 2
-      vim.o.ruler       = 1
-      vim.o.showcmd     = 1
+      vim.o.ruler       = true
+      vim.o.showcmd     = true
     end
   end
 })
