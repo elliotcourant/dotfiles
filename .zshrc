@@ -17,6 +17,8 @@ export PATH="/opt/homebrew/bin:$PATH";
 # Make sure brew's make is ahead of other stuff in the path.
 export PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 export PATH="/opt/homebrew/opt/make/libexec/gnubin:$PATH";
+# LLVM and scan-build stuff for C
+# export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 # Put libpq ahead of stuff for path variable.
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
@@ -63,15 +65,15 @@ export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # This is needed for compilers that need access to the bison lib.
 unset LDFLAGS;
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/bison/lib";
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/libiconv/lib";
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/zlib/lib"
-export LDFLAGS="$LDFLAGS -L/usr/local/opt/openssl@3/lib"
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/bison/lib";
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/libiconv/lib";
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/zlib/lib"
+# export LDFLAGS="$LDFLAGS -L/usr/local/opt/openssl@3/lib"
 
 unset CPPFLAGS;
-export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include";
-export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include";
-export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl@3/include"
+# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/libiconv/include";
+# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include";
+# export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl@3/include"
 
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator

@@ -6,7 +6,6 @@ require("mason-lspconfig").setup {
     "clojure_lsp",
     "cmake",
     "gopls",
-    "helm_ls",
     "lua_ls",
     "marksman",
     "pylsp",
@@ -213,22 +212,9 @@ require('lspconfig')['tsserver'].setup {
   on_attach    = on_attach,
   flags        = lsp_flags,
   handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- Disable virtual_text
-      virtual_text = false,
-      virtual_lines = true,
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        silent = false,
     }),
-  }
-}
-
-require('lspconfig')['helm_ls'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  root_dir     = function(fname)
-    return util.root_pattern('Chart.yaml')(fname)
-  end,
-  handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       -- Disable virtual_text
       virtual_text = false,
@@ -294,11 +280,36 @@ require('lspconfig')['tailwindcss'].setup {
   on_attach    = on_attach,
   flags        = lsp_flags,
   handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        silent = true,
+    }),
     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
       virtual_text = true,
       virtual_lines = false,
     }),
   }
+}
+
+require('lspconfig')['eslint'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        silent = true,
+    }),
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = false,
+      virtual_lines = true,
+    }),
+  },
+  settings = {
+    codeAction = {
+      showDocumentation = {
+        enable = false,
+      },
+    },
+  },
 }
 
 -- if (is_installed('yaml-language-server')) then
