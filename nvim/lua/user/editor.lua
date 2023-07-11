@@ -1,20 +1,21 @@
-vim.g.nocompatible = true
-vim.o.number       = true
-vim.g.bs           = 2 -- Make backspace work in a sane way.
-vim.o.laststatus   = 2
-vim.o.autoread     = true -- Update buffers when the file is modified externally.
-vim.o.showcmd      = true -- I want to the command keys.
-vim.o.expandtab    = true
-vim.o.smartindent  = true
-vim.o.tabstop      = 2
-vim.o.shiftwidth   = 2
-vim.o.showtabline  = 2 -- Is modified by the dashboard file on startup.
-vim.o.wrap         = false
-vim.o.showmode     = true
-vim.o.colorcolumn  = "120"
-vim.o.hidden       = true
-vim.opt.spell      = false
-vim.opt.spelllang  = { 'en_us' }
+vim.g.nocompatible  = true
+vim.o.number        = true
+vim.g.bs            = 2 -- Make backspace work in a sane way.
+vim.opt.laststatus  = 2
+vim.opt.autoread    = true -- Update buffers when the file is modified externally.
+vim.opt.showcmd     = true -- I want to the command keys.
+vim.opt.expandtab   = true
+vim.opt.smartindent = true
+vim.opt.tabstop     = 2
+vim.opt.shiftwidth  = 2
+vim.opt.showtabline = 2 -- Is modified by the dashboard file on startup.
+vim.opt.wrap        = false
+vim.opt.showmode    = true
+vim.opt.colorcolumn = "120"
+vim.opt.hidden      = true
+vim.opt.spell       = false
+vim.opt.spelllang   = { 'en_us' }
+vim.opt.scrolloff   = 8 -- Keep at least 8 lines visible at the bottom of the buffers.
 
 vim.cmd [[
   filetype off
