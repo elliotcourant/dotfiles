@@ -7,6 +7,8 @@ local opts = { silent = true }
 -- Remap ' as the leader key.
 vim.g.mapleader = "'"
 
+keymap("n", "Q","<nop>", opts) -- Begone evil
+
 keymap("n", "<Leader>ev", ":e $MYVIMRC<CR>", opts)
 
 -- Allow the Tab key to be used to navigate between windows
