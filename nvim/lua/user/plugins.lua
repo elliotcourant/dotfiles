@@ -243,6 +243,7 @@ return packer.startup(function(use)
   -- Golang Stuff
   use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
+  -- Helm stuff
   use { "towolf/vim-helm" }
 
   -- Markdown stuff
