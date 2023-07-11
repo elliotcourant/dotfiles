@@ -352,28 +352,37 @@ require('lspconfig')['terraformls'].setup {
   flags        = lsp_flags,
 }
 
-
-if (is_installed('lua-language-server')) then
-  require('lspconfig')['lua_ls'].setup({
-    on_attach    = on_attach,
-    capabilities = capabilities,
-    flags        = lsp_flags,
-    settings     = {
-      Lua = {
-        diagnostics = {
-          enable  = true,
-          globals = { 'vim', 'packer_plugins' },
-        },
-        runtime     = { version = 'LuaJIT' },
-        workspace   = {
-          library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+require('lspconfig')['lua_ls'].setup({
+  on_attach    = on_attach,
+  capabilities = capabilities,
+  flags        = lsp_flags,
+  settings     = {
+    Lua = {
+      diagnostics = {
+        enable  = true,
+        globals = {
+          'vim',
+          'packer_plugins',
         },
       },
+      runtime   = {
+        version = 'LuaJIT',
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand('$VIMRUNTIME')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+          [vim.fn.expand('$VIMRUNTIME/lua/vim')] = true,
+        },
+        -- library = vim.api.nvim_get_runtime_file("", true),
+        -- library = vim.list_extend({ [vim.fn.expand('$VIMRUNTIME/lua')] = true }, {}),
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
     },
-  })
-end
+  },
+})
 
--- npm i -g bash-language-server
 require('lspconfig')['bashls'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,

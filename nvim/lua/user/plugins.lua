@@ -257,7 +257,12 @@ return packer.startup(function(use)
   }
 
   -- Clojure stuff
-  use { 'Olical/conjure' }
+  use { 'Olical/conjure', setup = function()
+    vim.cmd [[
+      let g:conjure#filetypes = ["clojure"]
+    ]]
+    end,
+  }
   use { 'guns/vim-sexp' }
   use { 'tpope/vim-sexp-mappings-for-regular-people' }
 

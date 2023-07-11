@@ -49,7 +49,6 @@ keymap("n", "]\\", vim.diagnostic.goto_prev, { silent = true, noremap = true })
 
 keymap("n", "<Leader>v", function ()
   local virtual_lines = not vim.diagnostic.config().virtual_lines;
-  -- require('lsp_lines').toggle
   vim.diagnostic.config({
     virtual_lines = virtual_lines,
     virtual_text  = not virtual_lines,

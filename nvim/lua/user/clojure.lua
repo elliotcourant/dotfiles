@@ -15,15 +15,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
   end
 })
 
--- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
---   pattern = { "*.clj" },
---   callback = function()
---     if vim.lsp.buf.server_ready() then
---       vim.lsp.codelens.refresh()
---     end
---   end
--- })
-
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   pattern = { "*.clj" },
   callback = function()
