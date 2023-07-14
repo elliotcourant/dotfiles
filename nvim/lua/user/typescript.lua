@@ -14,3 +14,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.api.nvim_command('set colorcolumn=120')
   end
 })
+
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+--   pattern = { "*.ts", "*.tsx" },
+--   callback = function ()
+--     vim.lsp.buf.format()
+--   end
+-- })
