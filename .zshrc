@@ -3,6 +3,11 @@
 
 export EDITOR=nvim
 
+if [[ "xterm-kitty" == "$TERM" ]]
+then
+  alias ssh='kitty +kitten ssh'
+fi
+
 export ZSH="$HOME/.oh-my-zsh";
 
 # If go is setup in the home directory then add stuff to the path and setup other variables.
