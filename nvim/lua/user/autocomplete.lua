@@ -215,11 +215,11 @@ require('lspconfig')['tsserver'].setup {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         silent = false,
     }),
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      -- Disable virtual_text
-      virtual_text = false,
-      virtual_lines = true,
-    }),
+    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --   -- Disable virtual_text
+    --   virtual_text = false,
+    --   virtual_lines = true,
+    -- }),
   }
 }
 
@@ -298,10 +298,10 @@ require('lspconfig')['eslint'].setup {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         silent = true,
     }),
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-      virtual_lines = true,
-    }),
+    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --   virtual_text = false,
+    --   virtual_lines = true,
+    -- }),
   },
   settings = {
     codeAction = {
