@@ -25,6 +25,7 @@ require 'nvim-treesitter.configs'.setup {
     "rust",
     "scss",
     "sql",
+    "starlark",
     "toml",
     "tsx",
     "typescript",
