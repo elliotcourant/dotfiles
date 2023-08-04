@@ -11,6 +11,15 @@ keymap("n", "Q","<nop>", opts) -- Begone evil
 
 keymap("n", "<Leader>ev", ":e $MYVIMRC<CR>", opts)
 
+-- keymap("n", "<Left>", "<nop>")
+-- keymap("n", "<Right>", "<nop>")
+-- keymap("n", "<Up>", "<nop>")
+-- keymap("n", "<Down>", "<nop>")
+-- keymap("i", "<Left>", "<nop>")
+-- keymap("i", "<Right>", "<nop>")
+-- keymap("i", "<Up>", "<nop>")
+-- keymap("i", "<Down>", "<nop>")
+
 -- Allow the Tab key to be used to navigate between windows
 keymap("n", "<Tab>",      "<C-w>",      opts)
 keymap("n", "<Tab><Tab>", "<C-w><C-w>", opts)
