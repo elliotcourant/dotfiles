@@ -219,6 +219,7 @@ return packer.startup(function(use)
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-go",
+      "haydenmeade/neotest-jest",
       -- "antoinemadec/FixCursorHold.nvim" -- I dont think this is needed because I build neovim from scratch.
     },
   }

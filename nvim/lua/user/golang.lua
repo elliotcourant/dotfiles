@@ -54,12 +54,6 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.o.spell       = false
     -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
     vim.api.nvim_command('set colorcolumn=120')
-    vim.keymap.set("n", "<Leader>lt", require("neotest").run.run_last, { silent = true })
-    vim.keymap.set("n", "<Leader>at", require("neotest").run.attach, { silent = true })
-    vim.keymap.set("n", "<Leader>gt", require("neotest").run.run, { silent = true })
-    vim.keymap.set("n", "<Leader>st", require("neotest").run.stop, { silent = true })
-    vim.keymap.set("n", "<Leader>tt", require("neotest").summary.toggle, { silent = true })
-    vim.keymap.set("n", "<Leader>ot", require("neotest").output_panel.toggle, { silent = true })
     -- vim.keymap.set("n", "<Leader>gt", RunNearestGolangTest, { silent = true })
     vim.keymap.set("n", "<Leader>dt", ":lua require('dap-go').debug_test()<cr>", { silent = true })
   end

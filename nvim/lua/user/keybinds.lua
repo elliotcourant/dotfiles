@@ -94,6 +94,14 @@ keymap("n", "<Leader>z", "<cmd>ZoomToggle<cr>", opts)
 -- Removing any trailing whitespace in the file.
 keymap("n", "<Leader>s", "<cmd>%s/\\s\\+$//e<cr><cmd>noh<cr><cmd>w<cr>", opts)
 
+-- TEST KEYBINDS
+keymap("n", "<Leader>lt", require("neotest").run.run_last, opts)
+keymap("n", "<Leader>at", require("neotest").run.attach, opts)
+keymap("n", "<Leader>gt", require("neotest").run.run, opts)
+keymap("n", "<Leader>st", require("neotest").run.stop, opts)
+keymap("n", "<Leader>tt", require("neotest").summary.toggle, opts)
+keymap("n", "<Leader>ot", require("neotest").output_panel.toggle, opts)
+
 -- ################################################################################################################## --
 local commandOpts = { force = true }
 command('Split',   'split',                commandOpts)

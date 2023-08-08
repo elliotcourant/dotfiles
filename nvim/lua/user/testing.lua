@@ -11,6 +11,8 @@ vim.diagnostic.config({
 }, neotest_ns)
 
 local neotest_go = require('neotest-go');
+local neotest_jest = require('neotest-jest');
+
 neotest_go.filter_dir = function(name, rel_path, root)
   -- node_modules tends to be a massive directory
   return name ~= "node_modules"
@@ -20,6 +22,14 @@ require("neotest").setup({
   -- your neotest config here
   adapters = {
     neotest_go,
+    neotest_jest({
+      jestCommand = "yarn test --",
+      -- jestConfigFile = "custom.jest.config.ts",
+      env = { CI = true },
+      cwd = function(path)
+        return vim.fn.getcwd()
+      end,
+    }),
   },
   benchmark = {
     enabled = true

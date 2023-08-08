@@ -13,3 +13,4 @@ ignore.me.*
 telepresence.log
 */.idea
 nvim/spell
+*/.cache
