@@ -100,7 +100,14 @@ keymap("n", "<Leader>at", require("neotest").run.attach, opts)
 keymap("n", "<Leader>gt", require("neotest").run.run, opts)
 keymap("n", "<Leader>st", require("neotest").run.stop, opts)
 keymap("n", "<Leader>tt", require("neotest").summary.toggle, opts)
-keymap("n", "<Leader>ot", require("neotest").output_panel.toggle, opts)
+keymap("n", "<Leader>ot", function()
+  require("neotest").output.open({
+    enter = true,
+    last_run = true,
+    auto_close = true,
+  });
+end , opts)
+keymap("n", "<Leader>oo", require("neotest").output_panel.toggle, opts)
 
 -- ################################################################################################################## --
 local commandOpts = { force = true }
