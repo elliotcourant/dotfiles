@@ -64,10 +64,10 @@ local versionOutput = vim.api.nvim_eval("execute('version')")
 local versionStr = vim.fn.split(vim.fn.split(versionOutput, '\n')[1], ' ')[2]
 
 local function hostOS ()
-  if vim.fn.has('mac') then
+  if vim.fn.has('mac') ~= 0 then
     return ' macOS'
   end
-  if vim.fn.has('linux') then
+  if vim.fn.has('linux') ~= 0 then
     return ' Linux'
   end
   if vim.fn.has('win32') or vim.fn.has('win64') then
