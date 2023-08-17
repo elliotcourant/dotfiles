@@ -147,11 +147,11 @@ end
 local buttons = {
     type = "group",
     val = {
-        button("' f",          "  Find file"),
-        button("' a",          "  Find word"),
+        button("' f",          "󱝩  Find file"),
+        button("' a",          "󱎸  Find word"),
         button("e",            "  New file",       "<cmd>ene <CR>"),
         button("e $MYVIMRC",   "  Edit Config",    "<cmd>e $MYVIMRC<cr>"),
-        button("PackerUpdate", "ﮮ  Update Plugins", "<cmd>PackerUpdate<cr>"),
+        button("PackerUpdate", "󰚰  Update Plugins", "<cmd>PackerUpdate<cr>"),
         button("checkhealth",  "  Check Health",   "<cmd>checkhealth<cr>"),
     },
     opts = {
