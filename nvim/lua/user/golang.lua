@@ -3,13 +3,14 @@ function RunNearestGolangTest()
   if nearestTestLine == 0 then
     return 0
   end
-  local primaryTestName = string.match(vim.fn.getline(nearestTestLine), '^func (Test%a+)')
+  local line = tostring(vim.fn.getline(nearestTestLine))
+  local primaryTestName = string.match(line, '^func (Test%a+)')
   local nearestTestRunLine = vim.fn.search('t.Run("*', 'bcnW')
   local currentDir = vim.fn.expand('%:p:h')
 
   local testString = string.format("^%s$", primaryTestName)
   if nearestTestRunLine > 0 and nearestTestRunLine > nearestTestLine then
-    local miniLineString = vim.fn.getline(nearestTestRunLine)
+    local miniLineString = tostring(vim.fn.getline(nearestTestRunLine))
     local miniTestString = (string.gsub(string.match(miniLineString, '%s%a%.Run%("([^"]+)'), ' ', '_'))
     testString = string.format('^%s/"%s"$', primaryTestName, miniTestString)
   end
@@ -24,6 +25,9 @@ function RunNearestGolangTest()
 
   -- Get the width of the actual screen, not just the current split/window.
   local screenWidth = tonumber(vim.api.nvim_eval('&columns'))
+  if screenWidth == nil then
+    return 0
+  end
   local desiredWidth = 120
 
   local run = terminal:new({
@@ -52,8 +56,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.bo.tabstop    = 2
     vim.bo.textwidth  = 120
     vim.o.spell       = false
-    -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
-    vim.api.nvim_command('set colorcolumn=120')
+    vim.o.colorcolumn = '120'
     -- vim.keymap.set("n", "<Leader>gt", RunNearestGolangTest, { silent = true })
     vim.keymap.set("n", "<Leader>dt", ":lua require('dap-go').debug_test()<cr>", { silent = true })
   end
@@ -80,13 +83,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.lsp.buf.format()
   end
 })
-
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   pattern = { "*.go" },
---   callback = function ()
---     vim.api.nvim_command('silent !go fmt %')
---     vim.api.nvim_command('silent e')
---   end
--- })
 
 require('dap-go').setup{}

@@ -7,8 +7,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.bo.tabstop    = 2
     vim.bo.textwidth  = 120
     vim.o.spell       = false
-    -- Doesn't work in lua yet? https://github.com/neovim/neovim/issues/14626
-    vim.api.nvim_command('set colorcolumn=80')
+    vim.o.colorcolumn = '80'
     -- vim.api.nvim_command('set formatoptions=cqj')
     vim.keymap.set("n", "<Leader>gt", RunNearestClojureTest, { silent = true })
     vim.keymap.set("n", "<Leader>ct", ":ConjureCljRunCurrentTest<CR>", { silent = true })
@@ -37,7 +36,8 @@ function CurrentClojureNamespace()
     return 0
   end
 
-  local nsLine = vim.fn.getline(nsLineNumber)
+  -- getline can return string|string[], this just fixes it to return only a string.
+  local nsLine = tostring(vim.fn.getline(nsLineNumber))
   local namespace = vim.fn.split(nsLine, " ")[2]
   return namespace
 end
@@ -49,7 +49,7 @@ function NearestClojureTest()
     return 0
   end
 
-  local deftestLine = vim.fn.getline(nearestDeftestLine)
+  local deftestLine = tostring(vim.fn.getline(nearestDeftestLine))
   local testName = vim.fn.split(deftestLine, " ")[2]
 
   return testName
@@ -77,6 +77,11 @@ function RunNearestClojureTest()
 
   -- Get the width of the actual screen, not just the current split/window.
   local screenWidth = tonumber(vim.api.nvim_eval('&columns'))
+  -- Silence the warning about optional value below.
+  if screenWidth == nil then
+    return 0
+  end
+
   local desiredWidth = 120
 
   local run = terminal:new({
