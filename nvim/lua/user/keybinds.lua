@@ -88,6 +88,9 @@ keymap("n", "<Leader>L", "<Plug>(easymotion-overwin-line)")
 keymap("x", "ga", "<Plug>(EasyAlign)", opts)
 keymap("n", "ga", "<Plug>(EasyAlign)", opts)
 
+-- Undo tree
+keymap("n", "<Leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", opts)
+
 -- Focus Keybindings
 keymap("n", "<Leader>z", "<cmd>ZoomToggle<cr>", opts)
 
@@ -136,6 +139,9 @@ vim.api.nvim_create_user_command('Make', function(input)
   -- Get the width of the actual screen, not just the current split/window.
   local screenWidth   = tonumber(vim.api.nvim_eval('&columns'))
   local screenHeight  = tonumber(vim.api.nvim_eval('&lines'))
+  if screenWidth == nil or screenHeight == nil then
+    return 0
+  end
   local desiredWidth  = 80
   local desiredHeight = 30
 

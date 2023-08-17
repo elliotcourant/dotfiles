@@ -17,6 +17,16 @@ vim.opt.spell       = false
 vim.opt.spelllang   = { 'en_us' }
 vim.opt.scrolloff   = 8 -- Keep at least 8 lines visible at the bottom of the buffers.
 
+-- Setup persistent undo
+if vim.fn.has('persistent_undo') then
+  local targetPath = tostring(vim.fn.expand('~/.undodir'));
+  if vim.fn.isdirectory(targetPath) ~= true then
+    vim.fn.mkdir(targetPath, 'p', 0700);
+  end
+  vim.o.undodir = targetPath;
+  vim.o.undofile = true;
+end
+
 vim.cmd [[
   filetype off
   filetype plugin indent on

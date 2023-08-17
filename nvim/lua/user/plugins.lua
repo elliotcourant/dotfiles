@@ -91,6 +91,7 @@ return packer.startup(function(use)
       require("nvim-autopairs").setup {}
     end
   }
+  use { "mbbill/undotree" }
   use { "markstory/vim-zoomwin" }
   use { "junegunn/goyo.vim" }
   use { "terryma/vim-multiple-cursors" }
@@ -220,7 +221,6 @@ return packer.startup(function(use)
       "nvim-treesitter/nvim-treesitter",
       "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
-      -- "antoinemadec/FixCursorHold.nvim" -- I dont think this is needed because I build neovim from scratch.
     },
   }
 
