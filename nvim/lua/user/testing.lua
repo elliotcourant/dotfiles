@@ -23,7 +23,7 @@ require("neotest").setup({
   adapters = {
     neotest_go,
     neotest_jest({
-      jestCommand = "yarn test --",
+      jestCommand = "pnpm jest",
       -- jestConfigFile = "custom.jest.config.ts",
       env = { CI = true },
       cwd = function(path)
