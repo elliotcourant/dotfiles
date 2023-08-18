@@ -1,4 +1,5 @@
 local gpt = require("chatgpt")
+require("trouble").setup()
 
 gpt.setup({
   -- api_key_cmd = "op read op://Development/OpenAI/credential --no-newline",
@@ -137,7 +138,7 @@ gpt.setup({
     n = 1,
   },
   actions_paths = {},
-  show_quickfixes_cmd = "Trouble quickfix",
+  -- show_quickfixes_cmd = "Trouble quickfix",
   predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
 })
 

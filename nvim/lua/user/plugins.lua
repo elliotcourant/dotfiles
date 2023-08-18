@@ -125,7 +125,9 @@ return packer.startup(function(use)
     requires = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      "nvim-telescope/telescope.nvim",
+      "folke/trouble.nvim",
+      "nvim-tree/nvim-web-devicons",
     }
   })
 
@@ -230,7 +232,7 @@ return packer.startup(function(use)
         },
         window = {
           relative = "win", -- where to anchor, either "win" or "editor"
-          blend = 100, -- &winblend for the window
+          blend = 0, -- &winblend for the window
           zindex = nil, -- the zindex value for the window
           border = "none", -- style of border for the fidget window
         },
