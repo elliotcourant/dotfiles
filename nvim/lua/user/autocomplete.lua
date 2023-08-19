@@ -309,7 +309,20 @@ require('lspconfig')['tailwindcss'].setup {
       virtual_text = true,
       virtual_lines = false,
     }),
-  }
+  },
+  -- settings = {
+  --   tailwindCSS = {
+  --     experimental = {
+  --       classRegex = {
+  --         'mergeTailwind\\(((?:\\s?|.+)+)\\)',
+  --         -- 'mergeTailwind\\((\\s?.+\\s?.+\\s?.+\\s?.+)\\)',
+  --         -- 'mergeTailwind\\(\\s?(.+)\\s?\\)'
+  --         -- '(((mergeTailwind|twMerge)\\(.+\\))|(className=[{\'"].+[}\'"]))',
+  --         -- '(class(Name?)|mergeTailwind|twMerge)',
+  --       },
+  --     }
+  --   }
+  -- }
 }
 
 require('lspconfig')['eslint'].setup {

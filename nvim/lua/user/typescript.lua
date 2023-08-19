@@ -13,6 +13,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.ts", "*.tsx" },
   callback = function ()
-    vim.lsp.buf.format()
+    vim.lsp.buf.format({
+      -- Don't use tsserver _AND_ eslint for formatting. Preferrably just use eslint.
+      -- Without this it would call format from both language servers.
+      filter = function(client) return client.name ~= "tsserver" end
+    })
   end
 })
