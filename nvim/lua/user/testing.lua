@@ -97,10 +97,10 @@ require("neotest").setup({
     open = "botright split | resize 15"
   },
   projects = {},
-  quickfix = {
-    enabled = true,
-    open = true
-  },
+  -- quickfix = {
+  --   enabled = true,
+  --   open = true
+  -- },
   run = {
     enabled = true
   },
