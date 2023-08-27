@@ -16,11 +16,20 @@ clean:
 	git submodule deinit -f tools/k9s
 	git submodule deinit -f tools/golang-tools
 
-NEOVIM=$(PWD)/tools/neovim/README.md
-$(NEOVIM):
-	git submodule update --init tools/neovim
-
-neovim: $(NEOVIM)
+OS ?= $(shell uname -s | tr A-Z a-z)
+UNAME_P := $(shell uname -p)
+ifeq ($(UNAME_P),x86_64)
+	ARCH=amd64
+endif
+ifneq ($(filter %86,$(UNAME_P)),)
+	# This can happen on macOS with Intel CPUs, we get an i386 arch.
+	ARCH=amd64
+endif
+ifneq ($(filter arm%,$(UNAME_P)),)
+	ARCH=arm64
+endif
+# If we still didn't figure out the architecture, then just default to amd64
+ARCH ?= amd64
 
 USERNAME=$(shell whoami)
 HOME=$(shell echo ~$(USERNAME))
@@ -86,9 +95,26 @@ $(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(LEIN_PROFILE_SOURCE) $(LEIN_PROFILE)
 
+
+ifeq ($(OS),linux)
+MY_FONTS_DIR=$(PWD)/fonts
+MY_FONTS=$(wildcard $(MY_FONTS_DIR)/*.ttf)
+FONTS_DIR=$(HOME)/.fonts/f
+FONTS=$(addprefix $(FONTS_DIR)/,$(notdir $(MY_FONTS)))
+$(FONTS): $(MY_FONTS)
+	-[ ! -d $(dir $@) ] && mkdir -p $(dir $@)
+	-cp $(MY_FONTS_DIR)/$(notdir $@) $@
+
+install-fonts: $(FONTS)
+else
+install-fonts:
+	@echo "Fonts can only be installed on linux at this time."
+
+endif
+
 install: $(ZSHRC)
 install: $(NEOVIM_CONFIG)
-install: install-tmux install-ideavim install-material
+install: install-tmux install-ideavim install-material install-fonts
 install: $(KITTY)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
