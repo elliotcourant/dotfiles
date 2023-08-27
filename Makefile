@@ -100,7 +100,9 @@ ifeq ($(OS),linux)
 MY_FONTS_DIR=$(PWD)/fonts
 MY_FONTS=$(wildcard $(MY_FONTS_DIR)/*.ttf)
 FONTS_DIR=$(HOME)/.fonts/f
-FONTS=$(addprefix $(FONTS_DIR)/,$(notdir $(MY_FONTS)))
+OTHER_FONTS_DIR=$(HOME)/.local/share/fonts
+USR_FONTS_DIR=/usr/share/fonts/truetype/jetbrains
+FONTS=$(addprefix $(FONTS_DIR)/,$(notdir $(MY_FONTS))) $(addprefix $(OTHER_FONTS_DIR)/,$(notdir $(MY_FONTS))) $(addprefix $(USR_FONTS_DIR)/,$(notdir $(MY_FONTS)))
 $(FONTS): $(MY_FONTS)
 	-[ ! -d $(dir $@) ] && mkdir -p $(dir $@)
 	-cp $(MY_FONTS_DIR)/$(notdir $@) $@
