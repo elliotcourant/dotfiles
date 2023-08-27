@@ -375,11 +375,11 @@ if (is_installed('rust-analyzer')) then
   }
 end
 
-require('lspconfig')['sourcekit'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
+-- require('lspconfig')['sourcekit'].setup {
+--   capabilities = capabilities,
+--   on_attach    = on_attach,
+--   flags        = lsp_flags,
+-- }
 
 require('lspconfig')['terraformls'].setup {
   capabilities = capabilities,
