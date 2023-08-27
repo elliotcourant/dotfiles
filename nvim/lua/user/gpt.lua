@@ -142,11 +142,11 @@ gpt.setup({
   predefined_chat_gpt_prompts = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv",
 })
 
-vim.api.nvim_create_user_command("EditPrompt", function()
+vim.api.nvim_create_user_command("AIEditPrompt", function()
   gpt.edit_with_instructions()
 end, { range = true })
 
-vim.api.nvim_create_user_command("Explain", function()
+vim.api.nvim_create_user_command("AIExplain", function()
   vim.api.nvim_command("ChatGPTRun explain_code")
 end, { range = true })
 
