@@ -146,6 +146,7 @@ return packer.startup(function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" }
+  use { "nvim-treesitter/playground" }
   use {
     "nvim-treesitter/nvim-treesitter-context",
     config = function()
@@ -361,18 +362,6 @@ return packer.startup(function(use)
       }
     end
   }
-  use {
-    'pwntester/octo.nvim',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require "octo".setup()
-    end
-  }
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
