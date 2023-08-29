@@ -16,7 +16,6 @@ require("mason-lspconfig").setup {
     "tsserver",
   },
 }
-local util = require('lspconfig.util')
 
 -- Setup nvim-cmp.
 local cmp_status_ok, cmp = pcall(require, "cmp")
