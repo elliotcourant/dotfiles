@@ -190,18 +190,6 @@ return packer.startup(function(use)
       }
     end
   }
-  -- use {
-  --   "mfussenegger/nvim-lint",
-  --   config = function()
-  --     require('lint').linters_by_ft = {
-  --       typescript = { 'eslint' },
-  --       tsx        = { 'eslint' },
-  --       javascript = { 'eslint' },
-  --       jsx        = { 'eslint' },
-  --     }
-  --   end
-  -- }
-
 
   -- Language Server stuff
   use {
