@@ -23,7 +23,7 @@ require("dapui").setup({
     {
       elements = {
         -- Elements can be strings or table with id and size keys.
-        { id = "scopes", size = 0.25 },
+        -- { id = "scopes", size = 0.25 },
         "breakpoints",
         "stacks",
         "watches",
@@ -34,7 +34,8 @@ require("dapui").setup({
     {
       elements = {
         "repl",
-        "console",
+        { id = "scopes", size = 0.5 }
+        -- "console",
       },
       size = 0.25, -- 25% of total lines
       position = "bottom",
