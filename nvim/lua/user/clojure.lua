@@ -46,7 +46,7 @@ function NearestClojureTest()
   local nearestDeftestLine = vim.fn.search('(deftest *', 'bcnW')
   if nearestDeftestLine == 0 then
     -- If we cannot find the nearest deftest then do nothing.
-    return 0
+    return ""
   end
 
   local deftestLine = tostring(vim.fn.getline(nearestDeftestLine))
@@ -58,11 +58,16 @@ end
 function NearestClojureTestCommand()
   local namespace = CurrentClojureNamespace()
   local test = NearestClojureTest()
-  if namespace == 0 or test == 0 then
+  if namespace == 0 or test == "" then
     -- Do nothing
     return 0
   end
 
+  -- Escape the > pattern sometimes seen in clojure tests. Specifically `foo->bar`.
+  -- NOTE: This is definitely not a good way to do this and there are absolutely
+  -- other escape patterns that might be dangerous. But I'm invoking these tests myself?
+  -- so if something goes wrong its my fault anyway.
+  test = string.gsub(test, ">", "\\>")
   return string.format("lein test :only %s/%s", namespace, test)
 end
 
