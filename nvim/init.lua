@@ -1,5 +1,6 @@
 require "user.plugins"
 require "user.theme"
+require "user.notifications"
 require "user.editor"
 require "user.telescope"
 require "user.treesitter"

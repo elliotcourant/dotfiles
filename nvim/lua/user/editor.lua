@@ -57,13 +57,6 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 --   end,
 -- })
 
--- Overwrite the default notify method with the new one
-local notify = require("notify")
-notify.setup({
-  background_colour = "#000000",
-})
-vim.notify = notify
-
 require('dressing').setup({
   input = {
     -- Set to false to disable the vim.ui.input implementation
