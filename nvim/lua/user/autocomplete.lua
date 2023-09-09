@@ -196,6 +196,12 @@ require('lspconfig')['gopls'].setup {
   flags        = lsp_flags,
   settings     = {
     gopls = {
+      buildFlags = {
+        "-tags=development",
+      },
+      -- directoryFilters = {
+      --   "-**/node_modules",
+      -- },
       analyses = {
         unusedparams = true,
       },
