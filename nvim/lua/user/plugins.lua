@@ -307,6 +307,7 @@ return packer.startup(function(use)
   use { 'Olical/conjure', setup = function()
     vim.cmd [[
       let g:conjure#filetypes = ["clojure"]
+      let g:conjure#mapping#doc_word = ["L"]
     ]]
     end,
   }
