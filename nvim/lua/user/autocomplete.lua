@@ -11,6 +11,7 @@ require("mason-lspconfig").setup {
     "marksman",
     "pylsp",
     "rust_analyzer",
+    "svelte",
     "tailwindcss",
     "terraformls",
     "tsserver",
