@@ -308,6 +308,7 @@ return packer.startup(function(use)
     vim.cmd [[
       let g:conjure#filetypes = ["clojure"]
       let g:conjure#mapping#doc_word = ["L"]
+      let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein repl"
     ]]
     end,
   }
