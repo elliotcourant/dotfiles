@@ -21,7 +21,9 @@ end
 require("neotest").setup({
   -- your neotest config here
   adapters = {
-    neotest_go,
+    neotest_go({
+      args = { "-tags=testing" },
+    }),
     neotest_jest({
       jestCommand = "pnpm jest",
       -- jestConfigFile = "custom.jest.config.ts",
