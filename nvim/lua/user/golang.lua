@@ -84,4 +84,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end
 })
 
-require('dap-go').setup{}
+require('dap-go').setup{
+  delve = {
+    build_flags = "-tags=testing",
+  }
+}
