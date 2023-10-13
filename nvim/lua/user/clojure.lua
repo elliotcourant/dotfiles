@@ -72,37 +72,40 @@ function NearestClojureTestCommand()
 end
 
 function RunNearestClojureTest()
-  local terminal = require('toggleterm.terminal').Terminal
-  local command  = NearestClojureTestCommand()
-  if command == 0 then
-    -- Do nothing
-    vim.notify('No tests to be run from here...')
-    return 0
-  end
+  vim.cmd("ConjureCljRunCurrentTest")
 
-  -- Get the width of the actual screen, not just the current split/window.
-  local screenWidth = tonumber(vim.api.nvim_eval('&columns'))
-  -- Silence the warning about optional value below.
-  if screenWidth == nil then
-    return 0
-  end
-
-  local desiredWidth = 120
-
-  local run = terminal:new({
-    hidden        = false,
-    cmd           = command,
-    direction     = "float",
-    float_opts    = {
-      border   = "double",
-      relative = 'editor',
-      col      = math.max(0, screenWidth - desiredWidth), -- Right align the floating window.
-      width    = math.min(screenWidth, desiredWidth),
-    },
-    auto_scroll   = true,
-    close_on_exit = false,
-  })
-  run:spawn()
-  vim.cmd("ToggleTerm")
-  run:send(string.format("Running: %s\n------", command))
+  return 0
+  -- local terminal = require('toggleterm.terminal').Terminal
+  -- local command  = NearestClojureTestCommand()
+  -- if command == 0 then
+  --   -- Do nothing
+  --   vim.notify('No tests to be run from here...')
+  --   return 0
+  -- end
+  --
+  -- -- Get the width of the actual screen, not just the current split/window.
+  -- local screenWidth = tonumber(vim.api.nvim_eval('&columns'))
+  -- -- Silence the warning about optional value below.
+  -- if screenWidth == nil then
+  --   return 0
+  -- end
+  --
+  -- local desiredWidth = 120
+  --
+  -- local run = terminal:new({
+  --   hidden        = false,
+  --   cmd           = command,
+  --   direction     = "float",
+  --   float_opts    = {
+  --     border   = "double",
+  --     relative = 'editor',
+  --     col      = math.max(0, screenWidth - desiredWidth), -- Right align the floating window.
+  --     width    = math.min(screenWidth, desiredWidth),
+  --   },
+  --   auto_scroll   = true,
+  --   close_on_exit = false,
+  -- })
+  -- run:spawn()
+  -- vim.cmd("ToggleTerm")
+  -- run:send(string.format("Running: %s\n------", command))
 end
