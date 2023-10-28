@@ -9,6 +9,7 @@ require("mason-lspconfig").setup {
     "gopls",
     "lua_ls",
     "marksman",
+    "mdx_analyzer",
     "pylsp",
     "rust_analyzer",
     "svelte",
@@ -291,6 +292,15 @@ require('lspconfig')['marksman'].setup {
   }
 }
 
+require('lspconfig')['mdx_analyzer'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  filetypes    = {
+    "markdown.mdx",
+  }
+}
+
 -- require('lspconfig')['grammarly'].setup {
 --   capabilities = capabilities,
 --   on_attach    = on_attach,
@@ -307,6 +317,58 @@ require('lspconfig')['tailwindcss'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  filetypes    = {
+    "aspnetcorerazor",
+    "astro",
+    "astro-markdown",
+    "blade",
+    "clojure",
+    "django-html",
+    "htmldjango",
+    "edge",
+    "eelixir",
+    "elixir",
+    "ejs",
+    "erb",
+    "eruby",
+    "gohtml",
+    "gohtmltmpl",
+    "haml",
+    "handlebars",
+    "hbs",
+    "html",
+    "html-eex",
+    "heex",
+    "jade",
+    "leaf",
+    "liquid",
+    "markdown",
+    "markdown.mdx",
+    "mdx",
+    "mustache",
+    "njk",
+    "nunjucks",
+    "php",
+    "razor",
+    "slim",
+    "twig",
+    "css",
+    "less",
+    "postcss",
+    "sass",
+    "scss",
+    "stylus",
+    "sugarss",
+    "javascript",
+    "javascriptreact",
+    "reason",
+    "rescript",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "svelte",
+  }
+,
   handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         silent = true,
