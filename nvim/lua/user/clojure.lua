@@ -23,8 +23,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 vim.api.nvim_create_autocmd({ "BufNewFile" }, {
   pattern = { "conjure-log-*" },
-  callback = function()
-    vim.diagnostic.disable(0)
+  callback = function(args)
+    vim.diagnostic.disable(args.buf)
   end
 })
 
