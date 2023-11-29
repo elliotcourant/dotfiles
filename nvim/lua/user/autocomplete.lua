@@ -240,15 +240,15 @@ require('lspconfig')['tsserver'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  init_options = {
+    preferences = {
+      importModuleSpecifierPreference = "non-relative"
+    }
+  },
   handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         silent = false,
     }),
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --   -- Disable virtual_text
-    --   virtual_text = false,
-    --   virtual_lines = true,
-    -- }),
   }
 }
 
