@@ -2,6 +2,7 @@ require("mason").setup {}
 require("mason-lspconfig").setup {
   ensure_installed = {
     "ansiblels",
+    "asm_lsp",
     "bashls",
     "clangd",
     "clojure_lsp",
@@ -189,6 +190,14 @@ end
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
+}
+
+require('lspconfig')['asm_lsp'].setup {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  settings     = { },
+  handlers     = { }
 }
 
 require('lspconfig')['gopls'].setup {
