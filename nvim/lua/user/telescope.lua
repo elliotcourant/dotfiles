@@ -26,7 +26,13 @@ require('telescope').setup {
       sort_lastused = true,
     },
     find_files = {
-      find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!**/node_modules/*", "--glob", "!**/.clj-kondo/*" },
+      find_command = {
+        "rg", "--files", "--hidden",
+        "--glob", "!**/.git/*",
+        "--glob", "!**/node_modules/*",
+        "--glob", "!**/.clj-kondo/*",
+        "--glob", "!**/server/icons/sources/simple-icons/*",
+      },
     }
   },
 }
