@@ -2,7 +2,7 @@ local set = vim.opt
 
 -- Stuff for powerline/airline
 vim.g["airline_powerline_fonts"]            = 1
-vim.g["airline#extensions#tabline#enabled"] = 1
+vim.g["airline#extensions#tabline#enabled"] = 0
 vim.g["airline#extensions#tagbar#enabled"]  = 0
 vim.g["airline_theme"]                      = "material"
 vim.g["material_theme_style"]               = "dark"
@@ -38,6 +38,8 @@ vim.cmd [[
 
   highlight! Normal guibg=NONE
   highlight! NonText guibg=NONE
+
+  highlight! TreesitterContext guibg=#474646
 ]]
 
 -- vim.api.nvim_set_hl(0, 'Normal', {guibg=none})

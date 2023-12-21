@@ -41,7 +41,8 @@ require 'nvim-treesitter.configs'.setup {
   },
 };
 
-vim.api.nvim_set_hl(0, "@variable",      { fg = "#EEFFFF" })
+vim.api.nvim_set_hl(0, "@variable",        { fg = "#FF5370" })
+vim.api.nvim_set_hl(0, "@symbol",         { fg = "#b7bdc0" })
 vim.api.nvim_set_hl(0, "@parameter",     { fg = "#F78C6C" })
 vim.api.nvim_set_hl(0, "@tag",           { fg = "#F07178" })
 vim.api.nvim_set_hl(0, "@tag.attribute", { fg = "#FFCB6B" })

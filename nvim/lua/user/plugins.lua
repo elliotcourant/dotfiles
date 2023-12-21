@@ -44,39 +44,16 @@ return packer.startup(function(use)
 
   -- My personal theme
   use { "elliotcourant/material.vim" }
-  use { "vim-airline/vim-airline" }
-  use { "vim-airline/vim-airline-themes" }
-  use {
-    'kdheepak/tabline.nvim',
-    config = function()
-      require 'tabline'.setup {
-        -- Defaults configuration options
-        enable = false,
-        options = {
-          -- If lualine is installed tabline will use separators configured in lualine by default.
-          -- These options can be used to override those settings.
-          section_separators     = { '', '' },
-          component_separators   = { '', '' },
-          max_bufferline_percent = nil, -- set to nil by default, and it uses vim.o.columns * 2/3
-          show_tabs_always       = true, -- this shows tabs only when there are more than one tab or if the first tab is named
-          show_devicons          = true, -- this shows devicons in buffer section
-          show_bufnr             = false, -- this appends [bufnr] to buffer section,
-          show_filename_only     = false, -- shows base filename only instead of relative path in filename
-          modified_icon          = "+ ", -- change the default modified icon
-          modified_italic        = false, -- set to true by default; this determines whether the filename turns italic if modified
-          show_tabs_only         = false, -- this shows only tabs instead of tabs + buffers
-        }
-      }
-      vim.cmd [[
-        set guioptions-=e " Use showtabline in gui vim
-        set sessionoptions+=tabpages,globals " store tabpages and globals in session
-      ]]
-    end,
-    requires = {
-      { 'hoob3rt/lualine.nvim', opt = true },
-      { 'kyazdani42/nvim-web-devicons', opt = true }
-    }
-  }
+  -- use { "vim-airline/vim-airline" }
+  -- use { "vim-airline/vim-airline-themes" }
+  use { 'nvim-lualine/lualine.nvim' }
+  -- use {
+  --   'kdheepak/tabline.nvim',
+  --   requires = {
+  --     { 'nvim-lualine/lualine.nvim', opt = false },
+  --     { 'kyazdani42/nvim-web-devicons', opt = false }
+  --   }
+  -- }
   use {
     'goolord/alpha-nvim',
     config = function()
@@ -309,6 +286,7 @@ return packer.startup(function(use)
       let g:conjure#filetypes = ["clojure"]
       let g:conjure#mapping#doc_word = ["L"]
       let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein with-profile test repl :headless"
+      let g:conjure#client#clojure#nrepl#connection#auto_repl#hidden = "true"
     ]]
     end,
   }
