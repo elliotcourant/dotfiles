@@ -1,3 +1,12 @@
+-- Conjure specific configuration and setup
+vim.cmd [[
+  let g:conjure#filetypes = ["clojure"]
+  let g:conjure#mapping#doc_word = ["L"]
+  let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein with-profile test repl :headless"
+  let g:conjure#client#clojure#nrepl#connection#auto_repl#hidden = "true"
+]]
+
+
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" }, {
   pattern = { "*.clj" },
   callback = function()

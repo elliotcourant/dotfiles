@@ -281,15 +281,7 @@ return packer.startup(function(use)
   }
 
   -- Clojure stuff
-  use { 'Olical/conjure', setup = function()
-    vim.cmd [[
-      let g:conjure#filetypes = ["clojure"]
-      let g:conjure#mapping#doc_word = ["L"]
-      let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein with-profile test repl :headless"
-      let g:conjure#client#clojure#nrepl#connection#auto_repl#hidden = "true"
-    ]]
-    end,
-  }
+  use { 'Olical/conjure' }
   use { 'guns/vim-sexp' }
   use { 'tpope/vim-sexp-mappings-for-regular-people' }
 
