@@ -54,9 +54,9 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
     vim.bo.expandtab  = false
     vim.bo.shiftwidth = 2
     vim.bo.tabstop    = 2
-    vim.bo.textwidth  = 120
+    vim.bo.textwidth  = 80
     vim.o.spell       = false
-    vim.o.colorcolumn = '120'
+    vim.o.colorcolumn = '80'
     -- vim.keymap.set("n", "<Leader>gt", RunNearestGolangTest, { silent = true })
     vim.keymap.set("n", "<Leader>dt", ":lua require('dap-go').debug_test()<cr>", { silent = true })
   end

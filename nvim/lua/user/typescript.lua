@@ -1,5 +1,12 @@
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" }, {
-  pattern = { "*.ts", "*.tsx" },
+  pattern = {
+    "*.cjs",
+    "*.js",
+    "*.jsx",
+    "*.mjs",
+    "*.ts",
+    "*.tsx",
+  },
   callback = function()
     vim.bo.expandtab  = true
     vim.bo.shiftwidth = 2
