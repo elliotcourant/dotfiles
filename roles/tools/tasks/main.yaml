@@ -1,0 +1,13 @@
+- name: Install common tools via APT
+  ansible.builtin.apt:
+    pkg: 
+      - git
+      - neofetch
+      - curl
+      - htop
+      - vim
+      - gnupg
+    state: present
+    update_cache: true
+    when: ansible_pkg_mgr == 'apt'
+

@@ -1,0 +1,26 @@
+# vim: set ft=yaml.ansible:
+- name: Download the 1Password GPG keyring
+  when: ansible_pkg_mgr == 'apt'
+  become: true
+  ansible.builtin.get_url:
+    url: https://downloads.1password.com/linux/keys/1password.asc
+    dest: /usr/share/keyrings/1password-archive-keyring.asc
+    mode: 0755
+
+- name: Configure the 1Password APT repository
+  when: ansible_pkg_mgr == 'apt'
+  become: true
+  ansible.builtin.apt_repository:
+    repo: 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.asc] https://downloads.1password.com/linux/debian/amd64 stable main'
+
+# TODO: Add support for setting up debsig-verify policies here!
+#       https://support.1password.com/install-linux/#debian-or-ubuntu
+
+- name: Install 1Password via APT
+  when: ansible_pkg_mgr == 'apt'
+  ansible.builtin.apt:
+    pkg: 
+      - 1password
+    state: present
+    update_cache: true
+
