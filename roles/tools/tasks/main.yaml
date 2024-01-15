@@ -7,6 +7,9 @@
       - htop
       - vim
       - gnupg
+      - ripgrep
+      - nodejs
+      - npm
     state: present
     update_cache: true
     when: ansible_pkg_mgr == 'apt'
