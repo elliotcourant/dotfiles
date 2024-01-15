@@ -1,0 +1,7 @@
+- name: Install git via APT
+  ansible.builtin.apt:
+    pkg: 
+      - git
+    state: present
+    update_cache: true
+    when: ansible_pkg_mgr == 'apt'

@@ -1,0 +1,14 @@
+- name: Clone the neovim repository locally
+  ansible.builtin.git:
+    accept_newhostkey: true
+    bare: false
+    clone: true
+    dest: "{{ ansible_env.HOME }}/.tools/neovim"
+    repo: https://github.com/neovim/neovim
+    update: true
+    version: 92c59c39c3d98d313071f9761c448e8acfd00118
+
+
+
+
+
