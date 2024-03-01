@@ -125,9 +125,9 @@ cmp.setup({
       -- This is some trickery to make the buffer completion sort by the proximity of the compeltion item to the cursor
       -- in the buffer. So if an item is closer to your cursor, its more likely to be the recommended completion item...
       -- I think...
+      cmp.config.compare.exact,
       function(...) return cmp_buffer:compare_locality(...) end,
       cmp.config.compare.offset,
-      cmp.config.compare.exact,
       cmp.config.compare.score,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,

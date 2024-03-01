@@ -22,7 +22,7 @@ vim.opt.updatetime  = 1000
 if vim.fn.has('persistent_undo') then
   local targetPath = tostring(vim.fn.expand('~/.undodir'));
   if vim.fn.isdirectory(targetPath) ~= true then
-    vim.fn.mkdir(targetPath, 'p', 0700);
+    vim.fn.mkdir(targetPath, 'p', 0755);
   end
   vim.o.undodir = targetPath;
   vim.o.undofile = true;

@@ -33,8 +33,11 @@ require("dapui").setup({
     },
     {
       elements = {
-        "repl",
-        { id = "scopes", size = 0.5 }
+        -- "repl",
+        {
+          id = "scopes",
+          -- size = 0.5,
+        }
         -- "console",
       },
       size = 0.25, -- 25% of total lines
