@@ -12,7 +12,6 @@ require 'nvim-treesitter.configs'.setup {
     "go",
     "gomod",
     "hcl",
-    "help",
     "html",
     "javascript",
     "json",
@@ -29,9 +28,12 @@ require 'nvim-treesitter.configs'.setup {
     "toml",
     "tsx",
     "typescript",
+    "vimdoc",
     "yaml",
   },
+  ignore_install = { "help" },
   highlight = {
+    -- disable = { "help" },
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
@@ -41,13 +43,15 @@ require 'nvim-treesitter.configs'.setup {
   },
 };
 
-vim.api.nvim_set_hl(0, "@variable",        { fg = "#FF5370" })
-vim.api.nvim_set_hl(0, "@symbol",         { fg = "#b7bdc0" })
-vim.api.nvim_set_hl(0, "@parameter",     { fg = "#F78C6C" })
-vim.api.nvim_set_hl(0, "@tag",           { fg = "#F07178" })
-vim.api.nvim_set_hl(0, "@tag.attribute", { fg = "#FFCB6B" })
-vim.api.nvim_set_hl(0, "@namespace",     { fg = "#FFCB6B" })
-vim.api.nvim_set_hl(0, "@type",          { fg = "#C3E88D" })
+-- Fix clojure macros not highlighting properly. Like defn or when
+vim.api.nvim_set_hl(0, "@lsp.type.macro.clojure", { link = "Statement" })
+vim.api.nvim_set_hl(0, "@variable",               { fg   = "#FF5370"   })
+vim.api.nvim_set_hl(0, "@symbol",                 { fg   = "#b7bdc0"   })
+vim.api.nvim_set_hl(0, "@parameter",              { fg   = "#F78C6C"   })
+vim.api.nvim_set_hl(0, "@tag",                    { fg   = "#F07178"   })
+vim.api.nvim_set_hl(0, "@tag.attribute",          { fg   = "#FFCB6B"   })
+vim.api.nvim_set_hl(0, "@namespace",              { fg   = "#FFCB6B"   })
+vim.api.nvim_set_hl(0, "@type",                   { fg   = "#C3E88D"   })
 
 function InspectHighlight()
   local result = vim.treesitter.get_captures_at_cursor(0)
