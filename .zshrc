@@ -29,6 +29,10 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
 then
@@ -266,6 +270,5 @@ esac
 # bun completions
 [ -s "/Users/elliotcourant/.bun/_bun" ] && source "/Users/elliotcourant/.bun/_bun"
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+
+[[ -s "/home/elliotcourant/.gvm/scripts/gvm" ]] && source "/home/elliotcourant/.gvm/scripts/gvm"
