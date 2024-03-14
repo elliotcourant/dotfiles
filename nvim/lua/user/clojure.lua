@@ -80,6 +80,8 @@ function NearestClojureTestCommand()
 end
 
 function RunNearestClojureTest()
+  -- Clean out the log buffer before running the test!
+  vim.cmd("ConjureLogResetSoft")
   vim.cmd("ConjureCljRunCurrentTest")
 
   return 0
