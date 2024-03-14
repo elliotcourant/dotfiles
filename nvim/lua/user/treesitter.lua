@@ -45,6 +45,7 @@ require 'nvim-treesitter.configs'.setup {
 
 -- Fix clojure macros not highlighting properly. Like defn or when
 vim.api.nvim_set_hl(0, "@lsp.type.macro.clojure", { link = "Statement" })
+vim.api.nvim_set_hl(0, "@lsp.type.event.clojure", { link = "@tag.attribute" })
 vim.api.nvim_set_hl(0, "@variable",               { fg   = "#FF5370"   })
 vim.api.nvim_set_hl(0, "@symbol",                 { fg   = "#b7bdc0"   })
 vim.api.nvim_set_hl(0, "@parameter",              { fg   = "#F78C6C"   })
