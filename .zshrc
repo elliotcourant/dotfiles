@@ -267,8 +267,14 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
 # bun completions
-[ -s "/Users/elliotcourant/.bun/_bun" ] && source "/Users/elliotcourant/.bun/_bun"
+if [[ -f "$HOME/.bun/_bun" ]]; then
+  [[ -s "$HOME/.bun/_bun" ]] && source "$HOME/.bun/_bun";
+fi
 
-
-[[ -s "/home/elliotcourant/.gvm/scripts/gvm" ]] && source "/home/elliotcourant/.gvm/scripts/gvm"
+# Go version manager
+if [[  -f "$HOME/.gvm/scripts/gvm" ]]; then
+  [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+fi
