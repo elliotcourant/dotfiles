@@ -59,25 +59,18 @@ vim.cmd [[
 " let s:gray4 = g:material_theme_style == 'dark' ? '#6a6c6c' : '#658494'
 " let s:gray5 = g:material_theme_style == 'dark' ? '#f1f2f3' : '#aebbc5'
 " " let s:gray5 = g:material_theme_style == 'dark' ? '#b7bdc0' : '#aebbc5'
-" let s:red = '#ff5370'
-" let s:green = '#c3e88d'
-" let s:yellow = '#ffcb6b'
-" let s:blue = '#82aaff'
-" let s:purple = '#c792ea'
-" let s:cyan = '#89ddff'
-" let s:orange = '#f78c6c'
-" let s:indigo = '#BB80B3'
 ]]
 
-local white = '#f1f2f3';
+local white   = '#f1f2f3';
 local gray5   = '#b7bdc0';
 local red     = '#ff5370';
 local red1    = '#F07178';
 local green   = '#c3e88d';
 local yellow  = '#ffcb6b';
-local purple = '#c792ea';
+local purple  = '#c792ea';
 local cyan    = '#89ddff';
 local orannge = '#f78c6c';
+local indigo  = '#BB80B3';
 
 -- Fix clojure macros not highlighting properly. Like defn or when
 vim.api.nvim_set_hl(0, "@lsp.type.macro.clojure", { fg = purple  })
