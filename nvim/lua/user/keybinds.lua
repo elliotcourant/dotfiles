@@ -32,6 +32,7 @@ keymap("n", "<S-Tab>", "gt", opts)
 keymap("n", "<Leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<Leader>a", "<cmd>Telescope live_grep<cr>",  opts)
 keymap("n", ";",         "<cmd>Telescope buffers<cr>",    opts)
+keymap("n", "<Leader><Tab>", "<cmd>Telescope jumplist<cr>", opts)
 
 -- Bookmark things
 keymap("n", ",,",        "(Plug)BookmarkTogggle<cr>")

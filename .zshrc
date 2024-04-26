@@ -188,6 +188,7 @@ alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" 
 alias gc='git checkout $(gitsearch)'
 alias gl='git log | nvim -R -c ":set ft=git"'
 alias view='nvim -R'
+alias unsubscribe='exit'
 
 alias kc='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
 alias ku='kubectl config unset current-context'
