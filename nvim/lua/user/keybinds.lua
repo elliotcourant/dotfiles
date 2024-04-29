@@ -60,6 +60,7 @@ keymap("n", "[\\", vim.diagnostic.goto_next, { silent = true, noremap = true })
 keymap("n", "]\\", vim.diagnostic.goto_prev, { silent = true, noremap = true })
 
 keymap("n", "<Leader>v", function ()
+  ---@diagnostic disable-next-line: undefined-field
   local virtual_lines = not vim.diagnostic.config().virtual_lines;
   vim.diagnostic.config({
     virtual_lines = virtual_lines,
@@ -71,6 +72,13 @@ keymap("n", "gr",      "<cmd>Telescope lsp_references<cr>",  opts)
 keymap("n", "gd",      "<cmd>Telescope lsp_definitions<cr>", opts)
 keymap("n", "tt",      "<cmd>ToggleTerm<cr>",                opts)
 keymap("i", "<C-Tab>", "<C-\\>",                             opts)
+
+keymap("n", "<Leader>gh", function()
+  require('gitlinker').get_buf_range_url("n")
+end, opts)
+keymap("v", "<Leader>gh", function()
+  require('gitlinker').get_buf_range_url("v")
+end, opts)
 
 -- Clojure
 keymap("n", "<Leader>GT", "<cmd>ConjureCljRunCurrentTest<cr>", opts)

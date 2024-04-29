@@ -223,6 +223,10 @@ return packer.startup(function(use)
       }
     end,
   }
+  use {
+    'ruifm/gitlinker.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+  }
 
   -- Terminal things
   use {
