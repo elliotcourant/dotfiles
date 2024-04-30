@@ -17,6 +17,9 @@ then
   export PATH="$GOPATH/bin:$PATH";
 fi
 
+# What the fuck brew
+export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_NO_INSTALL_CLEANUP=true
 
 export PATH="/opt/homebrew/bin:$PATH";
 # Make sure brew's make is ahead of other stuff in the path.
@@ -279,3 +282,6 @@ fi
 if [[  -f "$HOME/.gvm/scripts/gvm" ]]; then
   [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 fi
+
+
+[[ -s "/Users/elliotcourant/.gvm/scripts/gvm" ]] && source "/Users/elliotcourant/.gvm/scripts/gvm"
