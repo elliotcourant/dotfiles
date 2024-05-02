@@ -50,6 +50,11 @@ then
   export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH";
 fi
 
+if [[ -d "/Applications/IntelliJ IDEA.app/Contents/MacOS" ]]
+then
+  export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/MacOS"
+fi
+
 if [[ -d /usr/local/go/bin ]]
 then
   export PATH="$PATH:/usr/local/go/bin"
