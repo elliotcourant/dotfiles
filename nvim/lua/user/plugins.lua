@@ -241,13 +241,14 @@ return packer.startup(function(use)
   }
 
   -- Testing Stuff
+  use { "nvim-neotest/neotest-go", commit = '22513619bcb156939c22ea7cd1a99f754fcb1fde' }
   use {
     "nvim-neotest/neotest",
     requires = {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "nvim-neotest/neotest-go",
+      -- "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
     },
   }

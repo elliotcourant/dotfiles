@@ -23,6 +23,7 @@ require("neotest").setup({
   adapters = {
     neotest_go({
       args = { "-tags=testing" },
+      recursive_run = true,
     }),
     neotest_jest({
       jestCommand = "pnpm jest",
