@@ -232,21 +232,15 @@ else
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 fi
 
-# BEGIN SNIPPET: Platform.sh CLI configuration
-HOME=${HOME:-'/Users/elliotcourant'}
-export PATH="$HOME/"'.platformsh/bin':"$PATH"
-if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+# # BEGIN SNIPPET: Platform.sh CLI configuration
+# HOME=${HOME:-'/Users/elliotcourant'}
+# export PATH="$HOME/"'.platformsh/bin':"$PATH"
+# if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
 
-if command -v rbenv &> /dev/null
-then
-  eval "$(rbenv init - zsh)"
-fi
-
-# If please build is installed then add completion.
-if command -v plz &> /dev/null
-then
-  source <(plz --completion_script)
-fi
+# if command -v rbenv &> /dev/null
+# then
+#   eval "$(rbenv init - zsh)"
+# fi
 
 # If there is an additiaonl zsh file then load it in.
 if [[ -f "$HOME/.additional.zsh" ]]; then
@@ -284,9 +278,7 @@ if [[ -f "$HOME/.bun/_bun" ]]; then
 fi
 
 # Go version manager
-if [[  -f "$HOME/.gvm/scripts/gvm" ]]; then
+if [[ -f "$HOME/.gvm/scripts/gvm" ]]; then
   [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 fi
 
-
-[[ -s "/Users/elliotcourant/.gvm/scripts/gvm" ]] && source "/Users/elliotcourant/.gvm/scripts/gvm"
