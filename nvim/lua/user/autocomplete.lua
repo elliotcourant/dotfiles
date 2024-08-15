@@ -376,8 +376,7 @@ require('lspconfig')['tailwindcss'].setup {
     "typescriptreact",
     "vue",
     "svelte",
-  }
-,
+  },
   handlers = {
     ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
         silent = true,
@@ -387,19 +386,17 @@ require('lspconfig')['tailwindcss'].setup {
       virtual_lines = false,
     }),
   },
-  -- settings = {
-  --   tailwindCSS = {
-  --     experimental = {
-  --       classRegex = {
-  --         'mergeTailwind\\(((?:\\s?|.+)+)\\)',
-  --         -- 'mergeTailwind\\((\\s?.+\\s?.+\\s?.+\\s?.+)\\)',
-  --         -- 'mergeTailwind\\(\\s?(.+)\\s?\\)'
-  --         -- '(((mergeTailwind|twMerge)\\(.+\\))|(className=[{\'"].+[}\'"]))',
-  --         -- '(class(Name?)|mergeTailwind|twMerge)',
-  --       },
-  --     }
-  --   }
-  -- }
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "twMerge\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" }
+        },
+      },
+    },
+  },
 }
 
 require('lspconfig')['eslint'].setup {
