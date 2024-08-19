@@ -111,7 +111,6 @@ install-fonts: $(FONTS)
 else
 install-fonts:
 	@echo "Fonts can only be installed on linux at this time."
-
 endif
 
 install: $(ZSHRC)
@@ -121,7 +120,3 @@ install: $(KITTY)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 
-MARKSMAN_URL=https://github.com/artempyanykh/marksman/releases/download/2022-09-08/marksman-macos
-
-language-servers:
-	sudo curl -SsL $(MARKSMAN_URL) --output /usr/local/bin/marksman && sudo chmod +x /usr/local/bin/marksman

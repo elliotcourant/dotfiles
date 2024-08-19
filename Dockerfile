@@ -1,4 +1,4 @@
-FROM debian:11.6 AS base
+FROM debian:12.6 AS base
 RUN  apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     curl \
     gnupg2 \
