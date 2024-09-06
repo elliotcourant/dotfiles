@@ -81,6 +81,13 @@ $(ZSHRC): $(ZSHRC_SOURCE)
 	-[ -f $(ZSHRC) ] && [ ! -L $(ZSHRC) ] && mv $(ZSHRC) $(ZSHRC).backup
 	-[ ! -L $(ZSHRC) ] && ln -s $(ZSHRC_SOURCE) $(ZSHRC)
 
+I3CONFIG=$(HOME)/.config/i3/config
+I3CONFIG_SOURCE=$(PWD)/i3.conf
+$(I3CONFIG): $(I3CONFIG_SOURCE)
+	-[ ! -d $(dir $(I3CONFIG)) ] && mkdir -p $(dir $(I3CONFIG))
+	-[ -f $(I3CONFIG) ] && [ ! -L $(I3CONFIG) ] && mv $(I3CONFIG) $(I3CONFIG).backup
+	-[ ! -L $(I3CONFIG) ] && ln -s $(I3CONFIG_SOURCE) $(I3CONFIG)
+
 KITTY=$(HOME)/.config/kitty/kitty.conf
 KITTY_SOURCE=$(PWD)/kitty.conf
 $(KITTY): $(KITTY_SOURCE)
@@ -117,6 +124,7 @@ install: $(ZSHRC)
 install: $(NEOVIM_CONFIG)
 install: install-tmux install-ideavim install-material install-fonts
 install: $(KITTY)
+install: $(I3CONFIG)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 

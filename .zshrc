@@ -92,7 +92,12 @@ unset CPPFLAGS;
 # export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/zlib/include";
 # export CPPFLAGS="$CPPFLAGS -I/usr/local/opt/openssl@3/include"
 
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+if [[ -d $HOME/Library/Android/sdk ]]
+then
+  export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+else
+  export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+fi
 export PATH=$PATH:$ANDROID_SDK_ROOT/emulator
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
