@@ -88,6 +88,21 @@ $(I3CONFIG): $(I3CONFIG_SOURCE)
 	-[ -f $(I3CONFIG) ] && [ ! -L $(I3CONFIG) ] && mv $(I3CONFIG) $(I3CONFIG).backup
 	-[ ! -L $(I3CONFIG) ] && ln -s $(I3CONFIG_SOURCE) $(I3CONFIG)
 
+POLYBAR_LAUNCHER=$(HOME)/.config/polybar/launch.sh
+POLYBAR_LAUNCHER_SOURCE=$(PWD)/polybar.sh
+$(POLYBAR_LAUNCHER): $(POLYBAR_LAUNCHER_SOURCE)
+	-[ ! -d $(dir $(POLYBAR_LAUNCHER)) ] && mkdir -p $(dir $(POLYBAR_LAUNCHER))
+	-[ -f $(POLYBAR_LAUNCHER) ] && [ ! -L $(POLYBAR_LAUNCHER) ] && mv $(POLYBAR_LAUNCHER) $(POLYBAR_LAUNCHER).backup
+	-[ ! -L $(POLYBAR_LAUNCHER) ] && ln -s $(POLYBAR_LAUNCHER_SOURCE) $(POLYBAR_LAUNCHER)
+
+POLYBAR=$(HOME)/.config/polybar/config.ini
+POLYBAR_SOURCE=$(PWD)/polybar.ini
+$(POLYBAR): $(POLYBAR_SOURCE) $(POLYBAR_LAUNCHER)
+	-[ ! -d $(dir $(POLYBAR)) ] && mkdir -p $(dir $(POLYBAR))
+	-[ -f $(POLYBAR) ] && [ ! -L $(POLYBAR) ] && mv $(POLYBAR) $(POLYBAR).backup
+	-[ ! -L $(POLYBAR) ] && ln -s $(POLYBAR_SOURCE) $(POLYBAR)
+
+
 KITTY=$(HOME)/.config/kitty/kitty.conf
 KITTY_SOURCE=$(PWD)/kitty.conf
 $(KITTY): $(KITTY_SOURCE)
@@ -132,6 +147,7 @@ install: $(NEOVIM_CONFIG)
 install: install-tmux install-ideavim install-material install-fonts
 install: $(KITTY)
 install: $(I3CONFIG)
+install: $(POLYBAR)
 install: $(DUNST)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
