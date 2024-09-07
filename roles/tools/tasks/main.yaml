@@ -10,6 +10,8 @@
       - ripgrep
       - nodejs
       - npm
+      - i3
+      - dunst
     state: present
     update_cache: true
     when: ansible_pkg_mgr == 'apt'
