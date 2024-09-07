@@ -95,6 +95,13 @@ $(KITTY): $(KITTY_SOURCE)
 	-[ -f $(KITTY) ] && [ ! -L $(KITTY) ] && mv $(KITTY) $(KITTY).backup
 	-[ ! -L $(KITTY) ] && ln -s $(KITTY_SOURCE) $(KITTY)
 
+DUNST=$(HOME)/.config/dunst/dunstrc
+DUNST_SOURCE=$(PWD)/dunst.conf
+$(DUNST): $(DUNST_SOURCE)
+	-[ ! -d $(dir $(DUNST)) ] && mkdir -p $(dir $(DUNST))
+	-[ -f $(DUNST) ] && [ ! -L $(DUNST) ] && mv $(DUNST) $(DUNST).backup
+	-[ ! -L $(DUNST) ] && ln -s $(DUNST_SOURCE) $(DUNST)
+
 LEIN_PROFILE=$(HOME)/.lein/profiles.clj
 LEIN_PROFILE_SOURCE=$(PWD)/lein/profiles.clj
 $(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
@@ -125,6 +132,7 @@ install: $(NEOVIM_CONFIG)
 install: install-tmux install-ideavim install-material install-fonts
 install: $(KITTY)
 install: $(I3CONFIG)
+install: $(DUNST)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 
