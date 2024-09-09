@@ -16,7 +16,7 @@ require("mason-lspconfig").setup {
     "svelte",
     "tailwindcss",
     "terraformls",
-    "tsserver",
+    "ts_ls",
   },
 }
 
@@ -245,7 +245,7 @@ if (is_installed('pylsp')) then
   }
 end
 
-require('lspconfig')['tsserver'].setup {
+require('lspconfig')['ts_ls'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,

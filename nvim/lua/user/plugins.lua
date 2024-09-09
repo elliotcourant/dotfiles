@@ -44,6 +44,7 @@ return packer.startup(function(use)
 
   -- My personal theme
   use { "elliotcourant/material.vim" }
+  use { "dstein64/nvim-scrollview" }
   -- use { "vim-airline/vim-airline" }
   -- use { "vim-airline/vim-airline-themes" }
   use { 'nvim-lualine/lualine.nvim' }
