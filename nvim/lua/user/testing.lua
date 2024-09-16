@@ -10,7 +10,7 @@ vim.diagnostic.config({
   },
 }, neotest_ns)
 
-local neotest_go = require('neotest-go');
+local neotest_go = require('neotest-golang');
 local neotest_jest = require('neotest-jest');
 
 neotest_go.filter_dir = function(name, rel_path, root)
@@ -22,8 +22,7 @@ require("neotest").setup({
   -- your neotest config here
   adapters = {
     neotest_go({
-      args = { "-tags=testing" },
-      recursive_run = true,
+      go_test_args = { "-tags=testing" },
     }),
     neotest_jest({
       jestCommand = "pnpm jest",
