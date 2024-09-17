@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.lsp.buf.format({
       -- Don't use tsserver _AND_ eslint for formatting. Preferrably just use eslint.
       -- Without this it would call format from both language servers.
-      filter = function(client) return client.name ~= "tsserver" end
+      filter = function(client) return client.name ~= "ts_ls" end
     })
   end
 })
