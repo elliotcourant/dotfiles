@@ -200,6 +200,7 @@ alias sv='source ~/.zshrc'
 alias gitsearch='git branch --all | sed "s/remotes\/origin\///g" | grep -v "\*" | grep -v "HEAD \->" | sort | uniq | fzf'
 alias gc='git checkout $(gitsearch)'
 alias gl='git log | nvim -R -c ":set ft=git"'
+alias gtodo="git --no-pager diff -U0 main | grep '^+.*TODO' | sed 's/^+//' | git --no-pager grep -nFf - 2> /dev/null"
 alias view='nvim -R'
 alias unsubscribe='exit'
 
