@@ -83,6 +83,7 @@ vim.api.nvim_set_hl(0, "@tag",                    { fg = red1    })
 vim.api.nvim_set_hl(0, "@tag.attribute",          { fg = yellow  })
 vim.api.nvim_set_hl(0, "@namespace",              { fg = yellow  })
 vim.api.nvim_set_hl(0, "@type",                   { fg = green   })
+vim.api.nvim_set_hl(0, "label",                   { fg = white   })
 
 function InspectHighlight()
   local result = vim.treesitter.get_captures_at_cursor(0)

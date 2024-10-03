@@ -103,8 +103,8 @@ export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 
 #######################################################################################################################
 
-export TEST_GOOGLE_KMS_CREDENTIALS="$HOME/.monetr/experimental-315918-5fabde83f903.json"
-export TEST_GOOGLE_KMS_NAME="projects/experimental-315918/locations/us-central1/keyRings/local-development/cryptoKeys/monetr-development"
+# export TEST_GOOGLE_KMS_CREDENTIALS="$HOME/.monetr/experimental-315918-5fabde83f903.json"
+# export TEST_GOOGLE_KMS_NAME="projects/experimental-315918/locations/us-central1/keyRings/local-development/cryptoKeys/monetr-development"
 
 #######################################################################################################################
 
@@ -288,3 +288,9 @@ if [[ -f "$HOME/.gvm/scripts/gvm" ]]; then
   [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/elliotcourant/Downloads/google-cloud-sdk 2/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc'; fi
