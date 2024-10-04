@@ -18,6 +18,7 @@
       - vim
       - xclip
       - xsel
+      - playerctl
     state: present
     update_cache: true
     when: ansible_pkg_mgr == 'apt'
