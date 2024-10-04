@@ -19,8 +19,6 @@ require "user.lua"
 
 require "user.keybinds"
 
-require "user.gpt"
-
 vim.api.nvim_create_user_command('Dotfiles', function()
   local files = {
     '~/dotfiles/nvim/lua/user/plugins.lua',

@@ -32,6 +32,11 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH";
 export PATH="$HOME/.local/bin:$PATH";
 
+# Rust
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  export PATH="$PATH:$HOME/.cargo/bin";
+fi
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

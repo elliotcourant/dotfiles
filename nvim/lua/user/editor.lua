@@ -18,6 +18,8 @@ vim.opt.spelllang   = { 'en_us' }
 vim.opt.scrolloff   = 8 -- Keep at least 8 lines visible at the bottom of the buffers.
 vim.opt.updatetime  = 1000
 
+
+
 -- Setup persistent undo
 if vim.fn.has('persistent_undo') then
   local targetPath = tostring(vim.fn.expand('~/.undodir'));
@@ -240,3 +242,7 @@ require('gitlinker').setup({
   -- default mapping to call url generation with action_callback
   -- mappings = "<leader>gh"
 })
+
+
+-- Left over fromm GPT thing that I never used?
+-- require("trouble").setup()
