@@ -7,6 +7,7 @@ require("mason-lspconfig").setup {
     "clangd",
     "clojure_lsp",
     "cmake",
+    "eslint",
     "gopls",
     "lua_ls",
     "marksman",
