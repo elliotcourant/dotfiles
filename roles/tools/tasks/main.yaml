@@ -3,6 +3,7 @@
     pkg: 
       - btop
       - curl
+      - dnsmasq
       - dunst
       - feh
       - git
@@ -12,13 +13,14 @@
       - neofetch
       - nodejs
       - npm
+      - playerctl
       - polybar
+      - resolvconf
       - ripgrep
       - silversearcher-ag
       - vim
       - xclip
       - xsel
-      - playerctl
     state: present
     update_cache: true
     when: ansible_pkg_mgr == 'apt'
