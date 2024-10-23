@@ -124,6 +124,12 @@ $(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(LEIN_PROFILE_SOURCE) $(LEIN_PROFILE)
 
+ROFI_CONFIG=$(HOME)/.config/rofi/config.rasi
+ROFI_SOURCE=$(PWD)/rofi.rasi
+$(ROFI_CONFIG): $(ROFI_SOURCE)
+	-[ ! -d $(dir $(ROFI_CONFIG)) ] && mkdir -p $(dir $(ROFI_CONFIG))
+	-[ -f $(ROFI_CONFIG) ] && [ ! -L $(ROFI_CONFIG) ] && mv $(ROFI_CONFIG) $(ROFI_CONFIG).backup
+	-[ ! -L $(ROFI_CONFIG) ] && ln -s $(ROFI_SOURCE) $(ROFI_CONFIG)
 
 ifeq ($(OS),linux)
 MY_FONTS_DIR=$(PWD)/fonts
@@ -135,7 +141,6 @@ FONTS=$(addprefix $(FONTS_DIR)/,$(notdir $(MY_FONTS))) $(addprefix $(OTHER_FONTS
 $(FONTS): $(MY_FONTS)
 	-[ ! -d $(dir $@) ] && mkdir -p $(dir $@)
 	-cp $(MY_FONTS_DIR)/$(notdir $@) $@
-
 install-fonts: $(FONTS)
 else
 install-fonts:
@@ -149,6 +154,7 @@ install: $(KITTY)
 install: $(I3CONFIG)
 install: $(POLYBAR)
 install: $(DUNST)
+install: $(ROFI_CONFIG)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 

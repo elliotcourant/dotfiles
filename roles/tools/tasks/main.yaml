@@ -17,6 +17,7 @@
       - polybar
       - resolvconf
       - ripgrep
+      - rofi
       - silversearcher-ag
       - vim
       - xclip
