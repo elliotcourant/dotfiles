@@ -53,12 +53,6 @@ nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> 
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 ]]
 
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   callback = function()
---     require("lint").try_lint()
---   end,
--- })
-
 require('dressing').setup({
   input = {
     -- Set to false to disable the vim.ui.input implementation
@@ -243,6 +237,3 @@ require('gitlinker').setup({
   -- mappings = "<leader>gh"
 })
 
-
--- Left over fromm GPT thing that I never used?
--- require("trouble").setup()

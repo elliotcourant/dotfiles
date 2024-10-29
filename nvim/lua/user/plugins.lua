@@ -98,16 +98,6 @@ return packer.startup(function(use)
       vim.diagnostic.config({ virtual_lines = false })
     end,
   })
-  -- use({
-  --   "jackMort/ChatGPT.nvim",
-  --   requires = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --     "folke/trouble.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --   }
-  -- })
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
