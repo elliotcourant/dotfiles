@@ -8,6 +8,12 @@ then
   alias ssh='kitty +kitten ssh'
 fi
 
+if [[ "Linux" == $(uname) ]]
+then
+  alias pbcopy='xsel --clipboard --input'
+  alias pbpaste='xsel --clipboard --output'
+fi
+
 export ZSH="$HOME/.oh-my-zsh";
 
 # If go is setup in the home directory then add stuff to the path and setup other variables.
@@ -208,6 +214,7 @@ alias gl='git log | nvim -R -c ":set ft=git"'
 alias gtodo="git --no-pager diff -U0 main | grep '^+.*TODO' | sed 's/^+//' | git --no-pager grep -nFf - 2> /dev/null"
 alias view='nvim -R'
 alias unsubscribe='exit'
+
 
 alias kc='kubectl config use-context $(kubectl config get-contexts -o name | fzf)'
 alias ku='kubectl config unset current-context'

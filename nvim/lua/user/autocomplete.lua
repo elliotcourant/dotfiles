@@ -310,20 +310,13 @@ require('lspconfig')['mdx_analyzer'].setup {
   flags        = lsp_flags,
   filetypes    = {
     "markdown.mdx",
+  },
+  init_options = {
+    typescript = {
+      enabled = false,
+    },
   }
 }
-
--- require('lspconfig')['grammarly'].setup {
---   capabilities = capabilities,
---   on_attach    = on_attach,
---   flags        = lsp_flags,
---   handlers = {
---     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---       virtual_text = true,
---       virtual_lines = false,
---     }),
---   }
--- }
 
 require('lspconfig')['tailwindcss'].setup {
   capabilities = capabilities,

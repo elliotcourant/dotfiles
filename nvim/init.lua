@@ -10,6 +10,7 @@ require "user.testing"
 
 require "user.debugging"
 
+require "user.assembly"
 require "user.golang"
 require "user.markdown"
 require "user.clojure"
