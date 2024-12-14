@@ -102,6 +102,19 @@ $(POLYBAR): $(POLYBAR_SOURCE) $(POLYBAR_LAUNCHER)
 	-[ -f $(POLYBAR) ] && [ ! -L $(POLYBAR) ] && mv $(POLYBAR) $(POLYBAR).backup
 	-[ ! -L $(POLYBAR) ] && ln -s $(POLYBAR_SOURCE) $(POLYBAR)
 
+KITTY_MACOS=$(HOME)/.config/kitty/kitty-macos.conf
+KITTY_MACOS_SOURCE=$(PWD)/kitty-macos.conf
+$(KITTY_MACOS): $(KITTY_MACOS_SOURCE)
+	-[ ! -d $(dir $(KITTY_MACOS)) ] && mkdir -p $(dir $(KITTY_MACOS))
+	-[ -f $(KITTY_MACOS) ] && [ ! -L $(KITTY_MACOS) ] && mv $(KITTY_MACOS) $(KITTY_MACOS).backup
+	-[ ! -L $(KITTY_MACOS) ] && ln -s $(KITTY_MACOS_SOURCE) $(KITTY_MACOS)
+
+KITTY_DEBIAN=$(HOME)/.config/kitty/kitty-debian.conf
+KITTY_DEBIAN_SOURCE=$(PWD)/kitty-debian.conf
+$(KITTY_DEBIAN): $(KITTY_DEBIAN_SOURCE) $(KITTY_DEBIAN) $(KITTY_MACOS)
+	-[ ! -d $(dir $(KITTY_DEBIAN)) ] && mkdir -p $(dir $(KITTY_DEBIAN))
+	-[ -f $(KITTY_DEBIAN) ] && [ ! -L $(KITTY_DEBIAN) ] && mv $(KITTY_DEBIAN) $(KITTY_DEBIAN).backup
+	-[ ! -L $(KITTY_DEBIAN) ] && ln -s $(KITTY_DEBIAN_SOURCE) $(KITTY_DEBIAN)
 
 KITTY=$(HOME)/.config/kitty/kitty.conf
 KITTY_SOURCE=$(PWD)/kitty.conf
@@ -150,7 +163,7 @@ endif
 install: $(ZSHRC)
 install: $(NEOVIM_CONFIG)
 install: install-tmux install-ideavim install-material install-fonts
-install: $(KITTY)
+install: $(KITTY) $(KITTY_DEBIAN) $(KITTY_MACOS)
 install: $(I3CONFIG)
 install: $(POLYBAR)
 install: $(DUNST)

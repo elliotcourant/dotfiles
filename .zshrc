@@ -12,6 +12,9 @@ if [[ "Linux" == $(uname) ]]
 then
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
+  export EXTRA_KITTY_CONFIG=$HOME/.config/kitty/kitty-debian.conf
+else
+  export EXTRA_KITTY_CONFIG=$HOME/.config/kitty/kitty-macos.conf
 fi
 
 export ZSH="$HOME/.oh-my-zsh";
