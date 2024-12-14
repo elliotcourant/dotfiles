@@ -43,24 +43,6 @@ require 'nvim-treesitter.configs'.setup {
   },
 };
 
-vim.cmd [[
-" Color Palette
-" This initial color is the background i believe.
-" if g:material_theme_style == 'default'
-"   let s:gray1 = '#263238'
-" elseif g:material_theme_style == 'palenight'
-"   let s:gray1 = '#292D3E'
-" elseif g:material_theme_style == 'dark'
-"   let s:gray1 = '#212121'
-" endif
-" 
-" let s:gray2 = g:material_theme_style == 'dark' ? '#292929' : '#2c3a41'
-" let s:gray3 = g:material_theme_style == 'dark' ? '#474646' : '#425762'
-" let s:gray4 = g:material_theme_style == 'dark' ? '#6a6c6c' : '#658494'
-" let s:gray5 = g:material_theme_style == 'dark' ? '#f1f2f3' : '#aebbc5'
-" " let s:gray5 = g:material_theme_style == 'dark' ? '#b7bdc0' : '#aebbc5'
-]]
-
 local white   = '#f1f2f3';
 local gray5   = '#b7bdc0';
 local red     = '#ff5370';

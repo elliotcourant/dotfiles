@@ -1,5 +1,11 @@
 vim.g.nocompatible  = true
 vim.o.number        = true
+vim.o.mouse         = 'a'
+vim.o.clipboard     = 'unnamedplus' -- Use the system clipboard (set clipboard+=unnamedplus)
+vim.o.ignorecase    = true -- Searches are case insensitve
+vim.o.smartcase     = true -- unless they contain at least on capital letter
+vim.o.signcolumn    = 'auto:2'
+vim.o.foldcolumn    = '2'
 vim.g.bs            = 2 -- Make backspace work in a sane way.
 vim.opt.laststatus  = 2
 vim.opt.autoread    = true -- Update buffers when the file is modified externally.
@@ -20,11 +26,12 @@ vim.opt.updatetime  = 1000
 
 
 
+
 -- Setup persistent undo
 if vim.fn.has('persistent_undo') then
   local targetPath = tostring(vim.fn.expand('~/.undodir'));
   if vim.fn.isdirectory(targetPath) ~= true then
-    vim.fn.mkdir(targetPath, 'p', 0755);
+    vim.fn.mkdir(targetPath, 'p', '0755');
   end
   vim.o.undodir = targetPath;
   vim.o.undofile = true;
@@ -34,23 +41,19 @@ vim.cmd [[
   filetype off
   filetype plugin indent on
 
-  set clipboard+=unnamedplus
-  set ignorecase  " searches are case insensitive...
-  set smartcase   " ... unless they contain at least one capital letter
+  " set clipboard+=unnamedplus
+  " set ignorecase  " searches are case insensitive...
+  " set smartcase   " ... unless they contain at least one capital letter
   set ttyfast
-  set go+=b.
-  set mouse=a
+  " set go+=b.
   set rtp+=/.fzf
   set completeopt=preview,menu,noinsert,menuone
 
   set indentexpr=nvim_treesitter#indent()
-  set signcolumn=auto:2
-  set foldcolumn=2
+  " set signcolumn=auto:2
+  " set foldcolumn=2
 
   let g:bookmark_no_default_key_mappings = 1
-nnoremap <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 ]]
 
 require('dressing').setup({

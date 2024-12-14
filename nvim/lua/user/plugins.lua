@@ -245,7 +245,6 @@ return packer.startup(function(use)
     },
   }
 
-
   -- Autocomplete things
   -- cmp plugins
   use { "hrsh7th/nvim-cmp" } -- The completion plugin

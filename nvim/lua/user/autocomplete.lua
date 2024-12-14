@@ -148,8 +148,6 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client, bufnr)
   -- [[ other on_attach code ]]
   require 'illuminate'.on_attach(client)
-  ---- Enable completion triggered by <c-x><c-o>
-  --vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -226,12 +224,6 @@ require('lspconfig')['gopls'].setup {
       semanticTokens = true,
     }
   },
-  handlers = {
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --   virtual_text = true,
-    --   virtual_lines = false,
-    -- }),
-  }
 }
 
 if (is_installed('pylsp')) then
@@ -239,12 +231,6 @@ if (is_installed('pylsp')) then
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
-    handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = true,
-        virtual_lines = false,
-      }),
-    }
   }
 end
 
@@ -258,7 +244,7 @@ require('lspconfig')['ts_ls'].setup {
     }
   },
   handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    ["textDocument/hover"] = vim.lsp.buf.hover({
         silent = false,
     }),
   }
@@ -270,12 +256,6 @@ require('lspconfig')['clojure_lsp'].setup {
     return on_attach(client, bufnr)
   end,
   flags        = lsp_flags,
-  -- handlers = {
-  --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --     virtual_text = true,
-  --     virtual_lines = false,
-  --   }),
-  -- }
 }
 
 require('lspconfig')['cmake'].setup {
@@ -284,24 +264,12 @@ require('lspconfig')['cmake'].setup {
     return on_attach(client, bufnr)
   end,
   flags        = lsp_flags,
-  -- handlers = {
-  --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  --     virtual_text = true,
-  --     virtual_lines = false,
-  --   }),
-  -- }
 }
 
 require('lspconfig')['marksman'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      virtual_lines = false,
-    }),
-  }
 }
 
 require('lspconfig')['mdx_analyzer'].setup {
@@ -374,13 +342,13 @@ require('lspconfig')['tailwindcss'].setup {
     "svelte",
   },
   handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    ["textDocument/hover"] = vim.lsp.buf.hover({
         silent = true,
     }),
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = true,
-      virtual_lines = false,
-    }),
+    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --   virtual_text = true,
+    --   virtual_lines = false,
+    -- }),
   },
   settings = {
     tailwindCSS = {
@@ -401,13 +369,9 @@ require('lspconfig')['eslint'].setup {
   on_attach    = on_attach,
   flags        = lsp_flags,
   handlers = {
-    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+    ["textDocument/hover"] = vim.lsp.buf.hover({
         silent = true,
     }),
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --   virtual_text = false,
-    --   virtual_lines = true,
-    -- }),
   },
   settings = {
     codeAction = {
@@ -418,31 +382,17 @@ require('lspconfig')['eslint'].setup {
   },
 }
 
--- if (is_installed('yaml-language-server')) then
---   require('lspconfig')['yamlls'].setup {
---     capabilities = capabilities,
---     on_attach    = on_attach,
---     flags        = lsp_flags,
---     settings     = {
---       schemas = {
---         ["https://json.schemastore.org/github-workflow.json"]                             = "/.github/workflows/*",
---         ["https://github.com/yannh/kubernetes-json-schema/blob/master/v1.22.10/all.json"] = "/*",
---       },
---     },
---   }
--- end
-
 if (is_installed('rust-analyzer')) then
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
-    handlers = {
-      ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false,
-        virtual_lines = true,
-      }),
-    }
+    -- handlers = {
+    --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    --     virtual_text = false,
+    --     virtual_lines = true,
+    --   }),
+    -- }
   }
 end
 

@@ -63,8 +63,9 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" 
 })
 
 local function go_org_imports(wait_ms)
-  local params = vim.lsp.util.make_range_params()
-  params.context = {only = {"source.organizeImports"}}
+  -- Based on https://github.com/neovim/nvim-lspconfig/issues/115#issuecomment-1801096383
+  local params = vim.lsp.util.make_range_params(0, 'utf-8')
+  params.context = { only = { "source.organizeImports" } }
   local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
   for cid, res in pairs(result or {}) do
     for _, r in pairs(res.result or {}) do

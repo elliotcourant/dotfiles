@@ -11,15 +11,6 @@ keymap("n", "Q","<nop>", opts) -- Begone evil
 
 keymap("n", "<Leader>ev", ":e $MYVIMRC<CR>", opts)
 
--- keymap("n", "<Left>", "<nop>")
--- keymap("n", "<Right>", "<nop>")
--- keymap("n", "<Up>", "<nop>")
--- keymap("n", "<Down>", "<nop>")
--- keymap("i", "<Left>", "<nop>")
--- keymap("i", "<Right>", "<nop>")
--- keymap("i", "<Up>", "<nop>")
--- keymap("i", "<Down>", "<nop>")
-
 -- Allow the Tab key to be used to navigate between windows
 keymap("n", "<Tab>",      "<C-w>",      opts)
 keymap("n", "<Tab><Tab>", "<C-w><C-w>", opts)
@@ -56,8 +47,13 @@ keymap("n", "<Leader>/",      "<cmd>Telescope current_buffer_fuzzy_find<cr>",   
 keymap("n", "<A-CR>",  vim.lsp.buf.code_action, { silent = true, noremap = true })
 keymap("n", "<^]-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
 
-keymap("n", "[\\", vim.diagnostic.goto_next, { silent = true, noremap = true })
-keymap("n", "]\\", vim.diagnostic.goto_prev, { silent = true, noremap = true })
+-- https://neovim.io/doc/user/deprecated.html#_diagnostics
+keymap("n", "[\\", function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { silent = true, noremap = true })
+keymap("n", "]\\", function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { silent = true, noremap = true })
 
 keymap("n", "<Leader>v", function ()
   ---@diagnostic disable-next-line: undefined-field
@@ -149,7 +145,7 @@ vim.api.nvim_create_user_command('Make', function(input)
   local screenWidth   = tonumber(vim.api.nvim_eval('&columns'))
   local screenHeight  = tonumber(vim.api.nvim_eval('&lines'))
   if screenWidth == nil or screenHeight == nil then
-    return 0
+    return
   end
   local desiredWidth  = 80
   local desiredHeight = 30
