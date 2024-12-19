@@ -74,7 +74,6 @@ return packer.startup(function(use)
   use { "junegunn/goyo.vim" }
   use { "terryma/vim-multiple-cursors" }
   use { "junegunn/vim-easy-align" }
-  use { "easymotion/vim-easymotion" }
   use { "tpope/vim-surround" }
   use {
     "norcalli/nvim-colorizer.lua",
@@ -101,13 +100,6 @@ return packer.startup(function(use)
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim" }
-  use {
-    "tom-anders/telescope-vim-bookmarks.nvim",
-    requires = {
-      { "nvim-telescope/telescope.nvim" },
-      { "MattesGroeger/vim-bookmarks" },
-    }
-  }
   use { "nvim-lua/plenary.nvim" }
   -- Add icons for plugins that support it.
   use { "kyazdani42/nvim-web-devicons" }

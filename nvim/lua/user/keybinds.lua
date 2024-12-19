@@ -20,21 +20,19 @@ keymap("x", "<Tab><Tab>", "<C-w><C-w>", opts)
 -- Allow Shift+Tab to cycle through tab.s
 keymap("n", "<S-Tab>", "gt", opts)
 
-keymap("n", "<Leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<Leader>a", "<cmd>Telescope live_grep<cr>",  opts)
-keymap("n", ";",         "<cmd>Telescope buffers<cr>",    opts)
-keymap("n", "<Leader><Tab>", "<cmd>Telescope jumplist<cr>", opts)
-
--- Bookmark things
-keymap("n", ",,",        "(Plug)BookmarkTogggle<cr>")
-keymap("n", "<Leader>b", "<cmd>Telescope vim_bookmarks all<cr>",          opts)
-keymap("n", "<Leader>b", "<cmd>Telescope vim_bookmarks current_file<cr>", opts)
+keymap("n", "<Leader>f",        "<cmd>Telescope find_files<cr>", opts)
+keymap("n", "<Leader>a",        "<cmd>Telescope live_grep<cr>",  opts)
+-- Jump between this buffer and the previous buffer
+keymap("n", "<Leader><Cr>",     "<cmd>b#<cr>",                   opts)
+-- Show all the open buffers
+keymap("n", "<Leader><Leader>", "<cmd>Telescope buffers<cr>",    opts)
+keymap("n", "<Leader><Tab>",    "<cmd>Telescope jumplist<cr>",   opts)
 
 -- Debugging things
 keymap("n", "<Leader>d",      ":lua require('dap').continue()<cr>",                                           opts)
 keymap("n", "<Leader>l",      ":lua require'telescope'.extensions.dap.frames{}<cr>",                          opts)
-keymap("n", "<Leader><Cr>",   ":lua require'dap'.toggle_breakpoint()<cr>",                                    opts)
-keymap("n", "<Leader><S-Cr>", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
+keymap("n", "<Leader>b",   ":lua require'dap'.toggle_breakpoint()<cr>",                                    opts)
+keymap("n", "<Leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
 keymap("n", "<Leader>]",      ":lua require'dap'.step_over()<cr>",                                            opts)
 keymap("n", "<Leader>[",      ":lua require'dap'.step_into()<cr>",                                            opts)
 keymap("n", "<Leader>;",      ":lua require'dap'.run_to_cursor()<cr>",                                        opts)
@@ -43,6 +41,9 @@ keymap("n", "<Leader>\\",     ":lua require'dap'.terminate()<cr>:lua require'dap
 keymap("n", "<Leader>t",      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",                             opts)
 keymap("n", "<Leader>T",      "<cmd>Telescope lsp_document_symbols<cr>",                                      opts)
 keymap("n", "<Leader>/",      "<cmd>Telescope current_buffer_fuzzy_find<cr>",                                 opts)
+
+-- Toggle Sticky function headers with leader+c
+keymap("n", "<Leader>c",      "<cmd>TSContextToggle<cr>", opts)
 
 keymap("n", "<A-CR>",  vim.lsp.buf.code_action, { silent = true, noremap = true })
 keymap("n", "<^]-CR>", vim.lsp.buf.code_action, { silent = true, noremap = true })
@@ -78,16 +79,8 @@ end, opts)
 
 -- Clojure
 keymap("n", "<Leader>GT", "<cmd>ConjureCljRunCurrentTest<cr>", opts)
--- keymap("n", "<Leader>gt", RunNearestClojureTest, opts)
 keymap("n", '"', "<cmd>ConjureEvalCurrentForm<cr>", opts)
 keymap("v", '"', "<cmd>'<,'>%ConjureEval<cr>",      opts)
-
-
--- Easy Motion Keybindings
-keymap("n", "<Leader>w", "<Plug>(easymotion-bd-w)")
-keymap("n", "<Leader>W", "<Plug>(easymotion-overwin-w)")
-keymap("n", "<Leader>l", "<Plug>(easymotion-bd-jk)")
-keymap("n", "<Leader>L", "<Plug>(easymotion-overwin-line)")
 
 -- Easy Align Keybindings
 keymap("x", "ga", "<Plug>(EasyAlign)", opts)
