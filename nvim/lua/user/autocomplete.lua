@@ -252,17 +252,13 @@ require('lspconfig')['ts_ls'].setup {
 
 require('lspconfig')['clojure_lsp'].setup {
   capabilities = capabilities,
-  on_attach    = function(client, bufnr)
-    return on_attach(client, bufnr)
-  end,
+  on_attach    = on_attach,
   flags        = lsp_flags,
 }
 
 require('lspconfig')['cmake'].setup {
   capabilities = capabilities,
-  on_attach    = function(client, bufnr)
-    return on_attach(client, bufnr)
-  end,
+  on_attach    = on_attach,
   flags        = lsp_flags,
 }
 
@@ -272,18 +268,31 @@ require('lspconfig')['marksman'].setup {
   flags        = lsp_flags,
 }
 
+-- Make sure that we load typescript from the actual project directory.
+local util = require 'lspconfig.util'
+local function get_typescript_server_path(root_dir)
+  local project_root = vim.fs.find('node_modules', { path = root_dir, upward = true })[1]
+  return project_root and (util.path.join(project_root, 'typescript', 'lib')) or ''
+end
+
 require('lspconfig')['mdx_analyzer'].setup {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
+  single_file_suppport = true,
   filetypes    = {
     "markdown.mdx",
   },
   init_options = {
     typescript = {
-      enabled = false,
+      enabled = true,
     },
-  }
+  },
+  on_new_config = function(new_config, new_root_dir)
+    if vim.tbl_get(new_config.init_options, 'typescript') and not new_config.init_options.typescript.tsdk then
+      new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
+    end
+  end,
 }
 
 require('lspconfig')['tailwindcss'].setup {
@@ -345,10 +354,6 @@ require('lspconfig')['tailwindcss'].setup {
     ["textDocument/hover"] = vim.lsp.buf.hover({
         silent = true,
     }),
-    -- ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --   virtual_text = true,
-    --   virtual_lines = false,
-    -- }),
   },
   settings = {
     tailwindCSS = {
@@ -387,12 +392,6 @@ if (is_installed('rust-analyzer')) then
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
-    -- handlers = {
-    --   ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    --     virtual_text = false,
-    --     virtual_lines = true,
-    --   }),
-    -- }
   }
 end
 
