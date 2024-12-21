@@ -24,7 +24,8 @@ vim.opt.spelllang   = { 'en_us' }
 vim.opt.scrolloff   = 8 -- Keep at least 8 lines visible at the bottom of the buffers.
 vim.opt.updatetime  = 1000
 
-
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
 
 
 -- Setup persistent undo

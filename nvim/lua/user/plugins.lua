@@ -45,16 +45,7 @@ return packer.startup(function(use)
   -- My personal theme
   use { "elliotcourant/material.vim" }
   use { "dstein64/nvim-scrollview" }
-  -- use { "vim-airline/vim-airline" }
-  -- use { "vim-airline/vim-airline-themes" }
   use { 'nvim-lualine/lualine.nvim' }
-  -- use {
-  --   'kdheepak/tabline.nvim',
-  --   requires = {
-  --     { 'nvim-lualine/lualine.nvim', opt = false },
-  --     { 'kyazdani42/nvim-web-devicons', opt = false }
-  --   }
-  -- }
   use {
     'goolord/alpha-nvim',
     config = function()
@@ -107,50 +98,7 @@ return packer.startup(function(use)
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" }
   use { "nvim-treesitter/playground" }
-  use {
-    "nvim-treesitter/nvim-treesitter-context",
-    config = function()
-      require("treesitter-context").setup {
-        enable         = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-        max_lines      = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-        trim_scope     = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-        patterns       = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-          -- For all filetypes
-          -- Note that setting an entry here replaces all other patterns for this entry.
-          -- By setting the 'default' entry below, you can control which nodes you want to
-          -- appear in the context window.
-          default = {
-            'class',
-            'function',
-            'method',
-            -- 'for', -- These won't appear in the context
-            -- 'while',
-            -- 'if',
-            -- 'switch',
-            -- 'case',
-          },
-          -- Example for a specific filetype.
-          -- If a pattern is missing, *open a PR* so everyone can benefit.
-          --   rust  = {
-          --       'impl_item',
-          --   },
-        },
-        exact_patterns = {
-          -- Example for a specific filetype with Lua patterns
-          -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-          -- exactly match "impl_item" only)
-          -- rust    = true,
-        },
-
-        -- [!] The options below are exposed but shouldn't require your attention,
-        --     you can safely ignore them.
-
-        zindex    = 20, -- The Z-index of the context window
-        mode      = 'topline', -- Line used to calculate context. Choices: 'cursor', 'topline'
-        separator = nil, -- Separator between context and content. Should be a single character string, like '-'.
-      }
-    end
-  }
+  use { "nvim-treesitter/nvim-treesitter-context" }
 
   -- Language Server stuff
   use {
@@ -256,9 +204,6 @@ return packer.startup(function(use)
   -- Golang Stuff
   use { "leoluz/nvim-dap-go", requires = { "mfussenegger/nvim-dap" } }
 
-  -- Helm stuff
-  use { "towolf/vim-helm" }
-
   -- Markdown stuff
   use {
     "iamcco/markdown-preview.nvim",
@@ -273,6 +218,33 @@ return packer.startup(function(use)
   use { 'Olical/conjure' }
   use { 'guns/vim-sexp' }
   use { 'tpope/vim-sexp-mappings-for-regular-people' }
+
+
+  -- Robot overlords
+  use {
+    'yetone/avante.nvim',
+    run = "make",
+    requires = {
+      'stevearc/dressing.nvim',
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      --- The below dependencies are optional,
+      'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+      'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
+      'MeanderingProgrammer/render-markdown.nvim',
+    }
+  }
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { "markdown", "Avante" },
+    after = { 'nvim-treesitter' },
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
+    config = function()
+      require('render-markdown').setup({
+        file_types = { "markdown", "Avante" },
+      })
+    end,
+  }
 
 
   -- Git Stuff

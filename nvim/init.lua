@@ -17,6 +17,7 @@ require "user.clojure"
 require "user.typescript"
 require "user.lua"
 
+require "user.robot"
 
 require "user.keybinds"
 

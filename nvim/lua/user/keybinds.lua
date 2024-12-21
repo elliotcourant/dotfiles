@@ -95,6 +95,10 @@ keymap("n", "<Leader>z", "<cmd>ZoomToggle<cr>", opts)
 -- Removing any trailing whitespace in the file.
 keymap("n", "<Leader>s", "<cmd>%s/\\s\\+$//e<cr><cmd>noh<cr><cmd>w<cr>", opts)
 
+-- Robot keybinds
+keymap("v", "<Leader><Space>", function() require("avante.api").ask() end, opts)
+keymap("v", "<Leader>e", function() require("avante.api").edit() end, opts)
+
 -- TEST KEYBINDS
 keymap("n", "<Leader>lt", require("neotest").run.run_last, opts)
 keymap("n", "<Leader>at", require("neotest").run.attach, opts)
