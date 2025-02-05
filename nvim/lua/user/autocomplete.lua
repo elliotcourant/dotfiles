@@ -384,6 +384,14 @@ require('lspconfig')['eslint'].setup {
         enable = false,
       },
     },
+    eslint = {
+      settings = {
+        experimental = {
+          -- allows to use flat config format
+          useFlatConfig = true,
+        },
+      }
+    },
   },
 }
 
