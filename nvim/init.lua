@@ -16,6 +16,7 @@ require "user.markdown"
 require "user.clojure"
 require "user.typescript"
 require "user.lua"
+require "user.stylesheets"
 
 require "user.robot"
 

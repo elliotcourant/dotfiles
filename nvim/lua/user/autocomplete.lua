@@ -7,6 +7,7 @@ require("mason-lspconfig").setup {
     "clangd",
     "clojure_lsp",
     "cmake",
+    "cssls",
     "eslint",
     "gopls",
     "lua_ls",
@@ -258,6 +259,14 @@ require('lspconfig')['clojure_lsp'].setup {
 
 require('lspconfig')['cmake'].setup {
   capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+}
+
+local cssCapabilities = capabilities
+cssCapabilities.textDocument.completion.completionItem.snippetSuppport = true
+require('lspconfig')['cssls'].setup {
+  capabilities = cssCapabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
 }
