@@ -29,17 +29,21 @@ keymap("n", "<Leader><Leader>", "<cmd>Telescope buffers<cr>",    opts)
 keymap("n", "<Leader><Tab>",    "<cmd>Telescope jumplist<cr>",   opts)
 
 -- Debugging things
-keymap("n", "<Leader>d",      ":lua require('dap').continue()<cr>",                                           opts)
-keymap("n", "<Leader>l",      ":lua require'telescope'.extensions.dap.frames{}<cr>",                          opts)
-keymap("n", "<Leader>b",   ":lua require'dap'.toggle_breakpoint()<cr>",                                    opts)
-keymap("n", "<Leader>B", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
-keymap("n", "<Leader>]",      ":lua require'dap'.step_over()<cr>",                                            opts)
-keymap("n", "<Leader>[",      ":lua require'dap'.step_into()<cr>",                                            opts)
-keymap("n", "<Leader>;",      ":lua require'dap'.run_to_cursor()<cr>",                                        opts)
-keymap("n", "<Leader>\\",     ":lua require'dap'.terminate()<cr>:lua require'dap'.repl.close()<cr>",          opts)
+keymap("n", "<Leader>,",  ":lua require('dap').continue()<cr>",                                           opts)
+keymap("n", "<Leader>l",  ":lua require'telescope'.extensions.dap.frames{}<cr>",                          opts)
+keymap("n", "<Leader>.",  ":lua require'dap'.toggle_breakpoint()<cr>",                                    opts)
+keymap("n", "<Leader>B",  ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", opts)
+keymap("n", "<Leader>]",  ":lua require'dap'.step_over()<cr>",                                            opts)
+keymap("n", "<Leader>[",  ":lua require'dap'.step_into()<cr>",                                            opts)
+keymap("n", "<Leader>;",  ":lua require'dap'.run_to_cursor()<cr>",                                        opts)
+keymap("n", "<Leader>\\", ":lua require'dap'.terminate()<cr>:lua require'dap'.repl.close()<cr>",          opts)
 
-keymap("n", "<Leader>t",      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",                             opts)
-keymap("n", "<Leader>T",      "<cmd>Telescope lsp_document_symbols<cr>",                                      opts)
+keymap("n", "<Leader>t", function ()
+  require('telescope.builtin').lsp_dynamic_workspace_symbols({ fname_width = 40, symbol_width = 40 })
+end, opts)
+keymap("n", "<Leader>T", function ()
+  require('telescope.builtin').lsp_document_symbols({ symbol_width = 60 })
+end, opts)
 keymap("n", "<Leader>/",      "<cmd>Telescope current_buffer_fuzzy_find<cr>",                                 opts)
 
 -- Toggle Sticky function headers with leader+c
@@ -97,7 +101,8 @@ keymap("n", "<Leader>s", "<cmd>%s/\\s\\+$//e<cr><cmd>noh<cr><cmd>w<cr>", opts)
 
 -- Robot keybinds
 keymap("v", "<Leader><Space>", function() require("avante.api").ask() end, opts)
-keymap("v", "<Leader>e", function() require("avante.api").edit() end, opts)
+keymap("v", "<Leader>e",       function() require("avante.api").edit() end, opts)
+keymap("n", "<CR><Space>",     function() require("avante").toggle() end, opts)
 
 -- TEST KEYBINDS
 keymap("n", "<Leader>lt", require("neotest").run.run_last, opts)
