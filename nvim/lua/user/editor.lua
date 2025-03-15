@@ -27,7 +27,6 @@ vim.opt.updatetime  = 1000
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
 
-
 -- Setup persistent undo
 if vim.fn.has('persistent_undo') then
   local targetPath = tostring(vim.fn.expand('~/.undodir'));
@@ -51,6 +50,8 @@ vim.cmd [[
   set completeopt=preview,menu,noinsert,menuone
 
   set indentexpr=nvim_treesitter#indent()
+  " rspress is too fast
+  set backupskip+=*.md,*.mdx
   " set signcolumn=auto:2
   " set foldcolumn=2
 
