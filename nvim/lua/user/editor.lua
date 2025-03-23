@@ -51,7 +51,7 @@ vim.cmd [[
 
   set indentexpr=nvim_treesitter#indent()
   " rspress is too fast
-  set backupskip+=*.md,*.mdx
+  set backupskip+=*.ts,*.tsx,*.css,*.scss,*.md,*.mdx
   " set signcolumn=auto:2
   " set foldcolumn=2
 
