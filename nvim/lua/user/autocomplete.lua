@@ -2,7 +2,7 @@ require("mason").setup {}
 require("mason-lspconfig").setup {
   ensure_installed = {
     "ansiblels",
-    "asm_lsp",
+    -- "asm_lsp",
     "bashls",
     "clangd",
     "clojure_lsp",
@@ -194,13 +194,13 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-require('lspconfig')['asm_lsp'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  settings     = { },
-  handlers     = { }
-}
+-- require('lspconfig')['asm_lsp'].setup {
+--   capabilities = capabilities,
+--   on_attach    = on_attach,
+--   flags        = lsp_flags,
+--   settings     = { },
+--   handlers     = { }
+-- }
 
 require('lspconfig')['gopls'].setup {
   capabilities = capabilities,
