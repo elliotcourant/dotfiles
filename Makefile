@@ -88,6 +88,13 @@ $(I3CONFIG): $(I3CONFIG_SOURCE)
 	-[ -f $(I3CONFIG) ] && [ ! -L $(I3CONFIG) ] && mv $(I3CONFIG) $(I3CONFIG).backup
 	-[ ! -L $(I3CONFIG) ] && ln -s $(I3CONFIG_SOURCE) $(I3CONFIG)
 
+PICOM=$(HOME)/.config/picom/picom.conf
+PICOM_SOURCE=$(PWD)/picom.conf
+$(PICOM): $(PICOM_SOURCE)
+	-[ ! -d $(dir $(PICOM)) ] && mkdir -p $(dir $(PICOM))
+	-[ -f $(PICOM) ] && [ ! -L $(PICOM) ] && mv $(PICOM) $(PICOM).backup
+	-[ ! -L $(PICOM) ] && ln -s $(PICOM_SOURCE) $(PICOM)
+
 POLYBAR_LAUNCHER=$(HOME)/.config/polybar/launch.sh
 POLYBAR_LAUNCHER_SOURCE=$(PWD)/polybar.sh
 $(POLYBAR_LAUNCHER): $(POLYBAR_LAUNCHER_SOURCE)
@@ -164,6 +171,7 @@ install: $(ZSHRC)
 install: $(NEOVIM_CONFIG)
 install: install-tmux install-ideavim install-material install-fonts
 install: $(KITTY) $(KITTY_DEBIAN) $(KITTY_MACOS)
+install: $(PICOM)
 install: $(I3CONFIG)
 install: $(POLYBAR)
 install: $(DUNST)
