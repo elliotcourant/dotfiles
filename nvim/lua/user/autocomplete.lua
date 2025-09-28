@@ -217,6 +217,7 @@ require('lspconfig')['gopls'].setup {
       -- },
       analyses = {
         unusedparams = true,
+        ST1003 = false,
       },
       staticcheck = true,
       codelenses = {
