@@ -106,7 +106,7 @@ return packer.startup(function(use)
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
-  use { "RRethy/vim-illuminate" }
+  -- use { "RRethy/vim-illuminate" }
   use {
     'j-hui/fidget.nvim',
     tag = 'legacy',

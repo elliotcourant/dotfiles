@@ -16,7 +16,6 @@ require("mason-lspconfig").setup {
     "mdx_analyzer",
     "pylsp",
     "rust_analyzer",
-    "svelte",
     "tailwindcss",
     "terraformls",
     "ts_ls",
@@ -149,7 +148,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- [[ other on_attach code ]]
-  require 'illuminate'.on_attach(client)
+  -- require 'illuminate'.on_attach(client)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -203,7 +202,8 @@ local lsp_flags = {
 --   handlers     = { }
 -- }
 
-require('lspconfig')['gopls'].setup {
+vim.lsp.enable('gopls')
+vim.lsp.config('gopls', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -227,17 +227,19 @@ require('lspconfig')['gopls'].setup {
       semanticTokens = true,
     }
   },
-}
+})
 
 if (is_installed('pylsp')) then
-  require('lspconfig')['pylsp'].setup {
+  vim.lsp.enable('pylsp')
+  vim.lsp.config('pylsp', {
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
-  }
+  })
 end
 
-require('lspconfig')['ts_ls'].setup {
+vim.lsp.enable('ts_ls')
+vim.lsp.config('ts_ls', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -251,33 +253,37 @@ require('lspconfig')['ts_ls'].setup {
         silent = false,
     }),
   }
-}
+})
 
-require('lspconfig')['clojure_lsp'].setup {
+vim.lsp.enable('clojure_lsp')
+vim.lsp.config('clojure_lsp', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
-require('lspconfig')['cmake'].setup {
+vim.lsp.enable('cmake')
+vim.lsp.config('cmake', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
 local cssCapabilities = capabilities
 cssCapabilities.textDocument.completion.completionItem.snippetSuppport = true
-require('lspconfig')['cssls'].setup {
+vim.lsp.enable('cssls')
+vim.lsp.config('cssls', {
   capabilities = cssCapabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
-require('lspconfig')['marksman'].setup {
+vim.lsp.enable('marksman')
+vim.lsp.config('marksman', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
 -- Make sure that we load typescript from the actual project directory.
 local util = require 'lspconfig.util'
@@ -286,7 +292,8 @@ local function get_typescript_server_path(root_dir)
   return project_root and (util.path.join(project_root, 'typescript', 'lib')) or ''
 end
 
-require('lspconfig')['mdx_analyzer'].setup {
+vim.lsp.enable('mdx_analyzer')
+vim.lsp.config('mdx_analyzer', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -304,9 +311,10 @@ require('lspconfig')['mdx_analyzer'].setup {
       new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
     end
   end,
-}
+})
 
-require('lspconfig')['tailwindcss'].setup {
+vim.lsp.enable('tailwindcss')
+vim.lsp.config('tailwindcss', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -378,9 +386,10 @@ require('lspconfig')['tailwindcss'].setup {
       },
     },
   },
-}
+})
 
-require('lspconfig')['eslint'].setup {
+vim.lsp.enable('eslint')
+vim.lsp.config('eslint', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -404,29 +413,26 @@ require('lspconfig')['eslint'].setup {
       }
     },
   },
-}
+})
 
 if (is_installed('rust-analyzer')) then
-  require('lspconfig')['rust_analyzer'].setup {
+  vim.lsp.enable('rust_analyzer')
+  vim.lsp.config('rust_analyzer', {
     capabilities = capabilities,
     on_attach    = on_attach,
     flags        = lsp_flags,
-  }
+  })
 end
 
-require('lspconfig')['svelte'].setup {
+vim.lsp.enable('terraformls')
+vim.lsp.config('terraformls', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
-require('lspconfig')['terraformls'].setup {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-}
-
-require('lspconfig')['lua_ls'].setup({
+vim.lsp.enable('lua_ls')
+vim.lsp.config('lua_ls', {
   on_attach    = on_attach,
   capabilities = capabilities,
   flags        = lsp_flags,
@@ -457,13 +463,15 @@ require('lspconfig')['lua_ls'].setup({
   },
 })
 
-require('lspconfig')['bashls'].setup {
+vim.lsp.enable('bashls')
+vim.lsp.config('bashls', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
 
-require('lspconfig')['ansiblels'].setup {
+vim.lsp.enable('ansiblels')
+vim.lsp.config('ansiblels', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
@@ -487,12 +495,13 @@ require('lspconfig')['ansiblels'].setup {
       }
     }
   }
-}
+})
 
 local clangd_capabilities = capabilities;
 clangd_capabilities.offsetEncoding = "utf-8"
-require('lspconfig')['clangd'].setup {
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
   capabilities = clangd_capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
-}
+})
