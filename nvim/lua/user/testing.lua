@@ -22,6 +22,7 @@ require("neotest").setup({
   -- your neotest config here
   adapters = {
     neotest_go({
+      go_list_args = { "-tags=testing" },
       go_test_args = { "-tags=testing" },
     }),
     neotest_jest({

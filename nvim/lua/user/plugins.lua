@@ -179,7 +179,9 @@ return packer.startup(function(use)
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "fredrikaverpil/neotest-golang",
+      -- TODO Upgrade to the lastest v2 thing, but it stopped detecting tests on
+      -- v2.
+      { "fredrikaverpil/neotest-golang", commit = "ad6ae703e18874eb66fee539224eac2dd9cc0890" },
       -- "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
     },
