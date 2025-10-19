@@ -5,6 +5,7 @@ require("mason-lspconfig").setup {
     "ansiblels",
     -- "asm_lsp",
     "bashls",
+    "biome",
     "clangd",
     "clojure_lsp",
     "cmake",
@@ -15,6 +16,7 @@ require("mason-lspconfig").setup {
     "marksman",
     "mdx_analyzer",
     "pylsp",
+    "jsonls",
     "rust_analyzer",
     "tailwindcss",
     "terraformls",
@@ -412,6 +414,39 @@ vim.lsp.config('eslint', {
         },
       }
     },
+  },
+})
+
+vim.lsp.enable('biome')
+vim.lsp.config('biome', {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  handlers = {
+    ["textDocument/hover"] = vim.lsp.buf.hover({
+      silent = true,
+    }),
+  },
+  settings = {
+    codeAction = {
+      showDocumentation = {
+        enable = false,
+      },
+    },
+  },
+})
+
+vim.lsp.enable('jsonls')
+vim.lsp.config('jsonls', {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  filetypes    = {
+    "json",
+    "jsonc",
+  },
+  init_options = {
+    provideFormatter = true,
   },
 })
 
