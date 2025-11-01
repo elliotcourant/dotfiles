@@ -10,6 +10,7 @@ require("mason-lspconfig").setup {
     "clojure_lsp",
     "cmake",
     "cssls",
+    "cssmodules_ls",
     "eslint",
     "gopls",
     "lua_ls",
@@ -255,6 +256,20 @@ vim.lsp.config('ts_ls', {
         silent = false,
     }),
   }
+})
+
+vim.lsp.enable('cssmodules_ls')
+vim.lsp.config('cssmodules_ls', {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+})
+
+vim.lsp.enable('css_variables')
+vim.lsp.config('css_variables', {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
 })
 
 vim.lsp.enable('clojure_lsp')

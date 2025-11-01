@@ -86,6 +86,21 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 require('dap-go').setup{
+  -- Additional dap configurations can be added.
+  -- dap_configurations accepts a list of tables where each entry
+  -- represents a dap configuration. For more details do:
+  -- :help dap-configuration
+  dap_configurations = {
+    {
+      -- Must be "go" or it will be ignored by the plugin
+      name = "monetr Remote",
+      type = "go",
+      mode = "remote",
+      request = "attach",
+      host = "localhost",
+      port = "2345",
+    },
+  },
   delve = {
     build_flags = "-tags=testing",
   }
