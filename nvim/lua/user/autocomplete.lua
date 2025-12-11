@@ -9,6 +9,8 @@ require("mason-lspconfig").setup {
     "clangd",
     "clojure_lsp",
     "cmake",
+    "css_variables",
+    "somesass_ls",
     "cssls",
     "cssmodules_ls",
     "eslint",
@@ -267,6 +269,19 @@ vim.lsp.config('cssmodules_ls', {
 
 vim.lsp.enable('css_variables')
 vim.lsp.config('css_variables', {
+  capabilities = capabilities,
+  on_attach    = on_attach,
+  flags        = lsp_flags,
+  settings     = {
+    cssVariables = {
+      blacklistFolders = { "**/.cache", "**/.DS_Store", "**/.git", "**/.hg", "**/.next", "**/.svn", "**/bower_components", "**/CVS", "**/dist", "**/node_modules", "**/tests", "**/tmp" },
+      lookupFiles = { "**/*.less", "**/*.scss", "**/*.sass", "**/*.css" },
+    },
+  },
+})
+
+vim.lsp.enable('somesass_ls')
+vim.lsp.config('somesass_ls', {
   capabilities = capabilities,
   on_attach    = on_attach,
   flags        = lsp_flags,
