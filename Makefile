@@ -32,7 +32,7 @@ endif
 ARCH ?= amd64
 
 USERNAME=$(shell whoami)
-HOME=$(shell echo ~$(USERNAME))
+HOME=$(shell echo ~)
 DOCKER_IMAGE_NAME=ghcr.io/elliotcourant/dotfiles/debian
 VERSIONED=$(DOCKER_IMAGE_NAME):11.6
 LATEST=$(DOCKER_IMAGE_NAME):latest
@@ -118,7 +118,7 @@ $(KITTY_MACOS): $(KITTY_MACOS_SOURCE)
 
 KITTY_DEBIAN=$(HOME)/.config/kitty/kitty-debian.conf
 KITTY_DEBIAN_SOURCE=$(PWD)/kitty-debian.conf
-$(KITTY_DEBIAN): $(KITTY_DEBIAN_SOURCE) $(KITTY_DEBIAN) $(KITTY_MACOS)
+$(KITTY_DEBIAN): $(KITTY_DEBIAN_SOURCE) $(KITTY_MACOS)
 	-[ ! -d $(dir $(KITTY_DEBIAN)) ] && mkdir -p $(dir $(KITTY_DEBIAN))
 	-[ -f $(KITTY_DEBIAN) ] && [ ! -L $(KITTY_DEBIAN) ] && mv $(KITTY_DEBIAN) $(KITTY_DEBIAN).backup
 	-[ ! -L $(KITTY_DEBIAN) ] && ln -s $(KITTY_DEBIAN_SOURCE) $(KITTY_DEBIAN)

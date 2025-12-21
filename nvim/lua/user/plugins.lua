@@ -96,8 +96,8 @@ return packer.startup(function(use)
   use { "kyazdani42/nvim-web-devicons" }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter" }
-  use { "nvim-treesitter/playground" }
+  use { "nvim-treesitter/nvim-treesitter", branch = "master" }
+  -- use { "nvim-treesitter/playground" }
   use { "nvim-treesitter/nvim-treesitter-context" }
 
   -- Language Server stuff
