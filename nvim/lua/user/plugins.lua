@@ -97,7 +97,6 @@ return packer.startup(function(use)
 
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter", branch = "master" }
-  -- use { "nvim-treesitter/playground" }
   use { "nvim-treesitter/nvim-treesitter-context" }
 
   -- Language Server stuff
