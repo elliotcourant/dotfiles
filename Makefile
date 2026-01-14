@@ -144,6 +144,13 @@ $(LEIN_PROFILE): $(LEIN_PROFILE_SOURCE)
 	-[ -f $(LEIN_PROFILE) ] && [ ! -L $(LEIN_PROFILE) ] && mv $(LEIN_PROFILE) $(LEIN_PROFILE).backup
 	-[ ! -L $(LEIN_PROFILE) ] && ln -s $(LEIN_PROFILE_SOURCE) $(LEIN_PROFILE)
 
+CLOJURE_LSP_CONFIG=$(HOME)/.config/clojure-lsp/config.edn
+CLOJURE_LSP_CONFIG_SOURCE=$(PWD)/clojure-lsp-config.edn
+$(CLOJURE_LSP_CONFIG): $(CLOJURE_LSP_CONFIG_SOURCE)
+	-[ ! -d $(dir $(CLOJURE_LSP_CONFIG)) ] && mkdir -p $(dir $(CLOJURE_LSP_CONFIG))
+	-[ -f $(CLOJURE_LSP_CONFIG) ] && [ ! -L $(CLOJURE_LSP_CONFIG) ] && mv $(CLOJURE_LSP_CONFIG) $(CLOJURE_LSP_CONFIG).backup
+	-[ ! -L $(CLOJURE_LSP_CONFIG) ] && ln -s $(CLOJURE_LSP_CONFIG_SOURCE) $(CLOJURE_LSP_CONFIG)
+
 ROFI_CONFIG=$(HOME)/.config/rofi/config.rasi
 ROFI_SOURCE=$(PWD)/rofi.rasi
 $(ROFI_CONFIG): $(ROFI_SOURCE)
@@ -176,6 +183,7 @@ install: $(I3CONFIG)
 install: $(POLYBAR)
 install: $(DUNST)
 install: $(ROFI_CONFIG)
+install: $(CLOJURE_LSP_CONFIG)
 install: $(LEIN_PROFILE)
 	@echo "Dotfiles installed!"
 

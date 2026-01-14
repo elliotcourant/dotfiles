@@ -1,0 +1,2 @@
+{:source-paths-ignore-regex ["target.*"]
+ :paths-ignore-regex        ["target.*"]}
