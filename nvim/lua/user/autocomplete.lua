@@ -420,32 +420,32 @@ vim.lsp.config('tailwindcss', {
   },
 })
 
-vim.lsp.enable('eslint')
-vim.lsp.config('eslint', {
-  capabilities = capabilities,
-  on_attach    = on_attach,
-  flags        = lsp_flags,
-  handlers = {
-    ["textDocument/hover"] = vim.lsp.buf.hover({
-        silent = true,
-    }),
-  },
-  settings = {
-    codeAction = {
-      showDocumentation = {
-        enable = false,
-      },
-    },
-    eslint = {
-      settings = {
-        experimental = {
-          -- allows to use flat config format
-          useFlatConfig = true,
-        },
-      }
-    },
-  },
-})
+-- vim.lsp.enable('eslint')
+-- vim.lsp.config('eslint', {
+--   capabilities = capabilities,
+--   on_attach    = on_attach,
+--   flags        = lsp_flags,
+--   handlers = {
+--     ["textDocument/hover"] = vim.lsp.buf.hover({
+--         silent = true,
+--     }),
+--   },
+--   settings = {
+--     codeAction = {
+--       showDocumentation = {
+--         enable = false,
+--       },
+--     },
+--     eslint = {
+--       settings = {
+--         experimental = {
+--           -- allows to use flat config format
+--           useFlatConfig = true,
+--         },
+--       }
+--     },
+--   },
+-- })
 
 vim.lsp.enable('biome')
 vim.lsp.config('biome', {

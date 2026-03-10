@@ -2,10 +2,11 @@
 vim.cmd [[
   let g:conjure#filetypes = ["clojure"]
   let g:conjure#mapping#doc_word = ["L"]
-  let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein with-profile test repl :headless"
+  let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "make test_nrepl"
   let g:conjure#client#clojure#nrepl#connection#auto_repl#hidden = "true"
 ]]
 
+-- let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein with-profile test repl :headless"
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufFilePre", "BufRead", "BufEnter" }, {
   pattern = { "*.clj" },

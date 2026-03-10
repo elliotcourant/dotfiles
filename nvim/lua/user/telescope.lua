@@ -1,4 +1,4 @@
--- I want to be able to switch to my previous buffer by hitting ; and Enter.
+-- I want to be able to switch to my previous buffer by hitting " and Enter.
 -- This sorts by recent usage for the buffer window and excludes the current
 -- buffer to achieve this behavior.
 --
