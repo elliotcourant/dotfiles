@@ -243,20 +243,10 @@ complete -o nospace -C /usr/local/bin/terraform terraform
 
 
 export NVM_DIR="$HOME/.nvm"
-
-# Dumb hack because homebrew is different on arm64 for some reason.
-if [[ -f "/usr/local/opt/nvm/nvm.sh" ]] then
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-else
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+if [[ -f "$NVM_DIR/nvm.sh" ]] then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
-
-# # BEGIN SNIPPET: Platform.sh CLI configuration
-# HOME=${HOME:-'/Users/elliotcourant'}
-# export PATH="$HOME/"'.platformsh/bin':"$PATH"
-# if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
 
 # if command -v rbenv &> /dev/null
 # then
@@ -268,30 +258,16 @@ if [[ -f "$HOME/.additional.zsh" ]]; then
   source "$HOME/.additional.zsh";
 fi
 
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/elliotcourant/.miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/elliotcourant/.miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/elliotcourant/.miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/home/elliotcourant/.miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-#
-
-# pnpm
-export PNPM_HOME="/Users/elliotcourant/Library/pnpm"
+# My own PNPM BS so that it works on both my work macbook and my personal debian box
+if [[ -d "$HOME/Library/pnpm" ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+else
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
-
 
 # bun completions
 if [[ -f "$HOME/.bun/_bun" ]]; then

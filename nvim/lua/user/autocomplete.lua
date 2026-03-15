@@ -13,6 +13,7 @@ require("mason-lspconfig").setup {
     "somesass_ls",
     "cssls",
     "cssmodules_ls",
+    "golangci_lint_ls",
     "eslint",
     "gopls",
     "lua_ls",
@@ -131,16 +132,13 @@ cmp.setup({
   }),
   sorting = {
     comparators = {
-      -- This is some trickery to make the buffer completion sort by the proximity of the compeltion item to the cursor
-      -- in the buffer. So if an item is closer to your cursor, its more likely to be the recommended completion item...
-      -- I think...
       cmp.config.compare.exact,
-      function(...) return cmp_buffer:compare_locality(...) end,
-      cmp.config.compare.offset,
       cmp.config.compare.score,
+      cmp.config.compare.offset,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,
+      function(...) return cmp_buffer:compare_locality(...) end,
       cmp.config.compare.order,
     }
   }
@@ -206,6 +204,28 @@ local lsp_flags = {
 --   settings     = { },
 --   handlers     = { }
 -- }
+
+-- vim.lsp.enable('golangci_lint_ls')
+-- vim.lsp.config('golangci_lint_ls', {
+--   capabilities = capabilities,
+--   on_attach    = on_attach,
+--   flags        = lsp_flags,
+--   init_options = {
+--     command = {
+--       "golangci-lint",
+--       "run",
+--       "--output.text.path=",
+--       "--output.tab.path=",
+--       "--output.html.path=",
+--       "--output.checkstyle.path=",
+--       "--output.junit-xml.path=",
+--       "--output.teamcity.path=",
+--       "--output.sarif.path=",
+--       "--show-stats=false",
+--       "--output.json.path=stdout"
+--     }
+--   },
+-- })
 
 vim.lsp.enable('gopls')
 vim.lsp.config('gopls', {
