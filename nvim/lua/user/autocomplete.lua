@@ -582,7 +582,7 @@ vim.lsp.config('ansiblels', {
   }
 })
 
-local clangd_capabilities = capabilities;
+local clangd_capabilities = vim.deepcopy(capabilities)
 clangd_capabilities.offsetEncoding = "utf-8"
 vim.lsp.enable('clangd')
 vim.lsp.config('clangd', {
