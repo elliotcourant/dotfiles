@@ -46,10 +46,6 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
   export PATH="$PATH:$HOME/.cargo/bin";
 fi
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 # For work computer, make sure libsodium makes its way into the path.
 if [[ $(hostname | grep "\-TP\-") ]]
 then
@@ -58,25 +54,9 @@ then
   export LD_LIBRARY_PATH="/opt/homebrew/Cellar/libsodium/1.0.18_1/lib:$LD_LIBRARY_PATH";
 fi
 
-# If krew is installed then include that in the PATH as well.
-if [[ -d ${KREW_ROOT:-$HOME/.krew}/bin ]]
-then
-  export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH";
-fi
-
-if [[ -d "/Applications/IntelliJ IDEA.app/Contents/MacOS" ]]
-then
-  export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/MacOS"
-fi
-
 if [[ -d /usr/local/go/bin ]]
 then
   export PATH="$PATH:/usr/local/go/bin"
-fi
-
-if [[ -d $HOME/Documents/depot_tools ]]
-then
-  export PATH="$PATH:$HOME/Documents/depot_tools"
 fi
 
 # This is stuff for cocoapods, and react-native
@@ -200,14 +180,6 @@ source $ZSH/oh-my-zsh.sh
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 
-# Try to find brew, or use the static path.
-# TODO Check if the command exists, and if it does not then skip this entirely.
-if command -v brew &> /dev/null
-then
-  eval "$(`which brew || echo '/opt/homebrew/bin/brew'` shellenv)"
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-fi
-
 alias evt='nvim ~/.tmux.conf'
 alias ev='nvim ~/.zshrc'
 alias sv='source ~/.zshrc'
@@ -234,8 +206,6 @@ export GITHUB_UPSTREAM=origin
 function pr_for_sha {
   git log --merges --ancestry-path --oneline $1..master | grep 'pull request' | tail -n1 | awk '{print $5}' | cut -c2- | xargs -I % open https://github.com/$GITHUB_UPSTREAM/${PWD##*/}/pull/%
 }
-
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 autoload -Uz compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
