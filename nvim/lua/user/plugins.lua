@@ -181,6 +181,7 @@ return packer.startup(function(use)
       -- TODO Upgrade to the lastest v2 thing, but it stopped detecting tests on
       -- v2.
       { "fredrikaverpil/neotest-golang", commit = "ad6ae703e18874eb66fee539224eac2dd9cc0890" },
+      { "ssh://git@gitlab.elliotcourant.dev:2223/elliotcourant/neotest-rstest.git" },
       -- "nvim-neotest/neotest-go",
       "haydenmeade/neotest-jest",
     },

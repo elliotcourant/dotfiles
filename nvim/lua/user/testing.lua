@@ -12,6 +12,7 @@ vim.diagnostic.config({
 
 local neotest_go = require('neotest-golang');
 local neotest_jest = require('neotest-jest');
+local neotest_rstest = require('neotest-rstest');
 
 neotest_go.filter_dir = function(name, rel_path, root)
   -- node_modules tends to be a massive directory
@@ -33,6 +34,18 @@ require("neotest").setup({
         return vim.fn.getcwd()
       end,
     }),
+    neotest_rstest({
+      -- options shown with their defaults
+      rstest_command = nil,        -- e.g. "pnpm exec rstest"
+      rstest_config_file = nil,    -- absolute path; auto-detected if nil
+      env = {},
+      cwd = nil,
+      dap = {                      -- merged into the pwa-node config
+        type = "pwa-node",
+        request = "launch",
+        autoAttachChildProcesses = true,
+      },
+    })
   },
   benchmark = {
     enabled = true
