@@ -250,12 +250,8 @@ if [[ -f "$HOME/.gvm/scripts/gvm" ]]; then
 fi
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then . '/Users/elliotcourant/Downloads/google-cloud-sdk 2/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc'; fi
-
-if [ -f '/home/elliotcourant/.config/op/plugins.sh' ]; then
-  source /home/elliotcourant/.config/op/plugins.sh;
+if [ -f "$HOME/.config/op/plugins.sh" ]; then
+  source $HOME/.config/op/plugins.sh;
 fi
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
