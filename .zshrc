@@ -255,4 +255,7 @@ if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/path.zsh.inc' ]; then
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc' ]; then . '/Users/elliotcourant/Downloads/google-cloud-sdk 2/completion.zsh.inc'; fi
-source /home/elliotcourant/.config/op/plugins.sh
+
+if [ -f '/home/elliotcourant/.config/op/plugins.sh' ]; then
+  source /home/elliotcourant/.config/op/plugins.sh;
+fi
